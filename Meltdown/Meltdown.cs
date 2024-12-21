@@ -124,7 +124,7 @@ namespace Meltdown
 
             if (stack > 0 && skill == skillLocator.secondary && skill.cooldownRemaining > 0)
             {
-                var radius = 5 + (5 * stack);
+                var radius = 10 + (5 * stack);
                 var damage = self.damage * 1.5f;
 
                 GlobalEventManager.igniteOnKillSphereSearch.origin = self.transform.position;
