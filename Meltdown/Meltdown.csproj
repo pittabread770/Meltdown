@@ -7,12 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="meltdownassetbundle" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="meltdownassetbundle" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.*">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
 
     <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+
+    <PackageReference Include="R2API.Dot" Version="1.0.3" />
 
     <PackageReference Include="R2API.Items" Version="1.0.*" />
     <PackageReference Include="R2API.Language" Version="1.0.*" />
