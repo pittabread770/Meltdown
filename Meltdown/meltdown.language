@@ -1,0 +1,14 @@
+{
+  "strings": {
+    "MELTDOWN_REACTORVENTS_NAME": "Reactor Vents",
+    "MELTDOWN_REACTORVENTS_PICKUP": "Activating your secondary skill irradiates nearby enemies.",
+    "MELTDOWN_REACTORVENTS_DESC": "Activating your <style=cIsUtility>secondary skill</style> damages enemies in a <style=cIsDamage>15m</style> <style=cStack>(+5m per stack)</style> radius around you for <style=cIsDamage>150%</style> base damage. Additionally, enemies are <color=#7fff00>irradiated</color> for <style=cIsDamage>150%</style> <style=cStack>(+75% per stack)</style> base damage.",
+    "MELTDOWN_REACTORVENTS_LORE": "// TODO"
+  },
+  "en": {
+    "MELTDOWN_REACTORVENTS_NAME": "Reactor Vents",
+    "MELTDOWN_REACTORVENTS_PICKUP": "Activating your secondary skill irradiates nearby enemies.",
+    "MELTDOWN_REACTORVENTS_DESC": "Activating your <style=cIsUtility>secondary skill</style> damages enemies in a <style=cIsDamage>15m</style> <style=cStack>(+5m per stack)</style> radius around you for <style=cIsDamage>150%</style> base damage. Additionally, enemies are <color=#7fff00>irradiated</color> for <style=cIsDamage>150%</style> <style=cStack>(+75% per stack)</style> base damage.",
+    "MELTDOWN_REACTORVENTS_LORE": "// TODO"
+  }
+}

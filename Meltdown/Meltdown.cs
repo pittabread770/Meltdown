@@ -10,8 +10,6 @@ namespace Meltdown
     [BepInDependency(ItemAPI.PluginGUID)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
 
-    // This one is because we use a .language file for language tokens
-    // More info in https://risk-of-thunder.github.io/R2Wiki/Mod-Creation/Assets/Localization/
     [BepInDependency(LanguageAPI.PluginGUID)]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 
@@ -79,7 +77,7 @@ namespace Meltdown
             reactorVents.canRemove = true;
             reactorVents.hidden = false;
 
-            var displayRules = new ItemDisplayRuleDict(null); // TODO
+            var displayRules = new ItemDisplayRuleDict(null); // TODO: reactor vents display
 
             ItemAPI.Add(new CustomItem(reactorVents, displayRules));
             On.RoR2.CharacterBody.OnSkillActivated += CharacterBody_OnSkillActivated;
