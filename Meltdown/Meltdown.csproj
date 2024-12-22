@@ -22,4 +22,8 @@
     <PackageReference Include="MMHOOK.RoR2" Version="2024.11.4" NoWarn="NU1701" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /Y &quot;$(SolutionDir)Meltdown\meltdown.language&quot; &quot;$(OutDir)meltdown.language&quot;" />
+  </Target>
+
 </Project>
