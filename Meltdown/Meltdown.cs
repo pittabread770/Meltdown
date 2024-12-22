@@ -36,6 +36,8 @@ namespace Meltdown
         private static DotController.DotIndex irradiatedIndex;
         private static Sprite irradiatedSprite;
 
+        private static Color32 irradiatedColour = new Color32(190, 218, 97, 255);
+
         public void Awake()
         {
             Log.Init(Logger);
@@ -73,7 +75,7 @@ namespace Meltdown
             irradiatedBuff.eliteDef = null;
             irradiatedBuff.isCooldown = false;
             irradiatedBuff.isHidden = false; 
-            irradiatedBuff.buffColor = new Color32(255, 255, 0, 255);
+            irradiatedBuff.buffColor = irradiatedColour;
             irradiatedBuff.iconSprite = irradiatedSprite;
 
             ContentAddition.AddBuffDef(irradiatedBuff);
@@ -213,7 +215,7 @@ namespace Meltdown
                 {
                     origin = self.transform.position,
                     scale = radius,
-                    color = new Color32(0, 255, 0, 150)
+                    color = irradiatedColour
                 }, true);
             }
         }
