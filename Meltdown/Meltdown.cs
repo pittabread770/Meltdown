@@ -1,8 +1,8 @@
 using BepInEx;
+using Meltdown.Orbs;
 using R2API;
 using R2API.Utils;
 using RoR2;
-using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -25,16 +25,16 @@ namespace Meltdown
         private static AssetBundle Assets;
 
         private static ItemDef reactorVents;
-        private static ItemDef plutoniumArmaments;
+        private static ItemDef plutoniumRounds;
         private static ItemDef damagedCoolingRod;
         private static ItemDef rawUranium;
         private static ItemDef volatileThoriumBattery;
         private static ItemDef uraniumFuelRod;
 
-        private static BuffDef irradiatedBuff;
-        private static DotController.DotDef irradiatedDot;
-        private static DotController.DotIndex irradiatedIndex;
-        private static Sprite irradiatedSprite;
+        public static BuffDef irradiatedBuff;
+        public static DotController.DotDef irradiatedDot;
+        public static DotController.DotIndex irradiatedIndex;
+        public static Sprite irradiatedSprite;
 
         private static Color32 irradiatedColour = new Color32(190, 218, 97, 255);
 
@@ -51,7 +51,7 @@ namespace Meltdown
             if (Input.GetKeyDown(KeyCode.F2))
             {
                 var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(reactorVents.itemIndex), transform.position, transform.forward * 20f);
+                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(plutoniumRounds.itemIndex), transform.position, transform.forward * 20f);
             }
         }
 
@@ -104,7 +104,7 @@ namespace Meltdown
         private void SetupItems()
         {
             SetupReactorVents();
-            SetupPlutoniumArmaments();
+            SetupPlutoniumRounds();
             SetupDamagedCoolingRod();
             SetupRawUranium();
             SetupVolatileThoriumBattery();
@@ -117,12 +117,16 @@ namespace Meltdown
             setItemDef(reactorVents, "REACTORVENTS", ItemTier.Tier1, "RoR2/Base/Common/MiscIcons/texMysteryIcon.png", "RoR2/Base/Mystery/PickupMystery.prefab");
             var reactorVentsDisplayRules = new ItemDisplayRuleDict(null); // TODO: reactor vents display
             ItemAPI.Add(new CustomItem(reactorVents, reactorVentsDisplayRules));
-            On.RoR2.CharacterBody.OnSkillActivated += CharacterBody_OnSkillActivated;
+            On.RoR2.CharacterBody.OnSkillActivated += CharacterBody_OnSkillActivated_Vents;
         }
 
-        private void SetupPlutoniumArmaments()
+        private void SetupPlutoniumRounds()
         {
-            // TODO
+            plutoniumRounds = ScriptableObject.CreateInstance<ItemDef>();
+            setItemDef(plutoniumRounds, "PLUTONIUMROUNDS", ItemTier.Tier1, "RoR2/Base/Common/MiscIcons/texMysteryIcon.png", "RoR2/Base/Mystery/PickupMystery.prefab");
+            var plutoniumRoundsDisplayRules = new ItemDisplayRuleDict(null);
+            ItemAPI.Add(new CustomItem(plutoniumRounds, plutoniumRoundsDisplayRules));
+            On.RoR2.CharacterBody.OnSkillActivated += CharacterBody_OnSkillActivated_Rounds;
         }
 
         private void SetupDamagedCoolingRod()
@@ -162,7 +166,7 @@ namespace Meltdown
             itemDef.hidden = false;
         }
 
-        private void CharacterBody_OnSkillActivated(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill)
+        private void CharacterBody_OnSkillActivated_Vents(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill)
         {
             orig(self, skill);
 
@@ -217,6 +221,54 @@ namespace Meltdown
                     scale = radius,
                     color = irradiatedColour
                 }, true);
+            }
+        }
+
+        private void CharacterBody_OnSkillActivated_Rounds(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill)
+        {
+            orig(self, skill);
+
+            if (!self || skill == null || !self.inventory)
+            {
+                return;
+            }
+
+            var stack = self.inventory.GetItemCount(plutoniumRounds);
+            var skillLocator = self.GetComponent<SkillLocator>();
+
+            if (stack > 0 && skill != skillLocator.primary && skill.cooldownRemaining > 0)
+            {
+                var radius = 25 + (5 * stack);
+
+                HurtBox[] hurtBoxes = new SphereSearch
+                {
+                    origin = self.transform.position,
+                    radius = radius,
+                    mask = LayerIndex.entityPrecise.mask,
+                    queryTriggerInteraction = QueryTriggerInteraction.UseGlobal
+                }.RefreshCandidates().FilterCandidatesByHurtBoxTeam(TeamMask.GetEnemyTeams(self.teamComponent.teamIndex)).OrderCandidatesByDistance().FilterCandidatesByDistinctHurtBoxEntities().GetHurtBoxes();
+
+                for (int i = 0; i < Mathf.Min(stack, hurtBoxes.Length); i++)
+                {
+                    IrradiatedOrb orb = new IrradiatedOrb();
+                    
+                    orb.attacker = self.gameObject;
+                    orb.bouncedObjects = null;
+                    orb.bouncesRemaining = 0;
+                    orb.damageCoefficientPerBounce = 1.0f;
+                    orb.damageColorIndex = DamageColorIndex.Poison;
+                    orb.damageValue = self.damage;
+                    orb.isCrit = self.RollCrit();
+                    orb.lightningType = IrradiatedOrb.LightningType.RazorWire;
+                    orb.origin = self.transform.position;
+                    orb.procChainMask.AddProc(ProcType.Thorns);
+                    orb.procCoefficient = 0.4f;
+                    orb.range = 0f;
+                    orb.teamIndex = self.teamComponent.teamIndex;
+                    orb.target = hurtBoxes[i];
+
+                    RoR2.Orbs.OrbManager.instance.AddOrb(orb);
+                }
             }
         }
     }
