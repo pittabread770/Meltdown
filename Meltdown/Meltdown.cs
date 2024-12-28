@@ -114,7 +114,7 @@ namespace Meltdown
         private void SetupReactorVents()
         {
             reactorVents = ScriptableObject.CreateInstance<ItemDef>();
-            setItemDef(reactorVents, "REACTORVENTS", ItemTier.Tier1, "RoR2/Base/Common/MiscIcons/texMysteryIcon.png", "RoR2/Base/Mystery/PickupMystery.prefab");
+            setItemDef(reactorVents, "REACTORVENTS", ItemTier.Tier1, "texIconPickupReactorVents.png", "ReactorVents.prefab");
             var reactorVentsDisplayRules = new ItemDisplayRuleDict(null); // TODO: reactor vents display
             ItemAPI.Add(new CustomItem(reactorVents, reactorVentsDisplayRules));
             On.RoR2.CharacterBody.OnSkillActivated += CharacterBody_OnSkillActivated_Vents;
@@ -123,8 +123,8 @@ namespace Meltdown
         private void SetupPlutoniumRounds()
         {
             plutoniumRounds = ScriptableObject.CreateInstance<ItemDef>();
-            setItemDef(plutoniumRounds, "PLUTONIUMROUNDS", ItemTier.Tier1, "RoR2/Base/Common/MiscIcons/texMysteryIcon.png", "RoR2/Base/Mystery/PickupMystery.prefab");
-            var plutoniumRoundsDisplayRules = new ItemDisplayRuleDict(null);
+            setItemDef(plutoniumRounds, "PLUTONIUMROUNDS", ItemTier.Tier1, "texIconPickupPlutoniumRounds.png", "PlutoniumRounds.prefab");
+            var plutoniumRoundsDisplayRules = new ItemDisplayRuleDict(null); // TODO: plutonium rounds display
             ItemAPI.Add(new CustomItem(plutoniumRounds, plutoniumRoundsDisplayRules));
             On.RoR2.CharacterBody.OnSkillActivated += CharacterBody_OnSkillActivated_Rounds;
         }
@@ -159,8 +159,23 @@ namespace Meltdown
 
             itemDef.deprecatedTier = tier;
 
-            itemDef.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>(iconUrl).WaitForCompletion();
-            itemDef.pickupModelPrefab = Addressables.LoadAssetAsync<GameObject>(modelUrl).WaitForCompletion();
+            if (!iconUrl.StartsWith("RoR2"))
+            {
+                itemDef.pickupIconSprite = Assets.LoadAsset<Sprite>(iconUrl);
+            }
+            else
+            {
+                itemDef.pickupIconSprite = Addressables.LoadAssetAsync<Sprite>(iconUrl).WaitForCompletion();
+            }
+
+            if (!modelUrl.StartsWith("RoR2"))
+            {
+                itemDef.pickupModelPrefab = Assets.LoadAsset<GameObject>(modelUrl);
+            }
+            else
+            {
+                itemDef.pickupModelPrefab = Addressables.LoadAssetAsync<GameObject>(modelUrl).WaitForCompletion();
+            }
 
             itemDef.canRemove = true;
             itemDef.hidden = false;
