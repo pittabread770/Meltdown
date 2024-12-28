@@ -51,7 +51,37 @@ namespace Meltdown
             if (Input.GetKeyDown(KeyCode.F2))
             {
                 var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(plutoniumRounds.itemIndex), transform.position, transform.forward * 20f);
+
+                // TODO: remove once completed
+                if (plutoniumRounds != null)
+                {
+                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(plutoniumRounds.itemIndex), transform.position, transform.forward * 20f);
+                }
+
+                if (reactorVents != null)
+                {
+                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(reactorVents.itemIndex), transform.position, transform.forward * 20f);
+                }
+
+                if (damagedCoolingRod != null)
+                {
+                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(damagedCoolingRod.itemIndex), transform.position, transform.forward * 20f);
+                }
+
+                if (rawUranium != null)
+                {
+                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(rawUranium.itemIndex), transform.position, transform.forward * 20f);
+                }
+
+                if (volatileThoriumBattery != null)
+                {
+                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(volatileThoriumBattery.itemIndex), transform.position, transform.forward * 20f);
+                }
+
+                if (uraniumFuelRod != null)
+                {
+                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(uraniumFuelRod.itemIndex), transform.position, transform.forward * 20f);
+                }
             }
         }
 
