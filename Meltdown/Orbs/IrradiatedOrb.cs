@@ -25,9 +25,19 @@ namespace Meltdown.Orbs
         {
             base.OnArrival();
 
-            if (this.target != null)
+            if (this.target != null && this.attacker != null)
             {
-                DotController.InflictDot(this.target.healthComponent.gameObject, attacker.gameObject, Meltdown.irradiatedIndex, 8.0f, 1.0f);
+                var attackerBody = this.attacker.GetComponent<CharacterBody>();
+
+                if (attackerBody != null && attackerBody.inventory != null)
+                {
+                    int enchancerCount = attackerBody.inventory.GetItemCount(Meltdown.uraniumFuelRods);
+                    DotController.InflictDot(this.target.healthComponent.gameObject, attacker.gameObject, Meltdown.irradiatedIndex, 8.0f * (1.0f + enchancerCount * 0.5), 1.0f);
+                }
+                else
+                {
+                    DotController.InflictDot(this.target.healthComponent.gameObject, attacker.gameObject, Meltdown.irradiatedIndex, 8.0f, 1.0f);
+                }
             }
         }
     }

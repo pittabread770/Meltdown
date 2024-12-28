@@ -11,6 +11,21 @@
     "MELTDOWN_PLUTONIUMROUNDS_PICKUP": "Activating a non-primary skill irradiates a nearby enemy.",
     "MELTDOWN_PLUTONIUMROUNDS_DESC": "Activating a <style=cIsUtility>non-primary skill</style> damages <style=cIsDamage>1</style> <style=cStack>(+1 per stack)</style> enemy in a <style=cIsDamage>30m</style> <style=cStack>(+5m per stack)</style> radius around you for <style=cIsDamage>100%</style> base damage, <color=#7fff00>irradiating</color> them.",
     "MELTDOWN_PLUTONIUMROUNDS_LORE": "// TODO",
+
+    "MELTDOWN_LEAKYREACTORCOOLANT_NAME": "Leaky Reactor Coolant",
+    "MELTDOWN_LEAKYREACTORCOOLANT_PICKUP": "Irradiated enemies lose armor and can ignite.",
+    "MELTDOWN_LEAKYREACTORCOOLANT_DESC": "<color=#7fff00>Irradiated</color> enemies lose <style=cIsDamage>10</style> <style=cStack>(+10 per stack)</style> armor, and have a <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style> chance per tick to <style=cIsDamage>ignite</style>.",
+    "MELTDOWN_LEAKYREACTORCOOLANT_LORE": "// TODO",
+
+    "MELTDOWN_VOLATILETHORIUMBATTERY_NAME": "Volatile Thorium Battery",
+    "MELTDOWN_VOLATILETHORIUMBATTERY_PICKUP": "Every 4th stack of irradiated deals extra up-front damage and spreads irradiated.",
+    "MELTDOWN_VOLATILETHORIUMBATTERY_DESC": "Every <style=cIsDamage>4th</style> stack of <color=#7fff00>Irradiated</color> applied to an enemy deals <style=cIsDamage>250%</style> <style=cStack>(+250% per stack)</style> base damage to the enemy and spreads <color=#7fff00>Irradiated</color> to all enemies in a <style=cIsDamage>5m</style> <style=cStack>(+5m per stack)</style> radius.",
+    "MELTDOWN_VOLATILETHORIUMBATTERY_LORE": "// TODO",
+
+    "MELTDOWN_URANIUMFUELRODS_NAME": "Uranium Fuel Rods",
+    "MELTDOWN_URANIUMFUELRODS_PICKUP": "Your irradiated effects deal increased damage and last longer.",
+    "MELTDOWN_URANIUMFUELRODS_DESC": "Your <color=#7fff00>Irradiated</color> effects deal <style=cIsDamage>250%</style> <style=cStack>(+250% per stack)</style> increased damage, and last <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style> longer.",
+    "MELTDOWN_URANIUMFUELRODS_LORE": "// TODO"
   },
   "en": {
     "MELTDOWN_IRRADIATED_NAME": "Irradiated",
@@ -24,5 +39,20 @@
     "MELTDOWN_PLUTONIUMROUNDS_PICKUP": "Activating a non-primary skill irradiates a nearby enemy.",
     "MELTDOWN_PLUTONIUMROUNDS_DESC": "Activating a <style=cIsUtility>non-primary skill</style> damages <style=cIsDamage>1</style> <style=cStack>(+1 per stack)</style> enemy in a <style=cIsDamage>30m</style> <style=cStack>(+5m per stack)</style> radius around you for <style=cIsDamage>100%</style> base damage, <color=#7fff00>irradiating</color> them.",
     "MELTDOWN_PLUTONIUMROUNDS_LORE": "// TODO",
+
+    "MELTDOWN_LEAKYREACTORCOOLANT_NAME": "Leaky Reactor Coolant",
+    "MELTDOWN_LEAKYREACTORCOOLANT_PICKUP": "Irradiated enemies lose armor and can ignite.",
+    "MELTDOWN_LEAKYREACTORCOOLANT_DESC": "<color=#7fff00>Irradiated</color> enemies lose <style=cIsDamage>10</style> <style=cStack>(+10 per stack)</style> armor, and have a <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style> chance per tick to <style=cIsDamage>ignite</style>.",
+    "MELTDOWN_LEAKYREACTORCOOLANT_LORE": "// TODO",
+
+    "MELTDOWN_VOLATILETHORIUMBATTERY_NAME": "Volatile Thorium Battery",
+    "MELTDOWN_VOLATILETHORIUMBATTERY_PICKUP": "Every 4th stack of Irradiated deals extra up-front damage and spreads Irradiated.",
+    "MELTDOWN_VOLATILETHORIUMBATTERY_DESC": "Every <style=cIsDamage>4th</style> stack of <color=#7fff00>Irradiated</color> applied to an enemy deals <style=cIsDamage>250%</style> <style=cStack>(+250% per stack)</style> base damage to the enemy and spreads <color=#7fff00>Irradiated</color> to all enemies in a <style=cIsDamage>5m</style> <style=cStack>(+5m per stack)</style> radius.",
+    "MELTDOWN_VOLATILETHORIUMBATTERY_LORE": "// TODO",
+
+    "MELTDOWN_URANIUMFUELRODS_NAME": "Uranium Fuel Rods",
+    "MELTDOWN_URANIUMFUELRODS_PICKUP": "Your irradiated effects deal increased damage and last longer.",
+    "MELTDOWN_URANIUMFUELRODS_DESC": "Your <color=#7fff00>Irradiated</color> effects deal <style=cIsDamage>250%</style> <style=cStack>(+250% per stack)</style> increased damage, and last <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style> longer.",
+    "MELTDOWN_URANIUMFUELRODS_LORE": "// TODO"
   }
 }

@@ -1,4 +1,5 @@
 using BepInEx;
+using HG;
 using Meltdown.Orbs;
 using R2API;
 using R2API.Utils;
@@ -24,12 +25,11 @@ namespace Meltdown
 
         private static AssetBundle Assets;
 
-        private static ItemDef reactorVents;
-        private static ItemDef plutoniumRounds;
-        private static ItemDef damagedCoolingRod;
-        private static ItemDef rawUranium;
-        private static ItemDef volatileThoriumBattery;
-        private static ItemDef uraniumFuelRod;
+        public static ItemDef reactorVents;
+        public static ItemDef plutoniumRounds;
+        public static ItemDef leakyReactorCoolant;
+        public static ItemDef volatileThoriumBattery;
+        public static ItemDef uraniumFuelRods;
 
         public static BuffDef irradiatedBuff;
         public static DotController.DotDef irradiatedDot;
@@ -63,14 +63,9 @@ namespace Meltdown
                     PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(reactorVents.itemIndex), transform.position, transform.forward * 20f);
                 }
 
-                if (damagedCoolingRod != null)
+                if (leakyReactorCoolant != null)
                 {
-                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(damagedCoolingRod.itemIndex), transform.position, transform.forward * 20f);
-                }
-
-                if (rawUranium != null)
-                {
-                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(rawUranium.itemIndex), transform.position, transform.forward * 20f);
+                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(leakyReactorCoolant.itemIndex), transform.position, transform.forward * 20f);
                 }
 
                 if (volatileThoriumBattery != null)
@@ -78,9 +73,9 @@ namespace Meltdown
                     PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(volatileThoriumBattery.itemIndex), transform.position, transform.forward * 20f);
                 }
 
-                if (uraniumFuelRod != null)
+                if (uraniumFuelRods != null)
                 {
-                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(uraniumFuelRod.itemIndex), transform.position, transform.forward * 20f);
+                    PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(uraniumFuelRods.itemIndex), transform.position, transform.forward * 20f);
                 }
             }
         }
@@ -104,7 +99,7 @@ namespace Meltdown
             irradiatedBuff.isDebuff = true;
             irradiatedBuff.eliteDef = null;
             irradiatedBuff.isCooldown = false;
-            irradiatedBuff.isHidden = false; 
+            irradiatedBuff.isHidden = false;
             irradiatedBuff.buffColor = irradiatedColour;
             irradiatedBuff.iconSprite = irradiatedSprite;
 
@@ -122,9 +117,11 @@ namespace Meltdown
             DotAPI.CustomDotBehaviour irradiatedBehaviour = delegate (DotController controller, DotController.DotStack stack)
             {
                 var attacker = stack.attackerObject?.GetComponent<CharacterBody>();
-                if (controller.victimBody != null && attacker != null)
+                if (controller.victimBody != null && attacker != null && attacker.inventory != null)
                 {
-                    stack.damage = (attacker.damage * 1.5f) / 3.0f;
+                    var enhancerCount = attacker.inventory.GetItemCount(uraniumFuelRods);
+                    var dotBaseDamage = (attacker.damage * 1.5f) / 3.0f;
+                    stack.damage = enhancerCount > 0 ? dotBaseDamage + dotBaseDamage * 2.5f * enhancerCount : dotBaseDamage;
                 }
             };
 
@@ -135,10 +132,9 @@ namespace Meltdown
         {
             SetupReactorVents();
             SetupPlutoniumRounds();
-            SetupDamagedCoolingRod();
-            SetupRawUranium();
+            SetupLeakyReactorCoolant();
             SetupVolatileThoriumBattery();
-            SetupUraniumFuelRod();
+            SetupUraniumFuelRods();
         }
 
         private void SetupReactorVents()
@@ -159,12 +155,7 @@ namespace Meltdown
             On.RoR2.CharacterBody.OnSkillActivated += CharacterBody_OnSkillActivated_Rounds;
         }
 
-        private void SetupDamagedCoolingRod()
-        {
-            // TODO
-        }
-
-        private void SetupRawUranium()
+        private void SetupLeakyReactorCoolant()
         {
             // TODO
         }
@@ -174,9 +165,12 @@ namespace Meltdown
             // TODO
         }
 
-        private void SetupUraniumFuelRod()
+        private void SetupUraniumFuelRods()
         {
-            // TODO
+            uraniumFuelRods = ScriptableObject.CreateInstance<ItemDef>();
+            setItemDef(uraniumFuelRods, "URANIUMFUELRODS", ItemTier.Tier2, "texIconPickupUraniumFuelRods.png", "UraniumFuelRods.prefab");
+            var uraniumFuelRodsDisplayRules = new ItemDisplayRuleDict(null); // TODO: uranium fuel rods display
+            ItemAPI.Add(new CustomItem(uraniumFuelRods, uraniumFuelRodsDisplayRules));
         }
 
         private void setItemDef(ItemDef itemDef, string langKey, ItemTier tier, string iconUrl, string modelUrl)
@@ -222,6 +216,7 @@ namespace Meltdown
 
             var stack = self.inventory.GetItemCount(reactorVents);
             var skillLocator = self.GetComponent<SkillLocator>();
+            var enhancerStack = self.inventory.GetItemCount(uraniumFuelRods);
 
             if (stack > 0 && skill == skillLocator.secondary && skill.cooldownRemaining > 0)
             {
@@ -242,7 +237,8 @@ namespace Meltdown
                     HurtBox hurtBox = GlobalEventManager.igniteOnKillHurtBoxBuffer[i];
                     if (hurtBox.healthComponent)
                     {
-                        DotController.InflictDot(hurtBox.healthComponent.gameObject, self.gameObject, irradiatedIndex, 3.0f + 3.0f * (float)stack, 1.0f);
+                        var duration = 3.0f + 3.0f * (float)stack * (float)(1.0f + enhancerStack * 0.5f);
+                        DotController.InflictDot(hurtBox.healthComponent.gameObject, self.gameObject, irradiatedIndex, duration, 1.0f);
                     }
                 }
                 GlobalEventManager.igniteOnKillHurtBoxBuffer.Clear();
@@ -296,7 +292,7 @@ namespace Meltdown
                 for (int i = 0; i < Mathf.Min(stack, hurtBoxes.Length); i++)
                 {
                     IrradiatedOrb orb = new IrradiatedOrb();
-                    
+
                     orb.attacker = self.gameObject;
                     orb.bouncedObjects = null;
                     orb.bouncesRemaining = 0;
