@@ -13,8 +13,8 @@ namespace Meltdown.Items.Green
         public override string ItemFullDescription => "<color=#7fff00>Irradiated</color> enemies lose <style=cIsDamage>10</style> <style=cStack>(+10 per stack)</style> armor, and have a <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style> chance per tick to <style=cIsDamage>ignite</style>.";
         public override string ItemLore => "// TODO";
         public override ItemTier Tier => ItemTier.Tier2;
-        public override string ItemModelPath => "RoR2/Base/Mystery/PickupMystery.prefab";
-        public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png";
+        public override string ItemModelPath => "LeakyReactorCoolant.prefab";
+        public override string ItemIconPath => "texIconPickupLeakyReactorCoolant.png";
         public override ItemTag[] ItemTags => [ItemTag.Utility];
         public override bool CanRemove => true;
         public override bool Hidden => false;

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1519155146
+CRC: 4163058992
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1af862194b6a79ec68a3d38510b4ba70
+    Hash: 8363727f1fb72f6c1ff88bc34fee3951
   TypeTreeHash:
     serializedVersion: 2
     Hash: a7a21288fe2bd6ae3724c7054e7a1302
@@ -31,9 +31,13 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/UraniumFuelRods.prefab
 - Assets/texBuffIrradiated.png
+- Assets/texIconPickupVolatileThoriumBattery.png
 - Assets/texIconPickupUraniumFuelRods.png
 - Assets/PlutoniumRounds.prefab
+- Assets/texIconPickupLeakyReactorCoolant.png
 - Assets/ReactorVents.prefab
+- Assets/VolatileThoriumBattery.prefab
 - Assets/texIconPickupPlutoniumRounds.png
+- Assets/LeakyReactorCoolant.prefab
 - Assets/texIconPickupReactorVents.png
 Dependencies: []
