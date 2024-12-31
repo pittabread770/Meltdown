@@ -19,7 +19,7 @@ namespace Meltdown.Items.Green
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
-            return new ItemDisplayRuleDict(null);
+            return new ItemDisplayRuleDict(null); // TODO 
         }
 
         public override void Hooks()

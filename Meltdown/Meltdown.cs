@@ -36,7 +36,7 @@ namespace Meltdown
 
         public static Color32 irradiatedColour = new Color32(190, 218, 97, 255);
 
-        public void Awake()
+        public void Awake() // TODO: fix logbook display bug
         {
             Log.Init(Logger);
             LoadAssets();

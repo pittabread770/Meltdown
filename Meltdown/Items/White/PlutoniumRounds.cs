@@ -21,7 +21,7 @@ namespace Meltdown.Items.White
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
-            return new ItemDisplayRuleDict(null);
+            return new ItemDisplayRuleDict(null); // TODO 
         }
 
         public override void Hooks()
