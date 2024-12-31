@@ -60,7 +60,7 @@ namespace Meltdown.Items.Green
             {
                 if (victim.TryGetComponent<LeakyReactorCoolantController>(out var CoolantController))
                 {
-                    if (Util.CheckRoll(10 * CoolantController.stacks))
+                    if (Util.CheckRoll(10 * CoolantController.stacks, attacker.master))
                     {
                         InflictDotInfo inflictDotInfo = new()
                         {

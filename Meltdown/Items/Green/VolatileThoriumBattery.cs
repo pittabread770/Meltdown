@@ -1,5 +1,7 @@
-﻿using R2API;
+﻿using Meltdown.Orbs;
+using R2API;
 using RoR2;
+using UnityEngine;
 
 namespace Meltdown.Items.Green
 {
@@ -7,8 +9,8 @@ namespace Meltdown.Items.Green
     {
         public override string ItemName => "Volatile Thorium Battery";
         public override string ItemLangTokenName => "VOLATILETHORIUMBATTERY";
-        public override string ItemPickupDesc => "Every 4th stack of irradiated deals extra up-front damage and spreads irradiated.";
-        public override string ItemFullDescription => "Every <style=cIsDamage>4th</style> stack of <color=#7fff00>Irradiated</color> applied to an enemy deals <style=cIsDamage>250%</style> <style=cStack>(+250% per stack)</style> base damage to the enemy and spreads <color=#7fff00>Irradiated</color> to all enemies in a <style=cIsDamage>5m</style> <style=cStack>(+5m per stack)</style> radius.";
+        public override string ItemPickupDesc => "Irradiated enemies can spread irradiated.";
+        public override string ItemFullDescription => "<color=#7fff00>Irradiated</color> enemies have a <style=cIsDamage>15%</style> chance per tick to spread <color=#7fff00>Irradiated</color> to <style=cIsDamage>2</style> <style=cStack>(+1 per stack)</style> nearby enemies in a <style=cIsDamage>20m</style> <style=cStack>(+5m per stack)</style> radius.";
         public override string ItemLore => "// TODO";
         public override ItemTier Tier => ItemTier.Tier2;
         public override string ItemModelPath => "VolatileThoriumBattery.prefab";
@@ -24,7 +26,45 @@ namespace Meltdown.Items.Green
 
         public override void Hooks()
         {
-            // TODO
+            GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
+        }
+
+        private void GlobalEventManager_onServerDamageDealt(DamageReport report)
+        {
+            var victim = report.victim;
+            var attacker = report.attackerBody;
+
+            if (victim != null && attacker != null && report.dotType == Meltdown.irradiated.index)
+            {
+                var itemCount = GetCount(attacker);
+
+                if (victim.body.HasBuff(Meltdown.irradiated.buff) && itemCount > 0)
+                {
+                    var checkRoll = Util.CheckRoll(15.0f, attacker.master);
+
+                    if (checkRoll)
+                    {
+                        var radius = 15 + (5 * itemCount);
+
+                        HurtBox[] hurtBoxes = new SphereSearch
+                        {
+                            origin = victim.transform.position,
+                            radius = radius,
+                            mask = LayerIndex.entityPrecise.mask,
+                            queryTriggerInteraction = QueryTriggerInteraction.UseGlobal
+                        }.RefreshCandidates().FilterCandidatesByHurtBoxTeam(TeamMask.GetEnemyTeams(attacker.teamComponent.teamIndex)).OrderCandidatesByDistance().FilterCandidatesByDistinctHurtBoxEntities().GetHurtBoxes();
+
+                        for (int i = 0; i < Mathf.Min(itemCount + 1, hurtBoxes.Length); i++)
+                        {
+                            if (hurtBoxes[i] != victim.body.mainHurtBox)
+                            {
+                                IrradiatedOrb orb = new IrradiatedOrb(attacker.gameObject, attacker.damage, attacker.RollCrit(), victim.transform.position, attacker.teamComponent.teamIndex, hurtBoxes[i]);
+                                RoR2.Orbs.OrbManager.instance.AddOrb(orb);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
