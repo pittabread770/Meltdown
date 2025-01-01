@@ -69,7 +69,8 @@ namespace Meltdown.Items.Green
                             victimObject = victim.gameObject,
                             damageMultiplier = 1.0f,
                             dotIndex = DotController.DotIndex.Burn,
-                            duration = 6.0f
+                            duration = 6.0f,
+                            maxStacksFromAttacker = uint.MaxValue
                         };
 
                         if (attacker.inventory)

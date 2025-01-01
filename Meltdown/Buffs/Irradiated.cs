@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Meltdown.Buffs
 {
-    public class Irradiated // TODO: fix this DoT with noxious thorn
+    public class Irradiated
     {
         public BuffDef buff;
         public DotController.DotDef dot;
@@ -31,6 +31,7 @@ namespace Meltdown.Buffs
             buff.isHidden = false;
             buff.buffColor = Meltdown.irradiatedColour;
             buff.iconSprite = sprite;
+            buff.isDOT = true;
 
             ContentAddition.AddBuffDef(buff);
         }

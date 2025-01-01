@@ -55,7 +55,8 @@ namespace Meltdown.Orbs
                     attackerObject = attacker,
                     dotIndex = Meltdown.irradiated.index,
                     damageMultiplier = 1.0f,
-                    duration = 8.0f
+                    duration = 8.0f,
+                    maxStacksFromAttacker = uint.MaxValue
                 };
 
                 if (attackerBody != null && attackerBody.inventory != null)

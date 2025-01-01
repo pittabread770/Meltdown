@@ -66,7 +66,8 @@ namespace Meltdown.Items.White
                             attackerObject = self.gameObject,
                             dotIndex = Meltdown.irradiated.index,
                             damageMultiplier = 1.0f,
-                            duration = 3.0f * (stack + 1)
+                            duration = 3.0f * (stack + 1),
+                            maxStacksFromAttacker = uint.MaxValue
                         };
 
                         StrengthenIrradiatedUtils.CheckDotForUpgrade(self.inventory, ref inflictDotInfo);
