@@ -10,7 +10,7 @@ namespace Meltdown.Items.Green
         public override string ItemLangTokenName => "URANIUMFUELRODS";
         public override string ItemPickupDesc => "Your irradiated effects deal increased damage and last longer.";
         public override string ItemFullDescription => "Your <color=#7fff00>Irradiated</color> effects deal <style=cIsDamage>250%</style> <style=cStack>(+250% per stack)</style> increased damage, and last <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style> longer.";
-        public override string ItemLore => "// TODO";
+        public override string ItemLore => LoreUtils.getUraniumFuelRodsLore();
         public override ItemTier Tier => ItemTier.Tier2;
         public override string ItemModelPath => "UraniumFuelRods.prefab";
         public override string ItemIconPath => "texIconPickupUraniumFuelRods.png";

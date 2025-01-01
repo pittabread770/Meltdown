@@ -12,7 +12,7 @@ namespace Meltdown.Items.Green
         public override string ItemLangTokenName => "VOLATILETHORIUMBATTERY";
         public override string ItemPickupDesc => "Irradiated enemies can spread irradiated.";
         public override string ItemFullDescription => "<color=#7fff00>Irradiated</color> enemies have a <style=cIsDamage>15%</style> chance per tick to spread <color=#7fff00>Irradiated</color> to <style=cIsDamage>2</style> <style=cStack>(+1 per stack)</style> nearby enemies in a <style=cIsDamage>20m</style> <style=cStack>(+5m per stack)</style> radius.";
-        public override string ItemLore => "// TODO";
+        public override string ItemLore => LoreUtils.getVolatileThoriumBatteryLore();
         public override ItemTier Tier => ItemTier.Tier2;
         public override string ItemModelPath => "VolatileThoriumBattery.prefab";
         public override string ItemIconPath => "texIconPickupVolatileThoriumBattery.png";

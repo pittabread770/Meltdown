@@ -10,7 +10,7 @@ namespace Meltdown.Items.White
         public override string ItemLangTokenName => "REACTORVENTS";
         public override string ItemPickupDesc => "Activating your secondary skill irradiates nearby enemies.";
         public override string ItemFullDescription => "Activating your <style=cIsUtility>secondary skill</style> damages enemies in a <style=cIsDamage>15m</style> <style=cStack>(+5m per stack)</style> radius around you for <style=cIsDamage>150%</style> base damage. Additionally, enemies are <color=#7fff00>irradiated</color> for <style=cIsDamage>6s</style> <style=cStack>(+3s per stack)</style>.";
-        public override string ItemLore => "// TODO";
+        public override string ItemLore => LoreUtils.getReactorVentsLore();
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "ReactorVents.prefab";
         public override string ItemIconPath => "texIconPickupReactorVents.png";
