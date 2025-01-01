@@ -1,4 +1,5 @@
-﻿using R2API;
+﻿using Meltdown.Utils;
+using R2API;
 using RoR2;
 
 namespace Meltdown.Items.Green
@@ -19,7 +20,7 @@ namespace Meltdown.Items.Green
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
-            return new ItemDisplayRuleDict(null); // TODO 
+            return ItemDisplayRuleUtils.getUraniumFuelRodDisplayRules();
         }
 
         public override void Hooks()

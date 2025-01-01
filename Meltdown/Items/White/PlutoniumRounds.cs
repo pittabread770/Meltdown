@@ -1,4 +1,5 @@
 ﻿using Meltdown.Orbs;
+using Meltdown.Utils;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Meltdown.Items.White
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
-            return new ItemDisplayRuleDict(null); // TODO 
+            return ItemDisplayRuleUtils.getPlutoniumRoundsDisplay();
         }
 
         public override void Hooks()

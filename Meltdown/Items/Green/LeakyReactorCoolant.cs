@@ -1,4 +1,5 @@
-﻿using R2API;
+﻿using Meltdown.Utils;
+using R2API;
 using RoR2;
 using UnityEngine;
 using static R2API.RecalculateStatsAPI;
@@ -41,7 +42,7 @@ namespace Meltdown.Items.Green
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
-            return new ItemDisplayRuleDict(null); // TODO 
+            return ItemDisplayRuleUtils.getLeakyReactorCoolantDisplay();
         }
 
         public override void Hooks()
