@@ -78,6 +78,28 @@ namespace Meltdown.Items
 #pragma warning enable
             itemDef.unlockableDef = Unlockable;
 
+            if (itemDef.pickupModelPrefab != null)
+            {
+                if (!itemDef.pickupModelPrefab.TryGetComponent<ModelPanelParameters>(out var modelParams))
+                {
+                    modelParams = itemDef.pickupModelPrefab.AddComponent<ModelPanelParameters>();
+                    modelParams.minDistance = 10.0f;
+                    modelParams.maxDistance = 50.0f;
+                }
+
+                if (!modelParams.focusPointTransform)
+                {
+                    modelParams.focusPointTransform = new GameObject("FocusPoint").transform;
+                    modelParams.focusPointTransform.SetParent(itemDef.pickupModelPrefab.transform);
+                }
+
+                if (!modelParams.cameraPositionTransform)
+                {
+                    modelParams.cameraPositionTransform = new GameObject("CameraPosition").transform;
+                    modelParams.cameraPositionTransform.SetParent(itemDef.pickupModelPrefab.transform);
+                }
+            }
+
             var itemDisplayRuleDict = CreateItemDisplayRules();
             ItemAPI.Add(new CustomItem(itemDef, itemDisplayRuleDict));
         }
