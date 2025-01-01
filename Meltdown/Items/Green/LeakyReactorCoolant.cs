@@ -77,7 +77,7 @@ namespace Meltdown.Items.Green
                             StrengthenBurnUtils.CheckDotForUpgrade(attacker.inventory, ref inflictDotInfo);
                         }
 
-                        DotController.InflictDot(ref  inflictDotInfo);
+                        DotController.InflictDot(ref inflictDotInfo);
                     }
                 }
             }
