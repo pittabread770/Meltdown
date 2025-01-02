@@ -40,9 +40,9 @@ namespace Meltdown.Items.Green
             ContentAddition.AddBuffDef(LeakyCoolantDebuff);
         }
 
-        public override ItemDisplayRuleDict CreateItemDisplayRules()
+        public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject prefab)
         {
-            return ItemDisplayRuleUtils.getLeakyReactorCoolantDisplay();
+            return ItemDisplayRuleUtils.getLeakyReactorCoolantDisplay(prefab);
         }
 
         public override void Hooks()

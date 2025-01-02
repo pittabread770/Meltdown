@@ -6,10 +6,9 @@ namespace Meltdown.Utils
 {
     public static class ItemDisplayRuleUtils
     {
-        public static ItemDisplayRuleDict getReactorVentsDisplay()
+        public static ItemDisplayRuleDict getReactorVentsDisplay(GameObject prefab)
         {
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
-            var prefab = Meltdown.Assets.LoadAsset<GameObject>("ReactorVentsDisplay.prefab");
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
             {
@@ -184,10 +183,9 @@ namespace Meltdown.Utils
             return dict;
         }
 
-        public static ItemDisplayRuleDict getPlutoniumRoundsDisplay()
+        public static ItemDisplayRuleDict getPlutoniumRoundsDisplay(GameObject prefab)
         {
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
-            var prefab = Meltdown.Assets.LoadAsset<GameObject>("PlutoniumRounds.prefab");
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
             {
@@ -362,10 +360,9 @@ namespace Meltdown.Utils
             return dict;
         }
 
-        public static ItemDisplayRuleDict getLeakyReactorCoolantDisplay()
+        public static ItemDisplayRuleDict getLeakyReactorCoolantDisplay(GameObject prefab)
         {
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
-            var prefab = Meltdown.Assets.LoadAsset<GameObject>("LeakyReactorCoolant.prefab");
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
             {
@@ -540,10 +537,9 @@ namespace Meltdown.Utils
             return dict;
         }
 
-        public static ItemDisplayRuleDict getUraniumFuelRodDisplayRules()
+        public static ItemDisplayRuleDict getUraniumFuelRodDisplayRules(GameObject prefab)
         {
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
-            var prefab = Meltdown.Assets.LoadAsset<GameObject>("UraniumFuelRodsDisplay.prefab");
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
             {
@@ -718,10 +714,9 @@ namespace Meltdown.Utils
             return dict;
         }
 
-        public static ItemDisplayRuleDict getVolatileThoriumBatteryDisplayRules()
+        public static ItemDisplayRuleDict getVolatileThoriumBatteryDisplayRules(GameObject prefab)
         {
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
-            var prefab = Meltdown.Assets.LoadAsset<GameObject>("VolatileThoriumBattery.prefab");
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
             {

@@ -20,9 +20,9 @@ namespace Meltdown.Items.White
         public override bool CanRemove => true;
         public override bool Hidden => false;
 
-        public override ItemDisplayRuleDict CreateItemDisplayRules()
+        public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject prefab)
         {
-            return ItemDisplayRuleUtils.getPlutoniumRoundsDisplay();
+            return ItemDisplayRuleUtils.getPlutoniumRoundsDisplay(prefab);
         }
 
         public override void Hooks()

@@ -43,7 +43,7 @@ namespace Meltdown.Items
             LanguageAPI.Add("ITEM_MELTDOWN_" + ItemLangTokenName + "_LORE", ItemLore);
         }
 
-        public abstract ItemDisplayRuleDict CreateItemDisplayRules();
+        public abstract ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject);
 
         protected void CreateItem()
         {
@@ -100,7 +100,7 @@ namespace Meltdown.Items
                 }
             }
 
-            var itemDisplayRuleDict = CreateItemDisplayRules();
+            var itemDisplayRuleDict = CreateItemDisplayRules(itemDef.pickupModelPrefab);
             ItemAPI.Add(new CustomItem(itemDef, itemDisplayRuleDict));
         }
 

@@ -20,9 +20,9 @@ namespace Meltdown.Items.Green
         public override bool CanRemove => true;
         public override bool Hidden => false;
 
-        public override ItemDisplayRuleDict CreateItemDisplayRules()
+        public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject prefab)
         {
-            return ItemDisplayRuleUtils.getVolatileThoriumBatteryDisplayRules();
+            return ItemDisplayRuleUtils.getVolatileThoriumBatteryDisplayRules(prefab);
         }
 
         public override void Hooks()

@@ -1,6 +1,7 @@
 ﻿using Meltdown.Utils;
 using R2API;
 using RoR2;
+using UnityEngine;
 
 namespace Meltdown.Items.White
 {
@@ -18,9 +19,9 @@ namespace Meltdown.Items.White
         public override bool CanRemove => true;
         public override bool Hidden => false;
 
-        public override ItemDisplayRuleDict CreateItemDisplayRules()
+        public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject prefab)
         {
-            return ItemDisplayRuleUtils.getReactorVentsDisplay();
+            return ItemDisplayRuleUtils.getReactorVentsDisplay(prefab);
         }
 
         public override void Hooks()
