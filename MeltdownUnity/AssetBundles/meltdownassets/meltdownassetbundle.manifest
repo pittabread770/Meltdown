@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1647568814
+CRC: 2157382416
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a7dcb749cccc7ccc6d9731eeac014015
+    Hash: 6d72d7d5ba49d830d6a80675070ae06c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: a7a21288fe2bd6ae3724c7054e7a1302
+    Hash: 303d7186a1f1a07f297c8c5dfb8c1f07
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,6 +25,10 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 802575700, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
@@ -38,8 +42,10 @@ Assets:
 - Assets/PlutoniumRounds.prefab
 - Assets/texIconPickupLeakyReactorCoolant.png
 - Assets/ReactorVents.prefab
+- Assets/MeltdownExpansionDef.asset
 - Assets/VolatileThoriumBattery.prefab
 - Assets/texIconPickupPlutoniumRounds.png
+- Assets/texMeltdownExpansionIcon.png
 - Assets/LeakyReactorCoolant.prefab
 - Assets/texIconPickupReactorVents.png
 Dependencies: []

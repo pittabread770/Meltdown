@@ -5,8 +5,10 @@ using Meltdown.Items.White;
 using R2API;
 using R2API.Utils;
 using RoR2;
+using RoR2.ExpansionManagement;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Meltdown
 {
@@ -32,6 +34,9 @@ namespace Meltdown
         public static VolatileThoriumBattery volatileThoriumBattery;
         public static UraniumFuelRods uraniumFuelRods;
 
+        private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
+        public static ExpansionDef meltdownExpansion;
+
         public static Irradiated irradiated;
 
         public static Color32 irradiatedColour = new Color32(190, 218, 97, 255);
@@ -41,6 +46,7 @@ namespace Meltdown
             Log.Init(Logger);
             LoadAssets();
             irradiated = new Irradiated();
+            SetupExpansion();
             SetupItems();
         }
 
@@ -65,6 +71,14 @@ namespace Meltdown
             {
                 Assets = AssetBundle.LoadFromStream(stream);
             }
+        }
+
+        private void SetupExpansion()
+        {
+            meltdownExpansion = Assets.LoadAsset<ExpansionDef>("MeltdownExpansionDef");
+            meltdownExpansion.disabledIconSprite = dlc1.disabledIconSprite;
+
+            ContentAddition.AddExpansionDef(meltdownExpansion);
         }
 
         private void SetupItems()

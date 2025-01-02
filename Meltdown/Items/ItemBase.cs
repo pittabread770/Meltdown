@@ -77,6 +77,7 @@ namespace Meltdown.Items
             itemDef.deprecatedTier = Tier;
 #pragma warning enable
             itemDef.unlockableDef = Unlockable;
+            itemDef.requiredExpansion = Meltdown.meltdownExpansion;
 
             if (itemDef.pickupModelPrefab != null)
             {
