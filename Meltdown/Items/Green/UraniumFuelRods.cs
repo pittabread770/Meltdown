@@ -21,7 +21,8 @@ namespace Meltdown.Items.Green
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject prefab)
         {
-            return ItemDisplayRuleUtils.getUraniumFuelRodDisplayRules(prefab);
+            var displayItemModel = Meltdown.Assets.LoadAsset<GameObject>("UraniumFuelRodsDisplay.prefab");
+            return ItemDisplayRuleUtils.getUraniumFuelRodDisplayRules(displayItemModel);
         }
 
         public override void Hooks()

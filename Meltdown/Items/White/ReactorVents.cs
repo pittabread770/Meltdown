@@ -21,7 +21,8 @@ namespace Meltdown.Items.White
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject prefab)
         {
-            return ItemDisplayRuleUtils.getReactorVentsDisplay(prefab);
+            var displayItemModel = Meltdown.Assets.LoadAsset<GameObject>("ReactorVentsDisplay.prefab");
+            return ItemDisplayRuleUtils.getReactorVentsDisplay(displayItemModel);
         }
 
         public override void Hooks()
