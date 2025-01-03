@@ -43,7 +43,14 @@ namespace Meltdown.Items.White
             var skillLocator = self.GetComponent<SkillLocator>();
             var enhancerStack = self.inventory.GetItemCount(Meltdown.uraniumFuelRods.itemDef);
 
-            if (stack > 0 && skill == skillLocator.secondary && skill.cooldownRemaining > 0)
+            var isRailgunnerScopedPrimary =
+                self.bodyIndex == BodyCatalog.SpecialCases.RailGunner() &&
+                skill == skillLocator.primary &&
+                self.canAddIncrasePrimaryDamage;
+
+            var isSecondary = skill == skillLocator.secondary && skill.cooldownRemaining > 0;
+
+            if (stack > 0 && (isSecondary || isRailgunnerScopedPrimary))
             {
                 var radius = 15 + (5 * stack) + self.radius;
                 var damage = self.damage * 1.5f;

@@ -42,7 +42,14 @@ namespace Meltdown.Items.White
             var stack = GetCount(self);
             var skillLocator = self.GetComponent<SkillLocator>();
 
-            if (stack > 0 && skill != skillLocator.primary && skill.cooldownRemaining > 0)
+            var isRailgunnerScopedPrimary =
+                self.bodyIndex == BodyCatalog.SpecialCases.RailGunner() &&
+                skill == skillLocator.primary &&
+                self.canAddIncrasePrimaryDamage;
+
+            var isNonPrimary = skill != skillLocator.primary && skill.cooldownRemaining > 0;
+
+            if (stack > 0 && (isNonPrimary || isRailgunnerScopedPrimary))
             {
                 var radius = 25 + (5 * stack);
 
