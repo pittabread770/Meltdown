@@ -101,7 +101,7 @@ namespace Meltdown.Items.Green
                 new BlastAttack
                 {
                     attacker = batteryController.attackerBody.gameObject,
-                    baseDamage = batteryController.attackerBody.baseDamage,
+                    baseDamage = batteryController.attackerBody.baseDamage * 3.0f,
                     radius = radius,
                     crit = batteryController.attackerBody.RollCrit(),
                     falloffModel = BlastAttack.FalloffModel.None,
