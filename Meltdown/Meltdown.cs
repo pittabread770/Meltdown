@@ -31,6 +31,7 @@ namespace Meltdown
 
         public static ReactorVents reactorVents;
         public static PlutoniumRounds plutoniumRounds;
+        public static LockOnSystem lockOnSystem;
 
         public static LeakyReactorCoolant leakyReactorCoolant;
         public static VolatileThoriumBattery volatileThoriumBattery;
@@ -62,6 +63,8 @@ namespace Meltdown
             {
                 var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
 
+                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(lockOnSystem.itemDef.itemIndex), transform.position, transform.forward * 20f);
+
                 PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(charcoal.itemDef.itemIndex), transform.position, transform.right * 20f);
                 PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(RoR2Content.Items.IgniteOnKill.itemIndex), transform.position, transform.right* 20f);
                 PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(DLC1Content.Items.StrengthenBurn.itemIndex), transform.position, transform.right * 20f);
@@ -91,6 +94,9 @@ namespace Meltdown
 
             plutoniumRounds = new PlutoniumRounds();
             plutoniumRounds.Init();
+
+            lockOnSystem = new LockOnSystem();
+            lockOnSystem.Init();
         }
 
         private void SetupGreenItems()

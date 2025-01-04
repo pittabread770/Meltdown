@@ -182,7 +182,6 @@ namespace Meltdown.Utils
 
             return dict;
         }
-
         public static ItemDisplayRuleDict getPlutoniumRoundsDisplay(GameObject prefab)
         {
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
@@ -356,6 +355,14 @@ namespace Meltdown.Utils
                 localAngles = new Vector3(17.88783F, 342.2997F, 354.573F),
                 localScale = new Vector3(0.2F, 0.2F, 0.2F)
             });
+
+            return dict;
+        }
+        public static ItemDisplayRuleDict getLockOnSystemDisplay(GameObject prefab)
+        {
+            ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
+
+            // TODO
 
             return dict;
         }
@@ -536,7 +543,6 @@ namespace Meltdown.Utils
 
             return dict;
         }
-
         public static ItemDisplayRuleDict getUraniumFuelRodDisplayRules(GameObject prefab)
         {
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
@@ -713,7 +719,6 @@ namespace Meltdown.Utils
 
             return dict;
         }
-
         public static ItemDisplayRuleDict getVolatileThoriumBatteryDisplayRules(GameObject prefab)
         {
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
@@ -890,6 +895,7 @@ namespace Meltdown.Utils
 
             return dict;
         }
+
         public static ItemDisplayRuleDict getCharcoalDisplay(GameObject prefab)
         {
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
