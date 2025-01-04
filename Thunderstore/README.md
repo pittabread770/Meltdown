@@ -2,6 +2,8 @@
 
 A small item mod focused on highly synergistic items and effects.
 
+(Most future items won't be nuclear themed.)
+
 ## Items
 | Icon | Name | Effect |
 | - | - | - |
