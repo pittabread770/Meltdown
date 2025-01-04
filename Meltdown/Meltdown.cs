@@ -51,21 +51,6 @@ namespace Meltdown
             SetupItems();
         }
 
-        // TODO: remove once completed
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.F2))
-            {
-                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(plutoniumRounds.itemDef.itemIndex), transform.position, transform.forward * 20f);
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(reactorVents.itemDef.itemIndex), transform.position, transform.forward * 20f);
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(leakyReactorCoolant.itemDef.itemIndex), transform.position, transform.forward * 20f);
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(volatileThoriumBattery.itemDef.itemIndex), transform.position, transform.forward * 20f);
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(uraniumFuelRods.itemDef.itemIndex), transform.position, transform.forward * 20f);
-            }
-        }
-
         private void LoadAssets()
         {
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Meltdown.meltdownassetbundle"))
