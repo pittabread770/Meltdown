@@ -890,5 +890,13 @@ namespace Meltdown.Utils
 
             return dict;
         }
+        public static ItemDisplayRuleDict getCharcoalDisplay(GameObject prefab)
+        {
+            ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
+
+            // TODO
+
+            return dict;
+        }
     }
 }

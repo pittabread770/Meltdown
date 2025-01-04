@@ -83,5 +83,21 @@ namespace Meltdown.Utils
 
             return string.Join("\n", lore);
         }
+        public static string getCharcoalLore()
+        {
+            string[] lore = [
+                "Order: Rare Cedar Wood Sample",
+                "Tracking Number: 17******",
+                "Estimated Delivery: 03/11/2056",
+                "Shipping Method: Priority",
+                "Shipping Address: Museum of Terran Flora, Mare Imbrium, Luna",
+                "Shipping Details:\n",
+                "Curator, I have something very exciting for you here - a perfectly preserved sample of wood from the long-extinct Cedar tree. It may only be a small sample, but it is in immaculate condition. If you look closely, you can even see the individual knots in the wood. Remarkable.\n",
+                "I have gone to the liberty of cleaning and treating it in the preservation oil, as per your instructions. As this is quite possibly the last known piece in existence, I wanted to take no chances.\n",
+                "As soon as you have a display date for this, please let me know. I would love to travel to see it for myself."
+            ];
+
+            return string.Join("\n", lore);
+        }
     }
 }

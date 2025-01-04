@@ -31,9 +31,11 @@ namespace Meltdown
 
         public static ReactorVents reactorVents;
         public static PlutoniumRounds plutoniumRounds;
+
         public static LeakyReactorCoolant leakyReactorCoolant;
         public static VolatileThoriumBattery volatileThoriumBattery;
         public static UraniumFuelRods uraniumFuelRods;
+        public static Charcoal charcoal;
 
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
         public static ExpansionDef meltdownExpansion;
@@ -48,7 +50,22 @@ namespace Meltdown
             LoadAssets();
             irradiated = new Irradiated();
             SetupExpansion();
-            SetupItems();
+
+            SetupWhiteItems();
+            SetupGreenItems();
+        }
+
+        // TODO: remove once completed
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F2))
+            {
+                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
+
+                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(charcoal.itemDef.itemIndex), transform.position, transform.right * 20f);
+                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(RoR2Content.Items.IgniteOnKill.itemIndex), transform.position, transform.right* 20f);
+                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(DLC1Content.Items.StrengthenBurn.itemIndex), transform.position, transform.right * 20f);
+            }
         }
 
         private void LoadAssets()
@@ -67,13 +84,17 @@ namespace Meltdown
             ContentAddition.AddExpansionDef(meltdownExpansion);
         }
 
-        private void SetupItems()
+        private void SetupWhiteItems()
         {
             reactorVents = new ReactorVents();
             reactorVents.Init();
 
             plutoniumRounds = new PlutoniumRounds();
             plutoniumRounds.Init();
+        }
+
+        private void SetupGreenItems()
+        {
 
             leakyReactorCoolant = new LeakyReactorCoolant();
             leakyReactorCoolant.Init();
@@ -83,6 +104,9 @@ namespace Meltdown
 
             uraniumFuelRods = new UraniumFuelRods();
             uraniumFuelRods.Init();
+
+            charcoal = new Charcoal();
+            charcoal.Init();
         }
     }
 }
