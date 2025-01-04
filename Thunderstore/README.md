@@ -5,7 +5,7 @@ A small item mod focused on highly synergistic items and effects.
 ## Items
 | Icon | Name | Effect |
 | - | - | - |
-| ![](https://i.imgur.com/ycvNfE3.png) | Plutonium Rounds | Activating a non-primary skill damages 2 (+2 per stack) enemy in a 30m (+5m per stack) radius around you for 100% base damage, irradiating them. |
+| ![](https://i.imgur.com/ycvNfE3.png) | Plutonium Rounds | Activating a non-primary skill damages 2 (+2 per stack) enemies in a 30m (+5m per stack) radius around you for 100% base damage, irradiating them. |
 | ![](https://i.imgur.com/Q08LByU.png) | Reactor Vents | Activating your secondary skill damages enemies in a 20m (+5m per stack) radius around you for 150% base damage. Additionally, enemies are irradiated for 6s (+3s per stack). |
 | ![](https://i.imgur.com/gspH6XP.png) | Uranium Fuel Rods | Your Irradiated effects deal 250% (+250% per stack) increased damage, and last 50% (+50% per stack) longer. |
 | ![](https://i.imgur.com/WoCf6Fl.png) | Leaky Reactor Coolant | Irradiated enemies lose 10 (+10 per stack) armour, and have a 20% (+20% per stack) chance per tick to ignite. |
