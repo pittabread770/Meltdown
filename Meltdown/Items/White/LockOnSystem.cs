@@ -13,8 +13,8 @@ namespace Meltdown.Items.White
         public override string ItemFullDescription => "Increases damage to enemies that are in the air by <style=cIsDamage>20%</style> <style=cStack>(+20% per stack)</style>.";
         public override string ItemLore => LoreUtils.getLockOnSystemLore();
         public override ItemTier Tier => ItemTier.Tier1;
-        public override string ItemModelPath => "RoR2/Base/Mystery/PickupMystery.prefab";
-        public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png";
+        public override string ItemModelPath => "RoR2/Base/Mystery/PickupMystery.prefab"; // TODO
+        public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png"; // TODO
         public override ItemTag[] ItemTags => [ItemTag.Damage];
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
