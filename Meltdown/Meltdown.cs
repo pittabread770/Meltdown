@@ -50,7 +50,7 @@ namespace Meltdown
             {
                 var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
 
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.lockOnSystem.itemDef.itemIndex), transform.position, transform.forward * 20f);
+                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.targetLockVisor.itemDef.itemIndex), transform.position, transform.forward * 20f);
 
                 PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.metalClaws.itemDef.itemIndex), transform.position, -transform.forward * 20f);
 

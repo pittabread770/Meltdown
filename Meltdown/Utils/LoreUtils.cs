@@ -35,16 +35,16 @@ namespace Meltdown.Utils
             return string.Join("\n", lore);
         }
 
-        public static string getLockOnSystemLore()
+        public static string getTargetLockVisorLore()
         {
             string[] lore = [
-                "Order: Personal Lock-On System",
+                "Order: Personal Lock-On Visor",
                 "Tracking Number: 65******",
                 "Estimated Delivery: 02/29/2056",
                 "Shipping Method: Standard",
                 "Shipping Address: Valkyrie Orbital Station, Venus",
                 "Shipping Details:\n",
-                "Personal Lock-On System w/ v2.0.3 BIOS pre-installed. 3x additional lenses included.\n",
+                "Personal Lock-On Visor System w/ v2.0.3 BIOS pre-installed. 3x additional lenses included.\n",
                 "Note to customer: Due to company policy, we have had to reject your personal lock-on calibration. Frankly, you can find that kind of stuff online.\n",
                 "You have not been charged for the additional calibration."
             ];

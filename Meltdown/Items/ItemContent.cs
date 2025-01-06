@@ -1,6 +1,5 @@
-﻿using Meltdown.Items.Green;
-using Meltdown.Items.Red;
-using Meltdown.Items.White;
+﻿using Meltdown.Items.White;
+using Meltdown.Items.Green;
 
 namespace Meltdown.Items
 {
@@ -10,7 +9,7 @@ namespace Meltdown.Items
 
         public ReactorVents reactorVents;
         public PlutoniumRounds plutoniumRounds;
-        public LockOnSystem lockOnSystem;
+        public TargetLockVisor targetLockVisor;
         public MetalClaws metalClaws;
 
         public LeakyReactorCoolant leakyReactorCoolant;
@@ -39,8 +38,8 @@ namespace Meltdown.Items
             plutoniumRounds = new PlutoniumRounds();
             plutoniumRounds.Init();
 
-            lockOnSystem = new LockOnSystem();
-            lockOnSystem.Init();
+            targetLockVisor = new TargetLockVisor();
+            targetLockVisor.Init();
 
             metalClaws = new MetalClaws();
             metalClaws.Init();

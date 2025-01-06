@@ -359,11 +359,179 @@ namespace Meltdown.Utils
             return dict;
         }
 
-        public static ItemDisplayRuleDict getLockOnSystemDisplay(GameObject prefab)
+        public static ItemDisplayRuleDict getTargetLockVisorDisplay(GameObject prefab)
         {
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
 
-            // TODO
+            dict.Add("mdlCommandoDualies", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-0.09914F, 0.26232F, 0.11024F),
+                localAngles = new Vector3(353.3396F, 71.95181F, 339.0948F),
+                localScale = new Vector3(0.03F, 0.03F, 0.03F)
+            });
+
+            dict.Add("mdlHuntress", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-0.03764F, 0.22506F, 0.06975F),
+                localAngles = new Vector3(359.9473F, 89.93391F, 344.03F),
+                localScale = new Vector3(0.024F, 0.024F, 0.024F)
+            });
+
+            dict.Add("mdlBandit2", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-0.0347F, 0.03995F, 0.10617F),
+                localAngles = new Vector3(0F, 90F, 0F),
+                localScale = new Vector3(0.02F, 0.02F, 0.02F)
+            });
+
+            dict.Add("mdlToolbot", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(0.62622F, 2.86927F, -1.08764F),
+                localAngles = new Vector3(0F, 270F, 300F),
+                localScale = new Vector3(0.16F, 0.16F, 0.16F)
+            });
+
+            dict.Add("mdlEngi", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "HeadCenter",
+                localPos = new Vector3(-0.09432F, -0.01204F, 0.10642F),
+                localAngles = new Vector3(2.00377F, 76.38385F, 359.7849F),
+                localScale = new Vector3(0.025F, 0.025F, 0.025F)
+            });
+
+            dict.Add("mdlMage", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-0.05453F, 0.08304F, 0.06564F),
+                localAngles = new Vector3(352.9014F, 76.66881F, 352.6046F),
+                localScale = new Vector3(0.02F, 0.02F, 0.02F)
+            });
+
+            dict.Add("mdlMerc", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-0.06717F, 0.15348F, 0.11343F),
+                localAngles = new Vector3(355.926F, 74.15999F, 349.1862F),
+                localScale = new Vector3(0.02F, 0.02F, 0.02F)
+            });
+
+            dict.Add("mdlTreebot", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Eye",
+                localPos = new Vector3(-0.08335F, 0.85823F, 0.05708F),
+                localAngles = new Vector3(0F, 90F, 270F),
+                localScale = new Vector3(0.06F, 0.06F, 0.06F)
+            });
+
+            dict.Add("mdlLoader", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-0.0862F, 0.1022F, 0.10971F),
+                localAngles = new Vector3(0F, 90F, 0F),
+                localScale = new Vector3(0.02F, 0.02F, 0.02F)
+            });
+
+            dict.Add("mdlCroco", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(1.49518F, 1.44877F, 0.14045F),
+                localAngles = new Vector3(271.6438F, 359.5333F, 160.88F),
+                localScale = new Vector3(0.2F, 0.2F, 0.2F)
+            });
+
+            dict.Add("mdlCaptain", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-0.0344F, 0.07984F, 0.11363F),
+                localAngles = new Vector3(0F, 90F, 0F),
+                localScale = new Vector3(0.02F, 0.02F, 0.02F)
+            });
+
+            dict.Add("mdlRailGunner", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-0.0419F, 0.05368F, 0.088F),
+                localAngles = new Vector3(4.00404F, 68.69869F, 357.5813F),
+                localScale = new Vector3(0.015F, 0.015F, 0.015F)
+            });
+
+            dict.Add("mdlVoidSurvivor", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(0.05399F, 0.10653F, 0.14045F),
+                localAngles = new Vector3(20.92575F, 83.28931F, 296.3018F),
+                localScale = new Vector3(0.02F, 0.02F, 0.02F)
+            });
+
+            dict.Add("mdlSeeker", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-0.07134F, 0.12183F, 0.09175F),
+                localAngles = new Vector3(355.3813F, 79.93002F, 341.2799F),
+                localScale = new Vector3(0.02F, 0.02F, 0.02F)
+            });
+
+            dict.Add("mdlFalseSon", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-0.04345F, 0.21399F, 0.1371F),
+                localAngles = new Vector3(0F, 90F, 0F),
+                localScale = new Vector3(0.03F, 0.03F, 0.03F)
+            });
+
+            dict.Add("mdlChef", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-0.17323F, 0.06413F, 0.10147F),
+                localAngles = new Vector3(321.7742F, 180.032F, 268.8741F),
+                localScale = new Vector3(0.03F, 0.03F, 0.03F)
+            });
+
+            dict.Add("mdlScav", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                childName = "Head",
+                localPos = new Vector3(-6.21657F, 2.51515F, 1.576F),
+                localAngles = new Vector3(338.7009F, 99.2964F, 236.0627F),
+                localScale = new Vector3(1F, 1F, 1F)
+            });
 
             return dict;
         }
