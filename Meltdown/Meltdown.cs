@@ -1,7 +1,6 @@
 using BepInEx;
 using Meltdown.Buffs;
-using Meltdown.Items.Green;
-using Meltdown.Items.White;
+using Meltdown.Items;
 using R2API;
 using R2API.Utils;
 using RoR2;
@@ -28,20 +27,10 @@ namespace Meltdown
         public const string PluginVersion = "0.1.0";
 
         public static AssetBundle Assets;
-
-        public static ReactorVents reactorVents;
-        public static PlutoniumRounds plutoniumRounds;
-        public static LockOnSystem lockOnSystem;
-
-        public static LeakyReactorCoolant leakyReactorCoolant;
-        public static VolatileThoriumBattery volatileThoriumBattery;
-        public static UraniumFuelRods uraniumFuelRods;
-        public static Charcoal charcoal;
-
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
         public static ExpansionDef meltdownExpansion;
-
         public static Irradiated irradiated;
+        public static ItemContent items;
 
         public static Color32 irradiatedColour = new Color32(190, 218, 97, 255);
 
@@ -51,9 +40,7 @@ namespace Meltdown
             LoadAssets();
             irradiated = new Irradiated();
             SetupExpansion();
-
-            SetupWhiteItems();
-            SetupGreenItems();
+            SetupItems();
         }
 
         // TODO: remove once completed
@@ -63,9 +50,11 @@ namespace Meltdown
             {
                 var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
 
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(lockOnSystem.itemDef.itemIndex), transform.position, transform.forward * 20f);
+                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.lockOnSystem.itemDef.itemIndex), transform.position, transform.forward * 20f);
 
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(charcoal.itemDef.itemIndex), transform.position, transform.right * 20f);
+                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.metalClaws.itemDef.itemIndex), transform.position, -transform.forward * 20f);
+
+                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.charcoal.itemDef.itemIndex), transform.position, transform.right * 20f);
                 PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(RoR2Content.Items.IgniteOnKill.itemIndex), transform.position, transform.right* 20f);
                 PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(DLC1Content.Items.StrengthenBurn.itemIndex), transform.position, transform.right * 20f);
             }
@@ -87,32 +76,10 @@ namespace Meltdown
             ContentAddition.AddExpansionDef(meltdownExpansion);
         }
 
-        private void SetupWhiteItems()
+        private void SetupItems()
         {
-            reactorVents = new ReactorVents();
-            reactorVents.Init();
-
-            plutoniumRounds = new PlutoniumRounds();
-            plutoniumRounds.Init();
-
-            lockOnSystem = new LockOnSystem();
-            lockOnSystem.Init();
-        }
-
-        private void SetupGreenItems()
-        {
-
-            leakyReactorCoolant = new LeakyReactorCoolant();
-            leakyReactorCoolant.Init();
-
-            volatileThoriumBattery = new VolatileThoriumBattery();
-            volatileThoriumBattery.Init();
-
-            uraniumFuelRods = new UraniumFuelRods();
-            uraniumFuelRods.Init();
-
-            charcoal = new Charcoal();
-            charcoal.Init();
+            items = new ItemContent();
+            items.Init();
         }
     }
 }

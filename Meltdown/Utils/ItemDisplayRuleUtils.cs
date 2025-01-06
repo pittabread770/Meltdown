@@ -358,7 +358,17 @@ namespace Meltdown.Utils
 
             return dict;
         }
+
         public static ItemDisplayRuleDict getLockOnSystemDisplay(GameObject prefab)
+        {
+            ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
+
+            // TODO
+
+            return dict;
+        }
+
+        public static ItemDisplayRuleDict getMetalClawsDisplay(GameObject prefab)
         {
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
 

@@ -46,7 +46,7 @@ namespace Meltdown.Items.Green
 
                     batteryController.attackerBody = self;
                     batteryController.stacks = Mathf.Max(itemStackCount, batteryController.stacks);
-                    batteryController.enchancerStacks = Mathf.Max(self.inventory.GetItemCount(Meltdown.uraniumFuelRods.itemDef), batteryController.enchancerStacks);
+                    batteryController.enchancerStacks = Mathf.Max(self.inventory.GetItemCount(Meltdown.items.uraniumFuelRods.itemDef), batteryController.enchancerStacks);
                 }
             }
         }

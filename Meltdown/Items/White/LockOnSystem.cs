@@ -15,6 +15,7 @@ namespace Meltdown.Items.White
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "RoR2/Base/Mystery/PickupMystery.prefab";
         public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png";
+        public override ItemTag[] ItemTags => [ItemTag.Damage];
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {

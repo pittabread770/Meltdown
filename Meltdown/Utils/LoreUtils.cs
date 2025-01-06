@@ -52,6 +52,26 @@ namespace Meltdown.Utils
             return string.Join("\n", lore);
         }
 
+        public static string getMetalClawsLore()
+        {
+            string[] lore = [
+                "Order: Metal Claws",
+                "Tracking Number: 56******",
+                "Estimated Delivery: 04/19/2056",
+                "Shipping Method: Standard",
+                "Shipping Address: Sunset Ranch, Sunset Valley, Saturn",
+                "Shipping Details:\n",
+                "WARNING: These claws should be used for their intended purposes only. Do NOT strap these to any automated drone, as this can cause problems with their usual programming and collateral damage.\n",
+                "WARNING: Do not strap these to any animal. Any and all bloodsports involving animals is illegal and can result in your prosecution.\n",
+                "WARNING: Keep out of reach of children. This should be obvious people...\n",
+                "WARNING: Stop being stupid with these. I'm tried of having to keep writing out basic common sense.\n",
+                "WARNING: For Terra's sake, stop inserting these into-\n",
+                "<i><style=cStack>The rest of the label appears to have faded.</style></i>"
+            ];
+
+            return string.Join("\n", lore);
+        }
+
         public static string getLeakyReactorCoolantLore()
         {
             string[] lore = [
