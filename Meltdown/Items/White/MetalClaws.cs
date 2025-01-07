@@ -15,13 +15,14 @@ namespace Meltdown.Items.White
         public override string ItemFullDescription => "Increase your <style=cIsUtility>drones</style>, <style=cIsUtility>turrets</style> and <style=cIsUtility>pets</style> <style=cIsDamage>damage</style> by <style=cIsDamage>20%</style> <style=cStack>(+20% per stack)</style> and <style=cIsDamage>bleed chance</style> by <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style>.";
         public override string ItemLore => LoreUtils.getMetalClawsLore();
         public override ItemTier Tier => ItemTier.Tier1;
-        public override string ItemModelPath => "RoR2/Base/Mystery/PickupMystery.prefab"; // TODO
-        public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png"; // TODO
+        public override string ItemModelPath => "MetalClaws.prefab";
+        public override string ItemIconPath => "texIconPickupMetalClaws.png";
         public override ItemTag[] ItemTags => [ItemTag.Utility, ItemTag.AIBlacklist];
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {
-            return ItemDisplayRuleUtils.getMetalClawsDisplay(gameObject);
+            var displayItemModel = Meltdown.Assets.LoadAsset<GameObject>("MetalClawsDisplay.prefab");
+            return ItemDisplayRuleUtils.getMetalClawsDisplay(displayItemModel);
         }
 
         public override void Hooks()
