@@ -14,8 +14,8 @@ namespace Meltdown.Items.Green
         public override string ItemFullDescription => "<style=cIsDamage>Burning</style> enemies have a <style=cIsDamage>5%</style> chance per tick to ignite <style=cIsDamage>2</style> <style=cStack>(+2 per stack)</style> nearby enemies in a <style=cIsDamage>20m</style> <style=cStack>(+5m per stack)</style> radius.";
         public override string ItemLore => LoreUtils.getCharcoalLore();
         public override ItemTier Tier => ItemTier.Tier2;
-        public override string ItemModelPath => "RoR2/Base/Mystery/PickupMystery.prefab"; // TODO
-        public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png"; // TODO
+        public override string ItemModelPath => "Charcoal.prefab";
+        public override string ItemIconPath => "texIconPickupCharcoal.png";
         public override ItemTag[] ItemTags => [ItemTag.Damage];
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)

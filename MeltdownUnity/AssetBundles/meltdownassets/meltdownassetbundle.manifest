@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2494679039
+CRC: 606303667
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2d55cdc25f425d44d7b6ce5a7093eed5
+    Hash: 6de957570473761b10ea36a9b5b5d2ab
   TypeTreeHash:
     serializedVersion: 2
     Hash: 303d7186a1f1a07f297c8c5dfb8c1f07
@@ -38,6 +38,8 @@ Assets:
 - Assets/texRampIrradiated.png
 - Assets/ReactorVentsDisplay.prefab
 - Assets/texIconPickupTargetLockVisor.png
+- Assets/Charcoal.prefab
+- Assets/texIconPickupCharcoal.png
 - Assets/texBuffIrradiated.png
 - Assets/TargetLockVisor.prefab
 - Assets/texIconPickupVolatileThoriumBattery.png
