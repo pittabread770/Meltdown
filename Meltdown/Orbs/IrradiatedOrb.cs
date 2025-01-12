@@ -61,7 +61,7 @@ namespace Meltdown.Orbs
 
                 if (attackerBody != null && attackerBody.inventory != null)
                 {
-                    StrengthenIrradiatedUtils.CheckDotForUpgrade(attackerBody.inventory, ref inflictDotInfo);
+                    IrradiatedUtils.CheckDotForUpgrade(attackerBody.inventory, ref inflictDotInfo);
                 }
 
                 DotController.InflictDot(ref inflictDotInfo);

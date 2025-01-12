@@ -81,7 +81,7 @@ namespace Meltdown.Buffs
                 var modelLocator = self.victimBody.GetComponent<ModelLocator>();
                 var irradiatedController = self.victimBody.GetComponents<BurnEffectController>().FirstOrDefault(x => x.effectType == effectParams);
 
-                if (self.victimBody.HasBuff(buff))
+                if (self.victimBody.HasBuff(buff) && modelLocator?.modelBaseTransform?.gameObject != null)
                 {
                     if (irradiatedController == default)
                     {

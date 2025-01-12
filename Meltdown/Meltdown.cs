@@ -1,5 +1,6 @@
 using BepInEx;
 using Meltdown.Buffs;
+using Meltdown.Elites;
 using Meltdown.Items;
 using R2API;
 using R2API.Utils;
@@ -31,6 +32,7 @@ namespace Meltdown
         public static ExpansionDef meltdownExpansion;
         public static Irradiated irradiated;
         public static ItemContent items;
+        public static EliteContent elites;
 
         public static Color32 irradiatedColour = new Color32(190, 218, 97, 255);
 
@@ -41,6 +43,7 @@ namespace Meltdown
             irradiated = new Irradiated();
             SetupExpansion();
             SetupItems();
+            SetupElites();
         }
 
         private void LoadAssets()
@@ -63,6 +66,12 @@ namespace Meltdown
         {
             items = new ItemContent();
             items.Init();
+        }
+
+        private void SetupElites()
+        {
+            elites = new EliteContent();
+            elites.Init();
         }
     }
 }
