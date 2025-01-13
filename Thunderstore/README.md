@@ -19,6 +19,11 @@ A small item mod focused on highly synergistic items and effects.
 | - | - | - |
 | ![](https://i.imgur.com/zRAjHQt.png) | Irradiated | A slow but hard-hitting DoT effect, dealing 75% damage per second. |
 
+## Elites
+| Icon | Name | Effect |
+| - | - | - |
+| ![](https://i.imgur.com/6Kc8Iph.png) | Nuclear | Blasts all nearby enemies every 5 seconds. All attacks apply Irradiated. |
+
 ### Credits
 Everything in the mod was created by `pittabread` (that's me!). If you have any questions or problems with the mod, feel free to ping me on the RoR2 Modding Discord server.
 
