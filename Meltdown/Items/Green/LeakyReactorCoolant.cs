@@ -42,7 +42,7 @@ namespace Meltdown.Items.Green
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject prefab)
         {
-            return ItemDisplayRuleUtils.getLeakyReactorCoolantDisplay(prefab);
+            return ItemDisplayRuleUtils.getLeakyReactorCoolantDisplay(prefab); // TODO fix this misalignment
         }
 
         public override void Hooks()

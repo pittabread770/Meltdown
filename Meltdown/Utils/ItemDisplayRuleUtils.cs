@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Meltdown.Utils
 {
-    public static class ItemDisplayRuleUtils // TODO fix console errors
+    public static class ItemDisplayRuleUtils
     {
         public static CharacterModel.RendererInfo[] ItemDisplaySetup(GameObject obj)
         {
