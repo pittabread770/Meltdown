@@ -66,7 +66,7 @@ namespace Meltdown.Buffs
                 resetTimerOnAdd = false,
                 interval = 1.0f,
                 damageColorIndex = DamageColorIndex.Poison,
-                damageCoefficient = 0.75f
+                damageCoefficient = 0.5f
             };
 
             index = DotAPI.RegisterDotDef(dot);

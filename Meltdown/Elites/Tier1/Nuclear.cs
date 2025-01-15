@@ -62,7 +62,7 @@ namespace Meltdown.Elites.Tier1
         {
             if (damageInfo.attacker != null && !damageInfo.rejected)
             {
-                if (damageInfo.attacker.TryGetComponent<CharacterBody>(out var body) && body.TryGetComponent<NuclearEliteController>(out var _))
+                if (damageInfo.attacker.TryGetComponent<CharacterBody>(out var body) && (body.TryGetComponent<NuclearEliteController>(out var _) || body.equipmentSlot.equipmentIndex == equipmentDef.equipmentIndex || body.HasBuff(eliteBuffDef)))
                 {
                     if (Util.CheckRoll(100.0f, body.master))
                     {
@@ -71,7 +71,7 @@ namespace Meltdown.Elites.Tier1
                             victimObject = victim,
                             attackerObject = damageInfo.attacker,
                             dotIndex = Meltdown.irradiated.index,
-                            damageMultiplier = 1.0f,
+                            damageMultiplier = (damageInfo.damage / body.damage),
                             duration = 5.0f,
                             maxStacksFromAttacker = uint.MaxValue
                         };

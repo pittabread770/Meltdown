@@ -1,14 +1,34 @@
 ﻿using R2API;
 using RoR2;
 using UnityEngine;
-using static Rewired.UI.ControlMapper.ControlMapper;
 
 namespace Meltdown.Utils
 {
-    public static class ItemDisplayRuleUtils
+    public static class ItemDisplayRuleUtils // TODO fix console errors
     {
+        public static CharacterModel.RendererInfo[] ItemDisplaySetup(GameObject obj)
+        {
+            MeshRenderer[] meshes = obj.GetComponentsInChildren<MeshRenderer>();
+            CharacterModel.RendererInfo[] renderInfos = new CharacterModel.RendererInfo[meshes.Length];
+
+            for (int i = 0; i < meshes.Length; i++)
+            {
+                renderInfos[i] = new CharacterModel.RendererInfo
+                {
+                    defaultMaterial = meshes[i].material,
+                    renderer = meshes[i],
+                    defaultShadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On,
+                    ignoreOverlays = false
+                };
+            }
+
+            return renderInfos;
+        }
+
         public static ItemDisplayRuleDict getReactorVentsDisplay(GameObject prefab)
         {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
@@ -185,6 +205,8 @@ namespace Meltdown.Utils
         }
         public static ItemDisplayRuleDict getPlutoniumRoundsDisplay(GameObject prefab)
         {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
@@ -362,6 +384,8 @@ namespace Meltdown.Utils
 
         public static ItemDisplayRuleDict getTargetLockVisorDisplay(GameObject prefab)
         {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
@@ -539,6 +563,8 @@ namespace Meltdown.Utils
 
         public static ItemDisplayRuleDict getMetalClawsDisplay(GameObject prefab)
         {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
@@ -716,6 +742,8 @@ namespace Meltdown.Utils
 
         public static ItemDisplayRuleDict getLeakyReactorCoolantDisplay(GameObject prefab)
         {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
@@ -892,6 +920,8 @@ namespace Meltdown.Utils
         }
         public static ItemDisplayRuleDict getUraniumFuelRodDisplayRules(GameObject prefab)
         {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
@@ -1068,6 +1098,8 @@ namespace Meltdown.Utils
         }
         public static ItemDisplayRuleDict getVolatileThoriumBatteryDisplayRules(GameObject prefab)
         {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
@@ -1245,6 +1277,8 @@ namespace Meltdown.Utils
 
         public static ItemDisplayRuleDict getCharcoalDisplay(GameObject prefab)
         {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
@@ -1423,6 +1457,8 @@ namespace Meltdown.Utils
 
         public static ItemDisplayRuleDict getNuclearEliteCrownDisplay(GameObject prefab)
         {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
             ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
 
             dict.Add("mdlCommandoDualies", new ItemDisplayRule
