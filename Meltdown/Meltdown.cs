@@ -54,26 +54,6 @@ namespace Meltdown
             }
         }
 
-        // TODO: remove once completed
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.F2))
-            {
-                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(elites.nuclear.equipmentDef.equipmentIndex), transform.position, transform.forward * 20f);
-                
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.reactorVents.itemDef.itemIndex), transform.position, -transform.forward * 20f);
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.plutoniumRounds.itemDef.itemIndex), transform.position, -transform.forward * 20f);
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.targetLockVisor.itemDef.itemIndex), transform.position, -transform.forward * 20f);
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.metalClaws.itemDef.itemIndex), transform.position, -transform.forward * 20f);
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.leakyReactorCoolant.itemDef.itemIndex), transform.position, -transform.forward * 20f);
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.volatileThoriumBattery.itemDef.itemIndex), transform.position, -transform.forward * 20f);
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.uraniumFuelRods.itemDef.itemIndex), transform.position, -transform.forward * 20f);
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex(items.charcoal.itemDef.itemIndex), transform.position, -transform.forward * 20f);
-            }
-        }
-
         private void SetupExpansion()
         {
             meltdownExpansion = Assets.LoadAsset<ExpansionDef>("MeltdownExpansionDef");
