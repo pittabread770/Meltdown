@@ -740,6 +740,17 @@ namespace Meltdown.Utils
             return dict;
         }
 
+        public static ItemDisplayRuleDict getExhaustPipeDisplay(GameObject prefab)
+        {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
+            ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
+
+            // TODO
+
+            return dict;
+        }
+
         public static ItemDisplayRuleDict getLeakyReactorCoolantDisplay(GameObject prefab)
         {
             var itemDisplay = prefab.AddComponent<ItemDisplay>();

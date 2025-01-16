@@ -72,6 +72,23 @@ namespace Meltdown.Utils
             return string.Join("\n", lore);
         }
 
+        public static string getExhausePipeLore()
+        {
+            string[] lore = [
+                "Order: Old Exhaust Pipe",
+                "Tracking Number: 48******",
+                "Estimated Delivery: 07/27/2056",
+                "Shipping Method: Standard",
+                "Shipping Address: 17 Stowford Lane, United Kingdom, Earth",
+                "Shipping Details:\n",
+                "I was able to find what looks to be an old age exhaust pipe out back. Took some restoration, de-rusting and a good spit-shine to get it in working ordering, but I think she's good to go now.\n",
+                "I have no idea what you could possibly exhausting from your vehicle though. Excess heat maybe? Even the older electric vehicles never produced that much - unless you're using something else to power it?\n",
+                "You old enthusiasts are a quirky bunch..."
+            ];
+
+            return string.Join("\n", lore);
+        }
+
         public static string getLeakyReactorCoolantLore()
         {
             string[] lore = [

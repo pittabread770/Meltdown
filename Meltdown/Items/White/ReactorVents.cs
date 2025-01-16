@@ -41,7 +41,6 @@ namespace Meltdown.Items.White
 
             var stack = GetCount(self);
             var skillLocator = self.GetComponent<SkillLocator>();
-            var enhancerStack = self.inventory.GetItemCount(Meltdown.items.uraniumFuelRods.itemDef);
 
             var isRailgunnerScopedPrimary =
                 self.bodyIndex == BodyCatalog.SpecialCases.RailGunner() &&

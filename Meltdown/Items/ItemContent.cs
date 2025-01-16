@@ -11,6 +11,7 @@ namespace Meltdown.Items
         public PlutoniumRounds plutoniumRounds;
         public TargetLockVisor targetLockVisor;
         public MetalClaws metalClaws;
+        public OldExhaustPipe oldExhaustPipe;
 
         public LeakyReactorCoolant leakyReactorCoolant;
         public VolatileThoriumBattery volatileThoriumBattery;
@@ -43,6 +44,9 @@ namespace Meltdown.Items
 
             metalClaws = new MetalClaws();
             metalClaws.Init();
+
+            oldExhaustPipe = new OldExhaustPipe();
+            oldExhaustPipe.Init();
         }
 
         private void SetupGreenItems()

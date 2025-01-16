@@ -30,7 +30,10 @@ namespace Meltdown
         public static AssetBundle Assets;
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
         public static ExpansionDef meltdownExpansion;
+
         public static Irradiated irradiated;
+        public static ExhaustMovementSpeed exhaustMovementSpeed;
+
         public static ItemContent items;
         public static EliteContent elites;
 
@@ -40,7 +43,8 @@ namespace Meltdown
         {
             Log.Init(Logger);
             LoadAssets();
-            irradiated = new Irradiated();
+
+            SetupBuffs();
             SetupExpansion();
             SetupItems();
             SetupElites();
@@ -52,6 +56,12 @@ namespace Meltdown
             {
                 Assets = AssetBundle.LoadFromStream(stream);
             }
+        }
+
+        private void SetupBuffs()
+        {
+            irradiated = new Irradiated();
+            exhaustMovementSpeed = new ExhaustMovementSpeed();
         }
 
         private void SetupExpansion()
