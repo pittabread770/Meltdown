@@ -751,8 +751,8 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "Chest",
-                localPos = new Vector3(-0.2379F, 0.1521F, -0.12725F),
-                localAngles = new Vector3(0.41721F, 92.15808F, 7.68711F),
+                localPos = new Vector3(-0.24849F, 0.04667F, -0.1494F),
+                localAngles = new Vector3(0.41721F, 92.15807F, 7.68711F),
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
 
@@ -761,8 +761,8 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "ThighR",
-                localPos = new Vector3(-0.11491F, 0.05884F, 0.04536F),
-                localAngles = new Vector3(9.44587F, 247.6054F, 198.7871F),
+                localPos = new Vector3(-0.09135F, 0.11012F, -0.04091F),
+                localAngles = new Vector3(17.81258F, 249.3997F, 196.864F),
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
 
@@ -771,7 +771,7 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "ThighR",
-                localPos = new Vector3(-0.04644F, 0.2649F, 0.08857F),
+                localPos = new Vector3(-0.07157F, 0.26183F, 0.02836F),
                 localAngles = new Vector3(354.4018F, 300.3515F, 167.155F),
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
@@ -781,8 +781,8 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "Chest",
-                localPos = new Vector3(-2.4908F, 1.73171F, 2.01823F),
-                localAngles = new Vector3(1.18739F, 289.7088F, 0.66556F),
+                localPos = new Vector3(-2.20399F, 1.14798F, 2.07462F),
+                localAngles = new Vector3(0.2671F, 289.7018F, 0.11631F),
                 localScale = new Vector3(0.17F, 0.17F, 0.17F)
             });
 
@@ -791,7 +791,7 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "Pelvis",
-                localPos = new Vector3(-0.28239F, -0.00004F, 0F),
+                localPos = new Vector3(-0.31778F, 0.08595F, 0.02671F),
                 localAngles = new Vector3(357.5472F, 59.89194F, 177.4843F),
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
@@ -801,8 +801,8 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "ThighL",
-                localPos = new Vector3(0.10158F, 0.14747F, 0.06473F),
-                localAngles = new Vector3(14.98014F, 62.10303F, 175.2345F),
+                localPos = new Vector3(0.07488F, 0.14799F, 0.14887F),
+                localAngles = new Vector3(14.98014F, 62.10304F, 175.2345F),
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
 
@@ -811,7 +811,7 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "Chest",
-                localPos = new Vector3(-0.13754F, -0.01277F, -0.22211F),
+                localPos = new Vector3(-0.1414F, -0.05605F, -0.22881F),
                 localAngles = new Vector3(339.3058F, 43.84799F, 337.533F),
                 localScale = new Vector3(0.01408F, 0.01408F, 0.01408F)
             });
@@ -821,7 +821,7 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "FootBackL",
-                localPos = new Vector3(0.02007F, 0.32254F, -0.14207F),
+                localPos = new Vector3(-0.13307F, 0.31822F, -0.18084F),
                 localAngles = new Vector3(2.72422F, 340.3991F, 183.0304F),
                 localScale = new Vector3(0.03F, 0.03F, 0.03F)
             });
@@ -831,8 +831,8 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "MechBase",
-                localPos = new Vector3(-0.18336F, -0.32105F, -0.11368F),
-                localAngles = new Vector3(4F, 34F, 350.535F),
+                localPos = new Vector3(-0.26839F, -0.18105F, -0.1644F),
+                localAngles = new Vector3(3.02276F, 100.0951F, 351.3393F),
                 localScale = new Vector3(0.01408F, 0.01408F, 0.01408F)
             });
 
@@ -840,7 +840,7 @@ namespace Meltdown.Utils
             {
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
-                childName = "Pelvis",
+                childName = "Hip",
                 localPos = new Vector3(-1.95816F, 1.86818F, 0.41544F),
                 localAngles = new Vector3(359.5434F, 293.5136F, 189.8523F),
                 localScale = new Vector3(0.2F, 0.2F, 0.2F)
@@ -850,9 +850,9 @@ namespace Meltdown.Utils
             {
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
-                childName = "Pelvis",
-                localPos = new Vector3(0.12277F, -0.0393F, -0.1985F),
-                localAngles = new Vector3(0.27959F, 321.5233F, 178.5688F),
+                childName = "Stomach",
+                localPos = new Vector3(0.14819F, 0.0745F, 0.13536F),
+                localAngles = new Vector3(9.50468F, 35.23292F, 343.5568F),
                 localScale = new Vector3(0.01408F, 0.01408F, 0.01408F)
             });
 
@@ -861,7 +861,7 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "Backpack",
-                localPos = new Vector3(-0.14353F, -0.24136F, -0.16557F),
+                localPos = new Vector3(-0.10411F, -0.29876F, -0.18884F),
                 localAngles = new Vector3(10.59585F, 14.22324F, 329.0103F),
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
@@ -871,8 +871,8 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "Pelvis",
-                localPos = new Vector3(-0.03752F, 0.17329F, -0.20521F),
-                localAngles = new Vector3(0.75566F, 11.0456F, 178.8087F),
+                localPos = new Vector3(-0.18225F, 0.18702F, -0.17379F),
+                localAngles = new Vector3(346.8251F, 9.82358F, 178.6611F),
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
 
@@ -881,8 +881,8 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "Pelvis",
-                localPos = new Vector3(0.21488F, -0.03359F, -0.18707F),
-                localAngles = new Vector3(7.56189F, 331.6999F, 12.53235F),
+                localPos = new Vector3(0.34131F, -0.05956F, -0.10069F),
+                localAngles = new Vector3(10.35429F, 332.588F, 17.92761F),
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
 
@@ -891,7 +891,7 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "Pelvis",
-                localPos = new Vector3(-0.238F, -0.02635F, -0.26024F),
+                localPos = new Vector3(-0.18137F, -0.0961F, -0.32858F),
                 localAngles = new Vector3(5.27841F, 46.10352F, 354.4648F),
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
@@ -901,8 +901,8 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "Chest",
-                localPos = new Vector3(-0.00232F, -0.24796F, -0.18982F),
-                localAngles = new Vector3(70.30338F, 10.26087F, 90.63699F),
+                localPos = new Vector3(0.09735F, -0.22148F, -0.16374F),
+                localAngles = new Vector3(70.3034F, 10.26087F, 90.63699F),
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
 
@@ -911,8 +911,8 @@ namespace Meltdown.Utils
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
                 followerPrefab = prefab,
                 childName = "Backpack",
-                localPos = new Vector3(-9.55393F, 3.01947F, 0.20227F),
-                localAngles = new Vector3(14.59521F, 93.13736F, 356.6356F),
+                localPos = new Vector3(-9.10168F, 6.22546F, -2.13551F),
+                localAngles = new Vector3(2.40257F, 100.8797F, 355.9927F),
                 localScale = new Vector3(0.4F, 0.4F, 0.4F)
             });
 

@@ -110,7 +110,7 @@ namespace Meltdown.Elites.Tier1
 
             if (blastTimer >= blastInterval)
             {
-                IrradiatedUtils.PerformBlastAttack(body, body.damage, 16.0f, 5.0f, 1.0f, true);
+                IrradiatedUtils.PerformBlastAttack(body, body.transform.position, body.damage, 16.0f, 5.0f, 1.0f, true);
                 blastTimer = 0.0f;
             }
         }

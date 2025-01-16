@@ -65,7 +65,59 @@ namespace Meltdown.Items.Green
                 var radius = 8 + (4 * batteryController.stacks) + damageReport.victimBody.radius;
                 var damage = batteryController.attackerBody.baseDamage * 3.0f;
 
-                IrradiatedUtils.PerformBlastAttack(batteryController.attackerBody, damage, radius, 8.0f);
+                GlobalEventManager.igniteOnKillSphereSearch.origin = damageReport.victimBody.transform.position;
+                GlobalEventManager.igniteOnKillSphereSearch.mask = LayerIndex.entityPrecise.mask;
+                GlobalEventManager.igniteOnKillSphereSearch.radius = radius;
+                GlobalEventManager.igniteOnKillSphereSearch.RefreshCandidates();
+                GlobalEventManager.igniteOnKillSphereSearch.FilterCandidatesByHurtBoxTeam(TeamMask.GetUnprotectedTeams(TeamIndex.Player));
+                GlobalEventManager.igniteOnKillSphereSearch.FilterCandidatesByDistinctHurtBoxEntities();
+                GlobalEventManager.igniteOnKillSphereSearch.OrderCandidatesByDistance();
+                GlobalEventManager.igniteOnKillSphereSearch.GetHurtBoxes(GlobalEventManager.igniteOnKillHurtBoxBuffer);
+                GlobalEventManager.igniteOnKillSphereSearch.ClearCandidates();
+                for (int i = 0; i < GlobalEventManager.igniteOnKillHurtBoxBuffer.Count; i++)
+                {
+                    HurtBox hurtBox = GlobalEventManager.igniteOnKillHurtBoxBuffer[i];
+                    if (hurtBox.healthComponent)
+                    {
+                        InflictDotInfo inflictDotInfo = new InflictDotInfo
+                        {
+                            victimObject = hurtBox.healthComponent.gameObject,
+                            attackerObject = batteryController.attackerBody.gameObject,
+                            dotIndex = Meltdown.irradiated.index,
+                            damageMultiplier = 1.0f,
+                            duration = 8.0f,
+                            maxStacksFromAttacker = uint.MaxValue
+                        };
+
+                        IrradiatedUtils.CheckDotForUpgrade(batteryController.attackerBody.inventory, ref inflictDotInfo);
+
+                        for (int j = 0; j < buffStack; j++)
+                        {
+                            DotController.InflictDot(ref inflictDotInfo);
+                        }
+                    }
+                }
+                GlobalEventManager.igniteOnKillHurtBoxBuffer.Clear();
+
+                new BlastAttack
+                {
+                    attacker = batteryController.attackerBody.gameObject,
+                    baseDamage = batteryController.attackerBody.baseDamage * 3.0f,
+                    radius = radius,
+                    crit = batteryController.attackerBody.RollCrit(),
+                    falloffModel = BlastAttack.FalloffModel.None,
+                    procCoefficient = 0.0f,
+                    teamIndex = batteryController.attackerBody.teamComponent.teamIndex,
+                    position = damageReport.victimBody.transform.position,
+                    attackerFiltering = AttackerFiltering.NeverHitSelf
+                }.Fire();
+
+                EffectManager.SpawnEffect(GlobalEventManager.CommonAssets.igniteOnKillExplosionEffectPrefab, new EffectData
+                {
+                    origin = damageReport.victimBody.transform.position,
+                    scale = radius,
+                    color = Meltdown.irradiatedColour
+                }, true);
             }
 
             orig(self, damageReport);

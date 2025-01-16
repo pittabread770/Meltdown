@@ -56,7 +56,7 @@ namespace Meltdown.Items.White
                 var damage = self.damage;
                 var duration = 3.0f * (stack + 1);
 
-                IrradiatedUtils.PerformBlastAttack(self, damage, radius, duration);
+                IrradiatedUtils.PerformBlastAttack(self, self.transform.position, damage, radius, duration);
             }
         }
     }

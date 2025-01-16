@@ -1,4 +1,5 @@
 ﻿using RoR2;
+using UnityEngine;
 
 namespace Meltdown.Utils
 {
@@ -21,11 +22,11 @@ namespace Meltdown.Utils
             }
         }
 
-        public static void PerformBlastAttack(CharacterBody body, float damage, float radius, float duration, float procCoefficient = 0.4f, bool skipDot = false)
+        public static void PerformBlastAttack(CharacterBody body, Vector3 blastPos, float damage, float radius, float duration, float procCoefficient = 0.4f, bool skipDot = false)
         {
             if (!skipDot)
             {
-                GlobalEventManager.igniteOnKillSphereSearch.origin = body.transform.position;
+                GlobalEventManager.igniteOnKillSphereSearch.origin = blastPos;
                 GlobalEventManager.igniteOnKillSphereSearch.mask = LayerIndex.entityPrecise.mask;
                 GlobalEventManager.igniteOnKillSphereSearch.radius = radius;
                 GlobalEventManager.igniteOnKillSphereSearch.RefreshCandidates();
@@ -65,13 +66,13 @@ namespace Meltdown.Utils
                 falloffModel = BlastAttack.FalloffModel.None,
                 procCoefficient = procCoefficient,
                 teamIndex = body.teamComponent.teamIndex,
-                position = body.transform.position,
+                position = blastPos,
                 attackerFiltering = AttackerFiltering.NeverHitSelf
             }.Fire();
 
             EffectManager.SpawnEffect(GlobalEventManager.CommonAssets.igniteOnKillExplosionEffectPrefab, new EffectData
             {
-                origin = body.transform.position,
+                origin = blastPos,
                 scale = radius,
                 color = Meltdown.irradiatedColour
             }, true);
