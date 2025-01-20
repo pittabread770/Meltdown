@@ -14,8 +14,8 @@ namespace Meltdown.Items.Blue
         public override string ItemFullDescription => "Decrease secondary skill <style=cIsDamage>cooldown</style> by <style=cIsUtility>50%</style> <style=cStack>(+50% per stack, hyperbolically)</style>. Decrease primary skill <style=cIsDamage>damage</style> by <style=cIsHealth>50%</style> <style=cStack>(+50% per stack, hyperbolically)</style>.";
         public override string ItemLore => LoreUtils.getAbandonmentLore();
         public override ItemTier Tier => ItemTier.Lunar;
-        public override string ItemModelPath => "RoR2/Base/Mystery/PickupMystery.prefab";
-        public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png";
+        public override string ItemModelPath => "Abandonment.prefab";
+        public override string ItemIconPath => "texIconPickupAbandonment.png";
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {
