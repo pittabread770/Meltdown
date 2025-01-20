@@ -2034,5 +2034,16 @@ namespace Meltdown.Utils
 
             return dict;
         }
+
+        public static ItemDisplayRuleDict getAbandonmentDisplay(GameObject prefab)
+        {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
+            ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
+
+            // TODO
+
+            return dict;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Meltdown.Items.White;
 using Meltdown.Items.Green;
+using Meltdown.Items.Blue;
 
 namespace Meltdown.Items
 {
@@ -18,11 +19,14 @@ namespace Meltdown.Items
         public UraniumFuelRods uraniumFuelRods;
         public Charcoal charcoal;
 
+        public Abandonment abandonment;
+
         public void Init()
         {
             SetupGreyItems();
             SetupWhiteItems();
             SetupGreenItems();
+            SetupBlueItems();
         }
 
         private void SetupGreyItems()
@@ -63,6 +67,12 @@ namespace Meltdown.Items
 
             charcoal = new Charcoal();
             charcoal.Init();
+        }
+
+        private void SetupBlueItems()
+        {
+            abandonment = new Abandonment();
+            abandonment.Init();
         }
     }
 }

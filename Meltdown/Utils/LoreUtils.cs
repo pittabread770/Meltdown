@@ -157,5 +157,20 @@ namespace Meltdown.Utils
 
             return string.Join("\n", lore);
         }
+
+        public static string getAbandonmentLore()
+        {
+            string[] lore = [
+                "What's done is done.\n",
+                "The gate has closed. I'm sorry, but I will not be following you.\n",
+                "This... is the right thing to do. With this problem removed, I am free to save the doomed.\n",
+                "In time, I'm sure... I <i>hope</i> that you will understand why I had to do this.\n",
+                "And yet, why do I feel like this?\n",
+                "...\n",
+                "One day, I will come back for you."
+            ];
+
+            return string.Join("\n", lore);
+        }
     }
 }

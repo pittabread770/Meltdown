@@ -38,6 +38,11 @@ namespace Meltdown.Buffs
 
         private void ExhaustMovementSpeed_GetStatCoefficients(CharacterBody sender, StatHookEventArgs args)
         {
+            if (sender == null || sender.inventory == null)
+            {
+                return;
+            }
+
             var itemCount = sender.inventory.GetItemCount(Meltdown.items.oldExhaustPipe.itemDef.itemIndex);
             if (sender != null && itemCount > 0 && sender.HasBuff(Meltdown.exhaustMovementSpeed.buff))
             {
