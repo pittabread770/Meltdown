@@ -35,7 +35,7 @@ namespace Meltdown.Elites.Tier1
         {
             On.RoR2.CharacterBody.OnBuffFirstStackGained += CharacterBody_OnBuffFirstStackGained;
             On.RoR2.CharacterBody.OnBuffFinalStackLost += CharacterBody_OnBuffFinalStackLost;
-            On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEventManager_OnHitEnemy;
+            GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
         }
 
         private void CharacterBody_OnBuffFirstStackGained(On.RoR2.CharacterBody.orig_OnBuffFirstStackGained orig, CharacterBody self, BuffDef buffDef)
@@ -58,31 +58,32 @@ namespace Meltdown.Elites.Tier1
             }
         }
 
-        private void GlobalEventManager_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
+        private void GlobalEventManager_onServerDamageDealt(DamageReport report)
         {
-            if (damageInfo.attacker != null && !damageInfo.rejected)
+            var victim = report.victim;
+            var attacker = report.attackerBody;
+
+            if (attacker != null && victim != null)
             {
-                if (damageInfo.attacker.TryGetComponent<CharacterBody>(out var body) && (body.TryGetComponent<NuclearEliteController>(out var _) || body.equipmentSlot.equipmentIndex == equipmentDef.equipmentIndex || body.HasBuff(eliteBuffDef)))
+                if (attacker.TryGetComponent<NuclearEliteController>(out var _) || attacker.equipmentSlot.equipmentIndex == equipmentDef.equipmentIndex || attacker.HasBuff(eliteBuffDef))
                 {
-                    if (Util.CheckRoll(100.0f, body.master))
+                    if (Util.CheckRoll(100.0f * report.damageInfo.procCoefficient, attacker.master))
                     {
                         InflictDotInfo dotInfo = new InflictDotInfo()
                         {
-                            victimObject = victim,
-                            attackerObject = damageInfo.attacker,
+                            victimObject = victim.gameObject,
+                            attackerObject = attacker.gameObject,
                             dotIndex = Meltdown.irradiated.index,
-                            damageMultiplier = (damageInfo.damage / body.damage),
+                            damageMultiplier = (report.damageDealt / attacker.damage),
                             duration = 5.0f,
                             maxStacksFromAttacker = uint.MaxValue
                         };
 
-                        IrradiatedUtils.CheckDotForUpgrade(body.inventory, ref dotInfo);
+                        IrradiatedUtils.CheckDotForUpgrade(attacker.inventory, ref dotInfo);
                         DotController.InflictDot(ref dotInfo);
                     }
                 }
             }
-
-            orig(self, damageInfo, victim);
         }
     }
 
