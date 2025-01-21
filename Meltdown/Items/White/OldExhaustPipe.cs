@@ -13,8 +13,14 @@ namespace Meltdown.Items.White
         public override string ItemFullDescription => "Activating your <style=cIsUtility>utility skill</style> increases your <style=cIsUtility>movement speed</style> by <style=cIsUtility>20%</style> <style=cStack>(+20% per stack)</style> for <style=cIsDamage>6s</style>.";
         public override string ItemLore => LoreUtils.getExhausePipeLore();
         public override ItemTier Tier => ItemTier.Tier1;
-        public override string ItemModelPath => "RoR2/Base/Mystery/PickupMystery.prefab";
-        public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png";
+        public override string ItemModelPath => "OldExhaustPipe.prefab";
+        public override string ItemIconPath => "texIconPickupOldExhaustPipe.png";
+
+        public override void Init()
+        {
+            base.Init();
+            itemDef.pickupModelPrefab.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {

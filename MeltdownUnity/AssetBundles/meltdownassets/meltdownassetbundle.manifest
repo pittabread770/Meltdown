@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 897125589
+CRC: 2991527474
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: de2667c40bc237f3183290f5dcb2b231
+    Hash: 4779d83840441e6e1cf5bd1392fcd3f1
   TypeTreeHash:
     serializedVersion: 2
     Hash: 303d7186a1f1a07f297c8c5dfb8c1f07
@@ -47,9 +47,11 @@ Assets:
 - Assets/abandonment.prefab
 - Assets/texIconPickupVolatileThoriumBattery.png
 - Assets/texIconPickupUraniumFuelRods.png
+- Assets/OldExhaustPipe.prefab
 - Assets/PlutoniumRounds.prefab
 - Assets/texIconPickupLeakyReactorCoolant.png
 - Assets/MetalClawsDisplay.prefab
+- Assets/texIconPickupOldExhaustPipe.png
 - Assets/MeltdownExpansionDef.asset
 - Assets/TargetLockVisorDisplay.prefab
 - Assets/ReactorVents.prefab
