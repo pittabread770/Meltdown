@@ -16,7 +16,7 @@ namespace Meltdown.Items.Blue
         public override ItemTier Tier => ItemTier.Lunar;
         public override string ItemModelPath => "Abandonment.prefab";
         public override string ItemIconPath => "texIconPickupAbandonment.png";
-        public override ItemTag[] ItemTags => [ItemTag.Cleansable];
+        public override ItemTag[] ItemTags => [ItemTag.Cleansable, ItemTag.Utility];
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {

@@ -15,6 +15,7 @@ namespace Meltdown.Items.White
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "OldExhaustPipe.prefab";
         public override string ItemIconPath => "texIconPickupOldExhaustPipe.png";
+        public override ItemTag[] ItemTags => [ItemTag.Utility];
 
         public override void Init()
         {

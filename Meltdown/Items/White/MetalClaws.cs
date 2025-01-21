@@ -51,7 +51,7 @@ namespace Meltdown.Items.White
         public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png";
         public override bool Hidden => true;
         public override bool CanRemove => false;
-        public override ItemTag[] ItemTags => [ItemTag.CannotSteal];
+        public override ItemTag[] ItemTags => [ItemTag.Damage, ItemTag.AIBlacklist, ItemTag.BrotherBlacklist];
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {
