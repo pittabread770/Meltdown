@@ -4,7 +4,6 @@ using Meltdown.Elites;
 using Meltdown.Items;
 using R2API;
 using R2API.Utils;
-using RoR2;
 using RoR2.ExpansionManagement;
 using System.Reflection;
 using UnityEngine;
