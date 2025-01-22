@@ -1,5 +1,6 @@
 ﻿using R2API;
 using RoR2;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using static RoR2.CombatDirector;
@@ -23,6 +24,8 @@ namespace Meltdown.Elites
 
         public abstract float HealthMultiplier { get; }
         public abstract float DamageMultiplier { get; }
+
+        public abstract bool HasAdjustedHonourTier { get; }
 
         public virtual void Init()
         {
@@ -116,6 +119,20 @@ namespace Meltdown.Elites
 
             eliteBuffDef.eliteDef = eliteDef;
             ContentAddition.AddBuffDef(eliteBuffDef);
+
+            if (HasAdjustedHonourTier)
+            {
+                EliteDef honourEliteDef = ScriptableObject.CreateInstance<EliteDef>();
+                honourEliteDef.name = eliteDef.name;
+                honourEliteDef.modifierToken = eliteDef.modifierToken;
+                honourEliteDef.eliteEquipmentDef = eliteDef.eliteEquipmentDef;
+                honourEliteDef.healthBoostCoefficient = 2.5f;
+                honourEliteDef.damageBoostCoefficient = 1.5f;
+                honourEliteDef.shaderEliteRampIndex = eliteDef.shaderEliteRampIndex;
+
+                EliteTierDef[] honourTiers = EliteAPI.GetCombatDirectorEliteTiers().Where(x => x.eliteTypes.Contains(Addressables.LoadAssetAsync<EliteDef>("RoR2/Base/EliteFire/edFireHonor.asset").WaitForCompletion())).ToArray();
+                EliteAPI.Add(new CustomElite(honourEliteDef, honourTiers, rampTexture));
+            }
         }
 
         public abstract void Hooks();

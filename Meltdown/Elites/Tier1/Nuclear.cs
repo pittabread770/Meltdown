@@ -26,6 +26,8 @@ namespace Meltdown.Elites.Tier1
         public override float HealthMultiplier => 4.0f;
         public override float DamageMultiplier => 2.0f;
 
+        public override bool HasAdjustedHonourTier => true;
+
         public override ItemDisplayRuleDict CreateEliteEquipmentDisplayRules(GameObject gameObject)
         {
             return ItemDisplayRuleUtils.getNuclearEliteCrownDisplay(gameObject);
@@ -65,7 +67,7 @@ namespace Meltdown.Elites.Tier1
 
             if (attacker != null && victim != null)
             {
-                if (attacker.TryGetComponent<NuclearEliteController>(out var _) || attacker.equipmentSlot.equipmentIndex == equipmentDef.equipmentIndex || attacker.HasBuff(eliteBuffDef))
+                if (attacker.TryGetComponent<NuclearEliteController>(out var _) || (attacker.equipmentSlot != null && attacker.equipmentSlot.equipmentIndex == equipmentDef.equipmentIndex) || attacker.HasBuff(eliteBuffDef))
                 {
                     if (Util.CheckRoll(100.0f * report.damageInfo.procCoefficient, attacker.master))
                     {

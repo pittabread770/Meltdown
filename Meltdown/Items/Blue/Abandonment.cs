@@ -17,6 +17,8 @@ namespace Meltdown.Items.Blue
         public override string ItemModelPath => "Abandonment.prefab";
         public override string ItemIconPath => "texIconPickupAbandonment.png";
         public override ItemTag[] ItemTags => [ItemTag.Cleansable, ItemTag.Utility];
+        public override bool CanRemove => true;
+        public override bool Hidden => false;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {

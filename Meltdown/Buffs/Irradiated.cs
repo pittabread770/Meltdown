@@ -66,7 +66,7 @@ namespace Meltdown.Buffs
                 resetTimerOnAdd = false,
                 interval = 1.0f,
                 damageColorIndex = DamageColorIndex.Poison,
-                damageCoefficient = 0.5f
+                damageCoefficient = 0.3f
             };
 
             index = DotAPI.RegisterDotDef(dot);
@@ -81,18 +81,21 @@ namespace Meltdown.Buffs
                 var modelLocator = self.victimBody.GetComponent<ModelLocator>();
                 var irradiatedController = self.victimBody.GetComponents<BurnEffectController>().FirstOrDefault(x => x.effectType == effectParams);
 
-                if (self.victimBody.HasBuff(buff) && modelLocator?.modelBaseTransform?.gameObject != null)
+                if (modelLocator && modelLocator.modelTransform)
                 {
-                    if (irradiatedController == default)
+                    if (self.victimBody.HasBuff(buff))
                     {
-                        var irradiatedEffectController = self.victimBody.gameObject.AddComponent<BurnEffectController>();
-                        irradiatedEffectController.effectType = effectParams;
-                        irradiatedEffectController.target = modelLocator.modelTransform.gameObject;
+                        if (irradiatedController == default)
+                        {
+                            var irradiatedEffectController = self.victimBody.gameObject.AddComponent<BurnEffectController>();
+                            irradiatedEffectController.effectType = effectParams;
+                            irradiatedEffectController.target = modelLocator.modelTransform.gameObject;
+                        }
                     }
-                }
-                else if (irradiatedController != default)
-                {
-                    Object.Destroy(irradiatedController);
+                    else if (irradiatedController != default)
+                    {
+                        Object.Destroy(irradiatedController);
+                    }
                 }
             }
         }

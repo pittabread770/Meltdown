@@ -9,7 +9,7 @@ namespace Meltdown.Items.Green
     {
         public override string ItemName => "Volatile Thorium Battery";
         public override string ItemLangTokenName => "VOLATILETHORIUMBATTERY";
-        public override string ItemPickupDesc => "Irradiated enemies spread their irradiated effects on death.";
+        public override string ItemPickupDesc => "Irradiated enemies explode on death, spreading their irradiated effects.";
         public override string ItemFullDescription => "On death, <color=#7fff00>Irradiated</color> enemies explode for <style=cIsDamage>300%</style> base damage in a <style=cIsDamage>12m</style> <style=cStack>(+4m per stack)</style> radius, applying <style=cIsDamage>all</style> of their <color=#7fff00>Irradiated</color> effects.";
         public override string ItemLore => LoreUtils.getVolatileThoriumBatteryLore();
         public override ItemTier Tier => ItemTier.Tier2;

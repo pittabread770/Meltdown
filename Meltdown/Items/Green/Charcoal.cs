@@ -17,6 +17,8 @@ namespace Meltdown.Items.Green
         public override string ItemModelPath => "Charcoal.prefab";
         public override string ItemIconPath => "texIconPickupCharcoal.png";
         public override ItemTag[] ItemTags => [ItemTag.Damage];
+        public override bool CanRemove => true;
+        public override bool Hidden => false;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {

@@ -16,6 +16,8 @@ namespace Meltdown.Items.White
         public override string ItemModelPath => "TargetLockVisor";
         public override string ItemIconPath => "texIconPickupTargetLockVisor.png";
         public override ItemTag[] ItemTags => [ItemTag.Damage];
+        public override bool CanRemove => true;
+        public override bool Hidden => false;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {

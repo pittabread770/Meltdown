@@ -30,7 +30,7 @@ namespace Meltdown.Utils
                 GlobalEventManager.igniteOnKillSphereSearch.mask = LayerIndex.entityPrecise.mask;
                 GlobalEventManager.igniteOnKillSphereSearch.radius = radius;
                 GlobalEventManager.igniteOnKillSphereSearch.RefreshCandidates();
-                GlobalEventManager.igniteOnKillSphereSearch.FilterCandidatesByHurtBoxTeam(TeamMask.GetUnprotectedTeams(TeamIndex.Player));
+                GlobalEventManager.igniteOnKillSphereSearch.FilterCandidatesByHurtBoxTeam(TeamMask.GetUnprotectedTeams(body.master.teamIndex));
                 GlobalEventManager.igniteOnKillSphereSearch.FilterCandidatesByDistinctHurtBoxEntities();
                 GlobalEventManager.igniteOnKillSphereSearch.OrderCandidatesByDistance();
                 GlobalEventManager.igniteOnKillSphereSearch.GetHurtBoxes(GlobalEventManager.igniteOnKillHurtBoxBuffer);

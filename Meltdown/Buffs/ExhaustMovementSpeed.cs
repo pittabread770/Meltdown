@@ -46,7 +46,7 @@ namespace Meltdown.Buffs
             var itemCount = sender.inventory.GetItemCount(Meltdown.items.oldExhaustPipe.itemDef.itemIndex);
             if (sender != null && itemCount > 0 && sender.HasBuff(Meltdown.exhaustMovementSpeed.buff))
             {
-                args.moveSpeedMultAdd += (0.2f * itemCount);
+                args.moveSpeedMultAdd += (0.25f * itemCount);
             }
         }
     }

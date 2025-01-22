@@ -18,6 +18,8 @@ namespace Meltdown.Items.White
         public override string ItemModelPath => "MetalClaws.prefab";
         public override string ItemIconPath => "texIconPickupMetalClaws.png";
         public override ItemTag[] ItemTags => [ItemTag.Utility, ItemTag.AIBlacklist];
+        public override bool CanRemove => true;
+        public override bool Hidden => false;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {
@@ -51,7 +53,7 @@ namespace Meltdown.Items.White
         public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png";
         public override bool Hidden => true;
         public override bool CanRemove => false;
-        public override ItemTag[] ItemTags => [ItemTag.Damage, ItemTag.AIBlacklist, ItemTag.BrotherBlacklist];
+        public override ItemTag[] ItemTags => [ItemTag.Damage];
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {

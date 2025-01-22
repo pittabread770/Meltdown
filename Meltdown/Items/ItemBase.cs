@@ -19,8 +19,8 @@ namespace Meltdown.Items
         public abstract string ItemModelPath { get; }
         public abstract string ItemIconPath { get; }
 
-        public virtual bool CanRemove { get; }
-        public virtual bool Hidden { get; }
+        public abstract bool CanRemove { get; }
+        public abstract bool Hidden { get; }
 
         public virtual UnlockableDef Unlockable { get; }
 
