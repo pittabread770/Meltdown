@@ -1,6 +1,6 @@
 ﻿{
 	"name": "Meltdown",
-	"version_number": "0.1.0",
+	"version_number": "0.1.1",
 	"website_url": "https://github.com/pittabread770/Meltdown",
 	"description": "A small mod for Risk of Rain 2 with a focus on highly synergistic items and effects.",
 	"dependencies": [
