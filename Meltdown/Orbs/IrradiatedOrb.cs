@@ -13,7 +13,7 @@ namespace Meltdown.Orbs
             bouncedObjects = null;
             bouncesRemaining = 0;
             damageCoefficientPerBounce = 1.0f;
-            damageColorIndex = DamageColorIndex.Poison;
+            damageColorIndex = DamageColorIndex.Default;
             damageValue = _damage;
             isCrit = _isCrit;
             lightningType = LightningType.RazorWire;
