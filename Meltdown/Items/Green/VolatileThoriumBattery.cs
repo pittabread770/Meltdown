@@ -1,6 +1,8 @@
-﻿using Meltdown.Utils;
+﻿using Meltdown.Orbs;
+using Meltdown.Utils;
 using R2API;
 using RoR2;
+using System.Linq;
 using UnityEngine;
 
 namespace Meltdown.Items.Green
@@ -9,8 +11,8 @@ namespace Meltdown.Items.Green
     {
         public override string ItemName => "Volatile Thorium Battery";
         public override string ItemLangTokenName => "VOLATILETHORIUMBATTERY";
-        public override string ItemPickupDesc => "Irradiated enemies explode on death, spreading their irradiated effects.";
-        public override string ItemFullDescription => "On death, <color=#7fff00>Irradiated</color> enemies explode for <style=cIsDamage>300%</style> base damage in a <style=cIsDamage>12m</style> <style=cStack>(+4m per stack)</style> radius, applying <style=cIsDamage>all</style> of their <color=#7fff00>Irradiated</color> effects.";
+        public override string ItemPickupDesc => "Irradiated enemies pass their irradiated effects to others on death.";
+        public override string ItemFullDescription => "On death, <color=#7fff00>Irradiated</color> enemies deal <style=cIsDamage>100%</style> base damage to <style=cIsDamage>1</style> <style=cStack>(+1 per stack)</style> enemies in a <style=cIsDamage>12m</style> <style=cStack>(+4m per stack)</style> radius, applying <style=cIsDamage>all</style> of their <color=#7fff00>Irradiated</color> effects.";
         public override string ItemLore => LoreUtils.getVolatileThoriumBatteryLore();
         public override ItemTier Tier => ItemTier.Tier2;
         public override string ItemModelPath => "VolatileThoriumBattery.prefab";
@@ -45,7 +47,6 @@ namespace Meltdown.Items.Green
 
                     batteryController.attackerBody = self;
                     batteryController.stacks = Mathf.Max(itemStackCount, batteryController.stacks);
-                    batteryController.enchancerStacks = Mathf.Max(self.inventory.GetItemCount(Meltdown.items.uraniumFuelRods.itemDef), batteryController.enchancerStacks);
                 }
             }
         }
@@ -62,61 +63,23 @@ namespace Meltdown.Items.Green
             if (buffStack > 0 && damageReport.victimBody.TryGetComponent<VolatileThoriumBatteryController>(out var batteryController))
             {
                 var radius = 8 + (4 * batteryController.stacks) + damageReport.victimBody.radius;
-                var damage = batteryController.attackerBody.baseDamage * 3.0f;
 
-                GlobalEventManager.igniteOnKillSphereSearch.origin = damageReport.victimBody.transform.position;
-                GlobalEventManager.igniteOnKillSphereSearch.mask = LayerIndex.entityPrecise.mask;
-                GlobalEventManager.igniteOnKillSphereSearch.radius = radius;
-                GlobalEventManager.igniteOnKillSphereSearch.RefreshCandidates();
-                GlobalEventManager.igniteOnKillSphereSearch.FilterCandidatesByHurtBoxTeam(TeamMask.GetUnprotectedTeams(TeamIndex.Player));
-                GlobalEventManager.igniteOnKillSphereSearch.FilterCandidatesByDistinctHurtBoxEntities();
-                GlobalEventManager.igniteOnKillSphereSearch.OrderCandidatesByDistance();
-                GlobalEventManager.igniteOnKillSphereSearch.GetHurtBoxes(GlobalEventManager.igniteOnKillHurtBoxBuffer);
-                GlobalEventManager.igniteOnKillSphereSearch.ClearCandidates();
-                for (int i = 0; i < GlobalEventManager.igniteOnKillHurtBoxBuffer.Count; i++)
-                {
-                    HurtBox hurtBox = GlobalEventManager.igniteOnKillHurtBoxBuffer[i];
-                    if (hurtBox.healthComponent)
-                    {
-                        InflictDotInfo inflictDotInfo = new InflictDotInfo
-                        {
-                            victimObject = hurtBox.healthComponent.gameObject,
-                            attackerObject = batteryController.attackerBody.gameObject,
-                            dotIndex = Meltdown.irradiated.index,
-                            damageMultiplier = 1.0f,
-                            duration = 8.0f,
-                            maxStacksFromAttacker = uint.MaxValue
-                        };
-
-                        IrradiatedUtils.CheckDotForUpgrade(batteryController.attackerBody.inventory, ref inflictDotInfo);
-
-                        for (int j = 0; j < buffStack; j++)
-                        {
-                            DotController.InflictDot(ref inflictDotInfo);
-                        }
-                    }
-                }
-                GlobalEventManager.igniteOnKillHurtBoxBuffer.Clear();
-
-                new BlastAttack
-                {
-                    attacker = batteryController.attackerBody.gameObject,
-                    baseDamage = batteryController.attackerBody.baseDamage * 3.0f,
-                    radius = radius,
-                    crit = batteryController.attackerBody.RollCrit(),
-                    falloffModel = BlastAttack.FalloffModel.None,
-                    procCoefficient = 0.0f,
-                    teamIndex = batteryController.attackerBody.teamComponent.teamIndex,
-                    position = damageReport.victimBody.transform.position,
-                    attackerFiltering = AttackerFiltering.NeverHitSelf
-                }.Fire();
-
-                EffectManager.SpawnEffect(GlobalEventManager.CommonAssets.igniteOnKillExplosionEffectPrefab, new EffectData
+                HurtBox[] hurtBoxes = new SphereSearch
                 {
                     origin = damageReport.victimBody.transform.position,
-                    scale = radius,
-                    color = Meltdown.irradiatedColour
-                }, true);
+                    radius = radius,
+                    mask = LayerIndex.entityPrecise.mask,
+                    queryTriggerInteraction = QueryTriggerInteraction.UseGlobal
+                }.RefreshCandidates().FilterCandidatesByHurtBoxTeam(TeamMask.GetEnemyTeams(batteryController.attackerBody.teamComponent.teamIndex)).OrderCandidatesByDistance().FilterCandidatesByDistinctHurtBoxEntities().GetHurtBoxes().Skip(1).ToArray();
+
+                for (int i = 0; i < Mathf.Min(batteryController.stacks, hurtBoxes.Length); i++)
+                {
+                    if (hurtBoxes[i].healthComponent != damageReport.victimBody.healthComponent)
+                    {
+                        MaxIrradiatedOrb orb = new MaxIrradiatedOrb(batteryController.attackerBody.gameObject, batteryController.attackerBody.damage, batteryController.attackerBody.RollCrit(), damageReport.victimBody.transform.position, batteryController.attackerBody.teamComponent.teamIndex, hurtBoxes[i], buffStack);
+                        RoR2.Orbs.OrbManager.instance.AddOrb(orb);
+                    }
+                }
             }
 
             orig(self, damageReport);
@@ -127,6 +90,5 @@ namespace Meltdown.Items.Green
     {
         public CharacterBody attackerBody;
         public int stacks;
-        public int enchancerStacks;
     }
 }
