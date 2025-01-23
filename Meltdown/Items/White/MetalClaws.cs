@@ -12,7 +12,7 @@ namespace Meltdown.Items.White
         public override string ItemName => "Metal Claws";
         public override string ItemLangTokenName => "METALCLAWS";
         public override string ItemPickupDesc => "Increase the damage and bleed chance of allies under your control.";
-        public override string ItemFullDescription => "Increase <style=cIsUtility>your allies</style> <style=cIsDamage>damage</style> by <style=cIsDamage>20%</style> <style=cStack>(+20% per stack)</style> and <style=cIsDamage>bleed chance</style> by <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style>.";
+        public override string ItemFullDescription => "Increase <style=cIsUtility>your drones, turrets and pets</style> <style=cIsDamage>damage</style> by <style=cIsDamage>20%</style> <style=cStack>(+20% per stack)</style> and <style=cIsDamage>bleed chance</style> by <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style>.";
         public override string ItemLore => LoreUtils.getMetalClawsLore();
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "MetalClaws.prefab";
