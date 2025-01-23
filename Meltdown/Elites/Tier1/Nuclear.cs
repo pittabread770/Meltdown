@@ -104,17 +104,22 @@ namespace Meltdown.Elites.Tier1
 
         public void FixedUpdate()
         {
+            blastTimer += Time.fixedDeltaTime;
             if (!healthComponent.alive && NetworkServer.active)
             {
                 Destroy(this);
             }
 
-            blastTimer += Time.fixedDeltaTime;
-
             if (blastTimer >= blastInterval)
             {
-                IrradiatedUtils.PerformBlastAttack(body, body.transform.position, body.damage, 16.0f, 5.0f, 1.0f, true);
                 blastTimer = 0.0f;
+
+                if (!NetworkServer.active)
+                {
+                    return;
+                }
+
+                IrradiatedUtils.PerformBlastAttack(body, body.transform.position, body.damage, 16.0f, 5.0f, 1.0f, true);
             }
         }
     }
