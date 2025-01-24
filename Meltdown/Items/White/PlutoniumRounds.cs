@@ -10,8 +10,8 @@ namespace Meltdown.Items.White
     {
         public override string ItemName => "Plutonium Rounds";
         public override string ItemLangTokenName => "PLUTONIUMROUNDS";
-        public override string ItemPickupDesc => "Activating a non-primary skill irradiates a nearby enemy.";
-        public override string ItemFullDescription => "Activating a <style=cIsUtility>non-primary skill</style> damages <style=cIsDamage>1</style> <style=cStack>(+1 per stack)</style> enemies in a <style=cIsDamage>30m</style> <style=cStack>(+5m per stack)</style> radius around you for <style=cIsDamage>100%</style> base damage, <color=#7fff00>irradiating</color> them.";
+        public override string ItemPickupDesc => "Activating a non-primary skill damages and irradiates a nearby enemy.";
+        public override string ItemFullDescription => "Activating a <style=cIsUtility>non-primary skill</style> damages <style=cIsDamage>1</style> <style=cStack>(+1 per stack)</style> enemies in a <style=cIsDamage>30m</style> <style=cStack>(+5m per stack)</style> radius around you for <style=cIsDamage>200%</style> base damage, <color=#7fff00>irradiating</color> them.";
         public override string ItemLore => LoreUtils.getPlutoniumRoundsLore();
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "PlutoniumRounds.prefab";
@@ -63,7 +63,7 @@ namespace Meltdown.Items.White
 
                 for (int i = 0; i < Mathf.Min(stack, hurtBoxes.Length); i++)
                 {
-                    IrradiatedOrb orb = new IrradiatedOrb(self.gameObject, self.damage, self.RollCrit(), self.transform.position, self.teamComponent.teamIndex, hurtBoxes[i]);
+                    IrradiatedOrb orb = new IrradiatedOrb(self.gameObject, self.damage * 2.5f, self.RollCrit(), self.transform.position, self.teamComponent.teamIndex, hurtBoxes[i]);
                     RoR2.Orbs.OrbManager.instance.AddOrb(orb);
                 }
             }
