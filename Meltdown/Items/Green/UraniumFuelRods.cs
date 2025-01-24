@@ -35,8 +35,24 @@ namespace Meltdown.Items.Green
         {
             var victim = report.victim;
             var attacker = report.attackerBody;
+            float chance = 0.0f;
 
-            if (victim != null && attacker != null && GetCount(attacker) > 0 && Util.CheckRoll(5.0f * report.damageInfo.procCoefficient, attacker.master))
+            if (GetCount(attacker) > 0)
+            {
+                chance += 5.0f;
+            }
+
+            if (Meltdown.items.volatileThoriumBattery.GetCount(attacker) > 0)
+            {
+                chance += 5.0f;
+            }
+
+            if (Meltdown.items.leakyReactorCoolant.GetCount(attacker) > 0)
+            {
+                chance += 5.0f;
+            }
+
+            if (victim != null && attacker != null && chance > 0.0f && Util.CheckRoll(chance * report.damageInfo.procCoefficient, attacker.master))
             {
                 InflictDotInfo irradiatedDotInfo = new()
                 {

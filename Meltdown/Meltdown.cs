@@ -24,7 +24,7 @@ namespace Meltdown
     {
         public const string PluginGUID = "com.pittabread.Meltdown";
         public const string PluginName = "Meltdown";
-        public const string PluginVersion = "0.1.0";
+        public const string PluginVersion = "0.2.0";
 
         public static AssetBundle Assets;
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();

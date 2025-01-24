@@ -76,7 +76,7 @@ namespace Meltdown.Elites.Tier1
                             victimObject = victim.gameObject,
                             attackerObject = attacker.gameObject,
                             dotIndex = Meltdown.irradiated.index,
-                            damageMultiplier = (report.damageDealt / attacker.damage),
+                            damageMultiplier = (report.damageDealt / attacker.damage) * 0.5f,
                             duration = 5.0f,
                             maxStacksFromAttacker = uint.MaxValue
                         };
