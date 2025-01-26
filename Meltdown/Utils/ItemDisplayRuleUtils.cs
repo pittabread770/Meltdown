@@ -562,7 +562,7 @@ namespace Meltdown.Utils
             return dict;
         }
 
-        public static ItemDisplayRuleDict getMetalClawsDisplay(GameObject prefab)
+        public static ItemDisplayRuleDict getThermiteInACanDisplayRules(GameObject prefab)
         {
             var itemDisplay = prefab.AddComponent<ItemDisplay>();
             itemDisplay.rendererInfos = ItemDisplaySetup(prefab);

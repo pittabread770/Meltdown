@@ -6,12 +6,12 @@ namespace Meltdown.Items
 {
     public class ItemContent
     {
-        public MetalClawsBoost metalClawsBoost;
+        public ThermiteInACanBoost thermiteInACanBoost;
 
         public ReactorVents reactorVents;
         public PlutoniumRounds plutoniumRounds;
         public TargetLockVisor targetLockVisor;
-        public MetalClaws metalClaws;
+        public ThermiteInACan thermiteInACan;
         public OldExhaustPipe oldExhaustPipe;
 
         public LeakyReactorCoolant leakyReactorCoolant;
@@ -31,8 +31,8 @@ namespace Meltdown.Items
 
         private void SetupGreyItems()
         {
-            metalClawsBoost = new MetalClawsBoost();
-            metalClawsBoost.Init();
+            thermiteInACanBoost = new ThermiteInACanBoost();
+            thermiteInACanBoost.Init();
         }
 
         private void SetupWhiteItems()
@@ -46,8 +46,8 @@ namespace Meltdown.Items
             targetLockVisor = new TargetLockVisor();
             targetLockVisor.Init();
 
-            metalClaws = new MetalClaws();
-            metalClaws.Init();
+            thermiteInACan = new ThermiteInACan();
+            thermiteInACan.Init();
 
             oldExhaustPipe = new OldExhaustPipe();
             oldExhaustPipe.Init();
