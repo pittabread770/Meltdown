@@ -15,16 +15,15 @@ namespace Meltdown.Items.White
         public override string ItemFullDescription => "Increase <style=cIsUtility>your drones, turrets and pets</style> <style=cIsDamage>damage</style> by <style=cIsDamage>20%</style> <style=cStack>(+20% per stack)</style> and chance to <style=cIsDamage>ignite</style> on hit by <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style>.";
         public override string ItemLore => LoreUtils.getThermiteInACanLore();
         public override ItemTier Tier => ItemTier.Tier1;
-        //public override string ItemModelPath => "ThermiteInACan.prefab";
-        //public override string ItemIconPath => "texIconPickupThermiteInACan.png";
-        public override string ItemModelPath => "RoR2/Base/Mystery/PickupMystery.prefab";
-        public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png";
+        public override string ItemModelPath => "ThermiteInACan.prefab";
+        public override string ItemIconPath => "texIconPickupThermiteInACan.png";
         public override ItemTag[] ItemTags => [ItemTag.Utility, ItemTag.AIBlacklist];
         public override bool CanRemove => true;
         public override bool Hidden => false;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {
+            var displayItemModel = Meltdown.Assets.LoadAsset<GameObject>("ThermiteInACanDisplay.prefab");
             return ItemDisplayRuleUtils.getThermiteInACanDisplayRules(gameObject);
         }
 
