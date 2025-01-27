@@ -1,4 +1,5 @@
-﻿using Meltdown.Utils;
+﻿using Meltdown.Compatibility;
+using Meltdown.Utils;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -56,9 +57,15 @@ namespace Meltdown.Items.Green
                 return;
             }
 
-            var buffStack = damageReport.victimBody.GetBuffCount(Meltdown.irradiated.buff);
+            int buffStack = damageReport.victimBody.GetBuffCount(Meltdown.irradiated.buff);
 
-            if (buffStack > 0 && damageReport.victimBody.TryGetComponent<VolatileThoriumBatteryController>(out var batteryController))
+            int desoBuffStack = 0;
+            if (RedAlertCompatibility.enabled)
+            {
+                desoBuffStack = RedAlertCompatibility.GetDesolatorDotDebuffCount(damageReport.victimBody);
+            }
+
+            if ((buffStack > 0 || desoBuffStack > 0) && damageReport.victimBody.TryGetComponent<VolatileThoriumBatteryController>(out var batteryController))
             {
                 var radius = 8 + (4 * batteryController.stacks) + damageReport.victimBody.radius;
                 var damage = batteryController.attackerBody.baseDamage * 3.0f;
@@ -77,21 +84,29 @@ namespace Meltdown.Items.Green
                     HurtBox hurtBox = GlobalEventManager.igniteOnKillHurtBoxBuffer[i];
                     if (hurtBox.healthComponent)
                     {
-                        InflictDotInfo inflictDotInfo = new InflictDotInfo
+                        if (buffStack > 0)
                         {
-                            victimObject = hurtBox.healthComponent.gameObject,
-                            attackerObject = batteryController.attackerBody.gameObject,
-                            dotIndex = Meltdown.irradiated.index,
-                            damageMultiplier = 1.0f,
-                            duration = 8.0f,
-                            maxStacksFromAttacker = uint.MaxValue
-                        };
+                            InflictDotInfo inflictDotInfo = new InflictDotInfo
+                            {
+                                victimObject = hurtBox.healthComponent.gameObject,
+                                attackerObject = batteryController.attackerBody.gameObject,
+                                dotIndex = Meltdown.irradiated.index,
+                                damageMultiplier = 1.0f,
+                                duration = 8.0f,
+                                maxStacksFromAttacker = uint.MaxValue
+                            };
 
-                        IrradiatedUtils.CheckDotForUpgrade(batteryController.attackerBody.inventory, ref inflictDotInfo);
+                            IrradiatedUtils.CheckDotForUpgrade(batteryController.attackerBody.inventory, ref inflictDotInfo);
 
-                        for (int j = 0; j < buffStack; j++)
+                            for (int j = 0; j < buffStack; j++)
+                            {
+                                DotController.InflictDot(ref inflictDotInfo);
+                            }
+                        }
+
+                        if (RedAlertCompatibility.enabled && desoBuffStack > 0)
                         {
-                            DotController.InflictDot(ref inflictDotInfo);
+                            RedAlertCompatibility.SpreadDesolatorDotDebuffs(hurtBox.healthComponent.gameObject, batteryController.attackerBody, desoBuffStack);
                         }
                     }
                 }

@@ -17,6 +17,8 @@ namespace Meltdown
     [BepInDependency(LanguageAPI.PluginGUID)]
     [BepInDependency(PrefabAPI.PluginGUID)]
 
+    [BepInDependency("com.TheTimesweeper.RedAlert", BepInDependency.DependencyFlags.SoftDependency)]
+
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 
