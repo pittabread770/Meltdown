@@ -7,24 +7,24 @@ using static R2API.RecalculateStatsAPI;
 
 namespace Meltdown.Items.White
 {
-    public class MetalClaws : ItemBase
+    public class ThermiteInACan : ItemBase
     {
-        public override string ItemName => "Metal Claws";
-        public override string ItemLangTokenName => "METALCLAWS";
-        public override string ItemPickupDesc => "Increase the damage and bleed chance of allies under your control.";
-        public override string ItemFullDescription => "Increase <style=cIsUtility>your drones, turrets and pets</style> <style=cIsDamage>damage</style> by <style=cIsDamage>20%</style> <style=cStack>(+20% per stack)</style> and <style=cIsDamage>bleed chance</style> by <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style>.";
-        public override string ItemLore => LoreUtils.getMetalClawsLore();
+        public override string ItemName => "Thermite-in-a-Can";
+        public override string ItemLangTokenName => "THERMITEINACAN";
+        public override string ItemPickupDesc => "Increase the damage and ignite chance of allies under your control.";
+        public override string ItemFullDescription => "Increase <style=cIsUtility>your drones, turrets and pets</style> <style=cIsDamage>damage</style> by <style=cIsDamage>20%</style> <style=cStack>(+20% per stack)</style> and chance to <style=cIsDamage>ignite</style> on hit by <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style>.";
+        public override string ItemLore => LoreUtils.getThermiteInACanLore();
         public override ItemTier Tier => ItemTier.Tier1;
-        public override string ItemModelPath => "MetalClaws.prefab";
-        public override string ItemIconPath => "texIconPickupMetalClaws.png";
+        public override string ItemModelPath => "ThermiteInACan.prefab";
+        public override string ItemIconPath => "texIconPickupThermiteInACan.png";
         public override ItemTag[] ItemTags => [ItemTag.Utility, ItemTag.AIBlacklist];
         public override bool CanRemove => true;
         public override bool Hidden => false;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {
-            var displayItemModel = Meltdown.Assets.LoadAsset<GameObject>("MetalClawsDisplay.prefab");
-            return ItemDisplayRuleUtils.getMetalClawsDisplay(displayItemModel);
+            var displayItemModel = Meltdown.Assets.LoadAsset<GameObject>("ThermiteInACanDisplay.prefab");
+            return ItemDisplayRuleUtils.getThermiteInACanDisplayRules(gameObject);
         }
 
         public override void Hooks()
@@ -36,15 +36,15 @@ namespace Meltdown.Items.White
         {
             if (NetworkServer.active && body != null && body.isPlayerControlled)
             {
-                body.AddItemBehavior<MetalClawsBehaviour>(GetCount(body));
+                body.AddItemBehavior<ThermiteInACanBehaviour>(GetCount(body));
             }
         }
     }
 
-    public class MetalClawsBoost : ItemBase
+    public class ThermiteInACanBoost : ItemBase
     {
-        public override string ItemName => "Metal Claws Boost";
-        public override string ItemLangTokenName => "METALCLAWSBOOST";
+        public override string ItemName => "Thermite-in-a-Can Boost";
+        public override string ItemLangTokenName => "THERMITEINACANBOOST";
         public override string ItemPickupDesc => "";
         public override string ItemFullDescription => "";
         public override string ItemLore => "";
@@ -62,21 +62,51 @@ namespace Meltdown.Items.White
 
         public override void Hooks()
         {
-            GetStatCoefficients += MetalClawsBoost_GetStatCoefficients;
+            GetStatCoefficients += ThermiteInACanBoost_GetStatCoefficients;
+            GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
         }
 
-        private void MetalClawsBoost_GetStatCoefficients(CharacterBody sender, StatHookEventArgs args)
+        private void GlobalEventManager_onServerDamageDealt(DamageReport report)
+        {
+            var victim = report.victim;
+            var attacker = report.attackerBody;
+
+            if (victim != null && attacker != null)
+            {
+                int itemCount = GetCount(attacker);
+
+                if (itemCount > 0 && Util.CheckRoll(10.0f * itemCount * report.damageInfo.procCoefficient, attacker.master))
+                {
+                    InflictDotInfo burnDotInfo = new()
+                    {
+                        victimObject = victim.gameObject,
+                        attackerObject = attacker.gameObject,
+                        totalDamage = 1.5f * attacker.damage,
+                        dotIndex = DotController.DotIndex.Burn,
+                        damageMultiplier = 1.0f
+                    };
+
+                    if (attacker.inventory != null)
+                    {
+                        StrengthenBurnUtils.CheckDotForUpgrade(attacker.inventory, ref burnDotInfo);
+                    }
+
+                    DotController.InflictDot(ref burnDotInfo);
+                }
+            }
+        }
+
+        private void ThermiteInACanBoost_GetStatCoefficients(CharacterBody sender, StatHookEventArgs args)
         {
             var itemCount = GetCount(sender);
             if (sender != null && itemCount > 0)
             {
                 args.damageMultAdd += 0.2f * itemCount;
-                args.bleedChanceAdd += 10.0f * itemCount;
             }
         }
     }
 
-    public class MetalClawsBehaviour : CharacterBody.ItemBehavior
+    public class ThermiteInACanBehaviour : CharacterBody.ItemBehavior
     {
         private int previousStack;
 
@@ -144,19 +174,19 @@ namespace Meltdown.Items.White
         {
             if (inventory != null && newStack > 0)
             {
-                int itemCount = inventory.GetItemCount(Meltdown.items.metalClawsBoost.itemDef);
+                int itemCount = inventory.GetItemCount(Meltdown.items.thermiteInACanBoost.itemDef);
                 if (itemCount < this.stack)
                 {
-                    inventory.GiveItem(Meltdown.items.metalClawsBoost.itemDef, this.stack - itemCount);
+                    inventory.GiveItem(Meltdown.items.thermiteInACanBoost.itemDef, this.stack - itemCount);
                 }
                 else if (itemCount > this.stack)
                 {
-                    inventory.RemoveItem(Meltdown.items.metalClawsBoost.itemDef, itemCount - this.stack);
+                    inventory.RemoveItem(Meltdown.items.thermiteInACanBoost.itemDef, itemCount - this.stack);
                 }
             }
             else
             {
-                inventory.ResetItem(Meltdown.items.metalClawsBoost.itemDef);
+                inventory.ResetItem(Meltdown.items.thermiteInACanBoost.itemDef);
             }
         }
     }

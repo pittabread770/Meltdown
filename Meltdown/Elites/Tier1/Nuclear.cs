@@ -1,4 +1,5 @@
-﻿using Meltdown.Utils;
+﻿using HG;
+using Meltdown.Utils;
 using R2API;
 using RoR2;
 using System.Linq;
@@ -27,6 +28,21 @@ namespace Meltdown.Elites.Tier1
         public override float DamageMultiplier => 2.0f;
 
         public override bool HasAdjustedHonourTier => true;
+
+        public static GameObject nuclearBlastIndicator;
+
+        public override void Init()
+        {
+            base.Init();
+
+            nuclearBlastIndicator = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/NearbyDamageBonus/NearbyDamageBonusIndicator.prefab").WaitForCompletion().InstantiateClone("Nuclear Blast Indicator", true);
+            var indicatorMaterial = Object.Instantiate(Addressables.LoadAssetAsync<Material>("RoR2/Base/NearbyDamageBonus/matNearbyDamageBonusRangeIndicator.mat").WaitForCompletion());
+            indicatorMaterial.SetColor("_TintColor", Meltdown.irradiatedColour);
+            var blastRadius = nuclearBlastIndicator.transform.Find("Radius, Spherical");
+            blastRadius.GetComponent<MeshRenderer>().material = indicatorMaterial;
+
+            PrefabAPI.RegisterNetworkPrefab(nuclearBlastIndicator);
+        }
 
         public override ItemDisplayRuleDict CreateEliteEquipmentDisplayRules(GameObject gameObject)
         {
@@ -95,11 +111,19 @@ namespace Meltdown.Elites.Tier1
         public HealthComponent healthComponent;
         public float blastInterval = 5.0f;
         public float blastTimer = 0.0f;
+        private float radius;
+        private GameObject blastIndicator;
 
         public void Start()
         {
             healthComponent = GetComponent<HealthComponent>();
             body = healthComponent.body;
+
+            radius = 5.0f + healthComponent.body.radius;
+            blastIndicator = Instantiate(Nuclear.nuclearBlastIndicator);
+            var indicatorRadius = blastIndicator.transform.Find("Radius, Spherical");
+            indicatorRadius.localScale = new Vector3(radius * radius, radius * radius, radius * radius);
+            blastIndicator.GetComponent<NetworkedBodyAttachment>().AttachToGameObjectAndSpawn(body.gameObject);
         }
 
         public void FixedUpdate()
@@ -119,7 +143,7 @@ namespace Meltdown.Elites.Tier1
                     return;
                 }
 
-                IrradiatedUtils.PerformBlastAttack(body, body.transform.position, body.damage, 16.0f, 5.0f, 1.0f, true);
+                IrradiatedUtils.PerformBlastAttack(body, body.transform.position, body.damage, 16.0f, radius, 1.0f, true);
             }
         }
     }

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2991527474
+CRC: 4059262557
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4779d83840441e6e1cf5bd1392fcd3f1
+    Hash: 70653750f1216aa27e3bdd65ace53ddc
   TypeTreeHash:
     serializedVersion: 2
     Hash: 303d7186a1f1a07f297c8c5dfb8c1f07
@@ -48,17 +48,20 @@ Assets:
 - Assets/texIconPickupVolatileThoriumBattery.png
 - Assets/texIconPickupUraniumFuelRods.png
 - Assets/OldExhaustPipe.prefab
+- Assets/ThermiteInACan.prefab
 - Assets/PlutoniumRounds.prefab
 - Assets/texIconPickupLeakyReactorCoolant.png
 - Assets/MetalClawsDisplay.prefab
 - Assets/texIconPickupOldExhaustPipe.png
 - Assets/MeltdownExpansionDef.asset
-- Assets/TargetLockVisorDisplay.prefab
+- Assets/texIconPickupThermiteInACan.png
 - Assets/ReactorVents.prefab
 - Assets/VolatileThoriumBattery.prefab
 - Assets/NuclearEliteCrown.prefab
+- Assets/TargetLockVisorDisplay.prefab
 - Assets/texBuffAffixNuclear.png
 - Assets/texIconPickupMetalClaws.png
+- Assets/ThermiteInACanDisplay.prefab
 - Assets/texIconPickupPlutoniumRounds.png
 - Assets/texMeltdownExpansionIcon.png
 - Assets/LeakyReactorCoolant.prefab

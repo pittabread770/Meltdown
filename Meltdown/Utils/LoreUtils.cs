@@ -52,21 +52,17 @@ namespace Meltdown.Utils
             return string.Join("\n", lore);
         }
 
-        public static string getMetalClawsLore()
+        public static string getThermiteInACanLore()
         {
             string[] lore = [
-                "Order: Metal Claws",
+                "Order: Thermite-in-a-Can",
                 "Tracking Number: 56******",
                 "Estimated Delivery: 04/19/2056",
                 "Shipping Method: Standard",
                 "Shipping Address: Sunset Ranch, Sunset Valley, Saturn",
                 "Shipping Details:\n",
-                "WARNING: These claws should be used for their intended purposes only. Do NOT strap these to any automated drone, as this can cause problems with their usual programming and collateral damage.\n",
-                "WARNING: Do not strap these to any animal. Any and all bloodsports involving animals is illegal and can result in your prosecution.\n",
-                "WARNING: Keep out of reach of children. This should be obvious people...\n",
-                "WARNING: Stop being stupid with these. I'm tried of having to keep writing out basic common sense.\n",
-                "WARNING: For Terra's sake, stop inserting these into-\n",
-                "<i><style=cStack>The rest of the label appears to have faded.</style></i>"
+                "WARNING: Due to the Saturnian Food Safety Act of 2041, we are legally obligated to inform you that this Thermite-in-a-Can™ is not edible, and should not be used as seasoning for your food.\n",
+                "If ingested, please warn everyone around you to run immediately. If you are still alive after that, seek medical help."
             ];
 
             return string.Join("\n", lore);

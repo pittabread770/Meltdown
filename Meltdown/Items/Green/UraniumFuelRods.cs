@@ -1,4 +1,5 @@
-﻿using Meltdown.Utils;
+﻿using Meltdown.Compatibility;
+using Meltdown.Utils;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -29,6 +30,40 @@ namespace Meltdown.Items.Green
         {
             // see Utils/StrengthenIrradiatedUtils.cs for main implementation
             GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
+            On.RoR2.DotController.OnDotStackAddedServer += DotController_OnDotStackAddedServer;
+        }
+
+        private void DotController_OnDotStackAddedServer(On.RoR2.DotController.orig_OnDotStackAddedServer orig, DotController self, object _dotStack)
+        {
+            if (_dotStack is DotController.DotStack dotStack)
+            {
+                bool isDesoDot = false;
+
+                if (RedAlertCompatibility.enabled)
+                {
+                    isDesoDot = RedAlertCompatibility.IsDesolatorDotDebuff(dotStack.dotIndex);
+                }
+
+                if (isDesoDot)
+                {
+                    var attackerBody = dotStack.attackerObject.GetComponent<CharacterBody>();
+                    if (attackerBody != null)
+                    {
+                        int itemCount = GetCount(attackerBody);
+
+                        if (itemCount > 0)
+                        {
+                            float damageMult = (float)(1 + 2.5f * itemCount);
+                            dotStack.damage *= damageMult;
+
+                            float durationMult = 1.0f + (float)itemCount * 0.5f;
+                            dotStack.totalDuration *= durationMult;
+                        }
+                    }
+                }
+            }
+
+            orig(self, _dotStack);
         }
 
         private void GlobalEventManager_onServerDamageDealt(DamageReport report)
