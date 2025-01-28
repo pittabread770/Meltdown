@@ -1,8 +1,8 @@
 ﻿{
 	"name": "Meltdown",
-	"version_number": "0.2.0",
+	"version_number": "0.3.0",
 	"website_url": "https://github.com/pittabread770/Meltdown",
-	"description": "A small mod for Risk of Rain 2 with a focus on highly synergistic items and effects.",
+	"description": "A small mod focused on synergistic items and effects. Now with Red Alert support!",
 	"dependencies": [
 		"bbepis-BepInExPack-5.4.2108",
 		"RiskofThunder-HookGenPatcher-1.2.3",
