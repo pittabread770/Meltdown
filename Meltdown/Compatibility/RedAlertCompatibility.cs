@@ -34,7 +34,7 @@ namespace Meltdown.Compatibility
         }
 
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
-        public static void SpreadDesolatorDotDebuffs(GameObject victimObject, CharacterBody attackerBody, int buffStack)
+        public static void ApplyDesolatorDotDebuff(GameObject victimObject, CharacterBody attackerBody)
         {
             InflictDotInfo inflictDotInfo = new InflictDotInfo
             {
@@ -46,12 +46,12 @@ namespace Meltdown.Compatibility
                 maxStacksFromAttacker = uint.MaxValue
             };
 
-            CheckDesoDotForUpgrade(attackerBody.inventory, ref inflictDotInfo);
-
-            for (int j = 0; j < buffStack; j++)
+            if (attackerBody.inventory != null)
             {
-                DotController.InflictDot(ref inflictDotInfo);
+                CheckDesoDotForUpgrade(attackerBody.inventory, ref inflictDotInfo);
             }
+
+            DotController.InflictDot(ref inflictDotInfo);
         }
 
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
