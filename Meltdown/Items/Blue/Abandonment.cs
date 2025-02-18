@@ -54,10 +54,13 @@ namespace Meltdown.Items.Blue
                 int itemCount = GetCount(attackerBody);
                 if (itemCount > 0)
                 {
+                    float multiplier = 1.0f;
                     for (int i = 1; i <= itemCount; i++)
                     {
-                        damageInfo.damage *= 0.25f;
+                        multiplier -= (1.0f / Mathf.Pow(4, i));
                     }
+
+                    damageInfo.damage *= multiplier;
                 }
             }
 

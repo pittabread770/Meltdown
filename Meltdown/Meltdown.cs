@@ -9,6 +9,8 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
+[assembly: HG.Reflection.SearchableAttribute.OptIn]
+
 namespace Meltdown
 {
     [BepInDependency(ItemAPI.PluginGUID)]
@@ -26,7 +28,7 @@ namespace Meltdown
     {
         public const string PluginGUID = "com.pittabread.Meltdown";
         public const string PluginName = "Meltdown";
-        public const string PluginVersion = "0.3.0";
+        public const string PluginVersion = "0.3.3";
 
         public static AssetBundle Assets;
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
@@ -34,6 +36,7 @@ namespace Meltdown
 
         public static Irradiated irradiated;
         public static ExhaustMovementSpeed exhaustMovementSpeed;
+        public static NuclearSlow nuclearSlow;
 
         public static ItemContent items;
         public static EliteContent elites;
@@ -63,6 +66,7 @@ namespace Meltdown
         {
             irradiated = new Irradiated();
             exhaustMovementSpeed = new ExhaustMovementSpeed();
+            nuclearSlow = new NuclearSlow();
         }
 
         private void SetupExpansion()

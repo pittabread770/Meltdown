@@ -12,7 +12,7 @@ namespace Meltdown.Items.White
         public override string ItemName => "Thermite-in-a-Can";
         public override string ItemLangTokenName => "THERMITEINACAN";
         public override string ItemPickupDesc => "Increase the damage and ignite chance of allies under your control.";
-        public override string ItemFullDescription => "Increase <style=cIsUtility>your drones, turrets and pets</style> <style=cIsDamage>damage</style> by <style=cIsDamage>20%</style> <style=cStack>(+20% per stack)</style> and chance to <style=cIsDamage>ignite</style> on hit by <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style>.";
+        public override string ItemFullDescription => "Increase <style=cIsUtility>your minions</style> <style=cIsDamage>damage</style> by <style=cIsDamage>20%</style> <style=cStack>(+20% per stack)</style> and chance to <style=cIsDamage>ignite</style> on hit by <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style>.";
         public override string ItemLore => LoreUtils.getThermiteInACanLore();
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "ThermiteInACan.prefab";

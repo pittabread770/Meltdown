@@ -93,7 +93,7 @@ namespace Meltdown.Elites.Tier1
                             attackerObject = attacker.gameObject,
                             dotIndex = Meltdown.irradiated.index,
                             damageMultiplier = (report.damageDealt / attacker.damage) * 0.5f,
-                            duration = 5.0f,
+                            duration = Mathf.Min(4.0f * report.damageInfo.procCoefficient, 4.0f),
                             maxStacksFromAttacker = uint.MaxValue
                         };
 
@@ -109,7 +109,7 @@ namespace Meltdown.Elites.Tier1
     {
         public CharacterBody body;
         public HealthComponent healthComponent;
-        public float blastInterval = 5.0f;
+        public float blastInterval = 6.0f;
         public float blastTimer = 0.0f;
         private float radius;
         private GameObject blastIndicator;
@@ -119,10 +119,10 @@ namespace Meltdown.Elites.Tier1
             healthComponent = GetComponent<HealthComponent>();
             body = healthComponent.body;
 
-            radius = 5.0f + healthComponent.body.radius;
+            radius = Mathf.Pow(4.0f + healthComponent.body.radius, 2);
             blastIndicator = Instantiate(Nuclear.nuclearBlastIndicator);
             var indicatorRadius = blastIndicator.transform.Find("Radius, Spherical");
-            indicatorRadius.localScale = new Vector3(radius * radius, radius * radius, radius * radius);
+            indicatorRadius.localScale = new Vector3(radius, radius, radius);
             blastIndicator.GetComponent<NetworkedBodyAttachment>().AttachToGameObjectAndSpawn(body.gameObject);
         }
 
@@ -143,7 +143,44 @@ namespace Meltdown.Elites.Tier1
                     return;
                 }
 
-                IrradiatedUtils.PerformBlastAttack(body, body.transform.position, body.damage, 16.0f, radius, 1.0f, true);
+                GlobalEventManager.igniteOnKillSphereSearch.origin = body.transform.position;
+                GlobalEventManager.igniteOnKillSphereSearch.mask = LayerIndex.entityPrecise.mask;
+                GlobalEventManager.igniteOnKillSphereSearch.radius = radius * 0.5f;
+                GlobalEventManager.igniteOnKillSphereSearch.RefreshCandidates();
+                GlobalEventManager.igniteOnKillSphereSearch.FilterCandidatesByHurtBoxTeam(TeamMask.GetUnprotectedTeams(body.master.teamIndex));
+                GlobalEventManager.igniteOnKillSphereSearch.FilterCandidatesByDistinctHurtBoxEntities();
+                GlobalEventManager.igniteOnKillSphereSearch.OrderCandidatesByDistance();
+                GlobalEventManager.igniteOnKillSphereSearch.GetHurtBoxes(GlobalEventManager.igniteOnKillHurtBoxBuffer);
+                GlobalEventManager.igniteOnKillSphereSearch.ClearCandidates();
+                for (int i = 0; i < GlobalEventManager.igniteOnKillHurtBoxBuffer.Count; i++)
+                {
+                    HurtBox hurtBox = GlobalEventManager.igniteOnKillHurtBoxBuffer[i];
+                    if (hurtBox.healthComponent && hurtBox.healthComponent.body)
+                    {
+                        hurtBox.healthComponent.body.AddTimedBuff(Meltdown.nuclearSlow.buff.buffIndex, 4.0f);
+                    }
+                }
+                GlobalEventManager.igniteOnKillHurtBoxBuffer.Clear();
+
+                new BlastAttack
+                {
+                    attacker = body.gameObject,
+                    baseDamage = body.baseDamage * 0.5f,
+                    radius = radius * 0.5f,
+                    crit = body.RollCrit(),
+                    falloffModel = BlastAttack.FalloffModel.None,
+                    procCoefficient = 0.0f,
+                    teamIndex = body.teamComponent.teamIndex,
+                    position = body.transform.position,
+                    attackerFiltering = AttackerFiltering.NeverHitSelf
+                }.Fire();
+
+                EffectManager.SpawnEffect(GlobalEventManager.CommonAssets.igniteOnKillExplosionEffectPrefab, new EffectData
+                {
+                    origin = body.transform.position,
+                    scale = radius * 0.5f,
+                    color = Meltdown.irradiatedColour
+                }, true);
             }
         }
     }

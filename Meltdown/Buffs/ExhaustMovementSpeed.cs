@@ -29,7 +29,7 @@ namespace Meltdown.Buffs
             buff.eliteDef = null;
             buff.isCooldown = false;
             buff.isHidden = false;
-            buff.buffColor = new Color32(96, 215, 229, 255);
+            buff.buffColor = new Color32(155, 161, 201, 255);
             buff.iconSprite = sprite;
             buff.isDOT = false;
 
@@ -44,7 +44,7 @@ namespace Meltdown.Buffs
             }
 
             var itemCount = sender.inventory.GetItemCount(Meltdown.items.oldExhaustPipe.itemDef.itemIndex);
-            if (sender != null && itemCount > 0 && sender.HasBuff(Meltdown.exhaustMovementSpeed.buff))
+            if (sender != null && itemCount > 0 && sender.HasBuff(buff))
             {
                 args.moveSpeedMultAdd += (0.25f * itemCount);
             }

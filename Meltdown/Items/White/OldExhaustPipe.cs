@@ -48,7 +48,7 @@ namespace Meltdown.Items.White
 
             if (stack > 0 && isUtility)
             {
-                self.AddTimedBuff(Meltdown.exhaustMovementSpeed.buff, 6.0f);
+                self.AddTimedBuffAuthority(Meltdown.exhaustMovementSpeed.buff.buffIndex, 6.0f);
             }
 
             orig(self, skill);

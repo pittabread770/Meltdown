@@ -1,7 +1,9 @@
 ﻿using Meltdown.Utils;
 using R2API;
 using RoR2;
+using RoR2.Items;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Meltdown.Items.White
 {
@@ -25,37 +27,69 @@ namespace Meltdown.Items.White
             return ItemDisplayRuleUtils.getReactorVentsDisplay(displayItemModel);
         }
 
-        public override void Hooks()
+        public override void Hooks() { }
+
+        public void FireReactorVents(CharacterBody body)
         {
-            On.RoR2.CharacterBody.OnSkillActivated += CharacterBody_OnSkillActivated;
+            var stack = GetCount(body);
+            var radius = 8 + (4 * stack) + body.radius;
+            var damage = body.damage * 1.5f;
+            var duration = 3.0f * (stack + 1);
+
+            IrradiatedUtils.PerformBlastAttack(body, body.transform.position, damage, radius, duration);
+        }
+    }
+
+    public class ReactorVentsController : BaseItemBodyBehavior
+    {
+        [ItemDefAssociation]
+        private static ItemDef GetItemDef() => Meltdown.items.reactorVents.itemDef;
+
+        private readonly float itemInterval = 0.5f;
+        private float itemCooldown = 0.0f;
+
+        public void OnEnable()
+        {
+            itemCooldown = 0.0f;
+            body.onSkillActivatedServer += Body_onSkillActivatedServer;
         }
 
-        private void CharacterBody_OnSkillActivated(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill)
+        public void OnDisable()
         {
-            orig(self, skill);
+            body.onSkillActivatedServer -= Body_onSkillActivatedServer;
+        }
 
-            if (self == null || skill == null || self.inventory == null)
+        public void FixedUpdate()
+        {
+            if (!NetworkServer.active)
             {
                 return;
             }
 
-            var stack = GetCount(self);
-            var skillLocator = self.GetComponent<SkillLocator>();
+            itemCooldown += Time.fixedDeltaTime;
+        }
+
+        private void Body_onSkillActivatedServer(GenericSkill skill)
+        {
+            if (skill == null)
+            {
+                return;
+            }
+
+            var stack = Meltdown.items.reactorVents.GetCount(body);
+            var skillLocator = body.GetComponent<SkillLocator>();
 
             var isRailgunnerScopedPrimary =
-                self.bodyIndex == BodyCatalog.SpecialCases.RailGunner() &&
+                body.bodyIndex == BodyCatalog.SpecialCases.RailGunner() &&
                 skill == skillLocator.primary &&
-                self.canAddIncrasePrimaryDamage;
+                body.canAddIncrasePrimaryDamage;
 
-            var isSecondary = skill == skillLocator.secondary && skill.cooldownRemaining > 0;
+            var isSecondary = skill == skillLocator.secondary && skill.baseRechargeInterval > 0.0f;
 
-            if (stack > 0 && (isSecondary || isRailgunnerScopedPrimary))
+            if (stack > 0 && (isSecondary || isRailgunnerScopedPrimary) && itemCooldown > itemInterval)
             {
-                var radius = 8 + (4 * stack) + self.radius;
-                var damage = self.damage * 1.5f;
-                var duration = 3.0f * (stack + 1);
-
-                IrradiatedUtils.PerformBlastAttack(self, self.transform.position, damage, radius, duration);
+                itemCooldown = 0.0f;
+                Meltdown.items.reactorVents.FireReactorVents(body);
             }
         }
     }
