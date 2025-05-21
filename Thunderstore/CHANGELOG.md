@@ -1,3 +1,6 @@
+## 0.3.4
+- Rebuilt for SOTS Phase 3
+
 ## 0.3.3
 - Reduced the damage bonus of Uranium Fuel Rods to 200%.
 	- A chance on hit and extended dot timer made this item a little too good.
