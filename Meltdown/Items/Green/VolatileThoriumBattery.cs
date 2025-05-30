@@ -8,11 +8,7 @@ namespace Meltdown.Items.Green
 {
     public class VolatileThoriumBattery : ItemBase
     {
-        public override string ItemName => "Volatile Thorium Battery";
         public override string ItemLangTokenName => "VOLATILETHORIUMBATTERY";
-        public override string ItemPickupDesc => "Irradiated sometimes deals extra damage in an area. Gain a small chance to irradiate enemies.";
-        public override string ItemFullDescription => "Gain <style=cIsDamage>5%</style> chance on hit to <color=#7fff00>Irradiate</color> enemies. <color=#7fff00>Irradiated</color> enemies have a <style=cIsDamage>10%</style> chance per tick to deal <style=cIsDamage>200%</style> damage in a <style=cIsDamage>12m</style> <style=cStack>(+4m per stack)</style> radius, applying <color=#7fff00>Irradiated</style>.";
-        public override string ItemLore => LoreUtils.getVolatileThoriumBatteryLore();
         public override ItemTier Tier => ItemTier.Tier2;
         public override string ItemModelPath => "VolatileThoriumBattery.prefab";
         public override string ItemIconPath => "texIconPickupVolatileThoriumBattery.png";

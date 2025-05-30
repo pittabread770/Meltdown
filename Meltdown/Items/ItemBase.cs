@@ -7,11 +7,7 @@ namespace Meltdown.Items
 {
     public abstract class ItemBase
     {
-        public abstract string ItemName { get; }
         public abstract string ItemLangTokenName { get; }
-        public abstract string ItemPickupDesc { get; }
-        public abstract string ItemFullDescription { get; }
-        public abstract string ItemLore { get; }
 
         public abstract ItemTier Tier { get; }
         public virtual ItemTag[] ItemTags { get; } = { };
@@ -27,20 +23,11 @@ namespace Meltdown.Items
         public static GameObject ItemBodyModelPrefab;
 
         public virtual void Init() {
-            CreateLang();
             CreateItem();
             Hooks();
         }
 
         public ItemDef itemDef = ScriptableObject.CreateInstance<ItemDef>();
-
-        protected void CreateLang()
-        {
-            LanguageAPI.Add("ITEM_MELTDOWN_" + ItemLangTokenName + "_NAME", ItemName);
-            LanguageAPI.Add("ITEM_MELTDOWN_" + ItemLangTokenName + "_PICKUP", ItemPickupDesc);
-            LanguageAPI.Add("ITEM_MELTDOWN_" + ItemLangTokenName + "_DESCRIPTION", ItemFullDescription);
-            LanguageAPI.Add("ITEM_MELTDOWN_" + ItemLangTokenName + "_LORE", ItemLore);
-        }
 
         public abstract ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject);
 

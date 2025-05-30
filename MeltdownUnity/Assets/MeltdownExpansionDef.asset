@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expansionIndex: 0
   requiredEntitlement: {fileID: 0}
-  nameToken: Meltdown
-  descriptionToken: Adds content from the 'Meltdown' mod to the game.
+  nameToken: MELTDOWN_EXPANSION_NAME
+  descriptionToken: MELTDOWN_EXPANSION_DESCRIPTION
   iconSprite: {fileID: 21300000, guid: e67430ec28379bb4d9b65df75eb00ece, type: 3}
   disabledIconSprite: {fileID: 0}
   runBehaviorPrefab: {fileID: 0}

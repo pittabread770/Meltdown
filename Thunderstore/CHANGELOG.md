@@ -1,5 +1,9 @@
+## 0.3.5
+- Added proper language support.
+    - This is just an internal change, but worth pointing out in case I broke a translation key somewhere. It's still only in English, sorry!
+
 ## 0.3.4
-- Rebuilt for SOTS Phase 3
+- Rebuilt for SOTS Phase 3.
 
 ## 0.3.3
 - Reduced the damage bonus of Uranium Fuel Rods to 200%.

@@ -11,11 +11,7 @@ namespace Meltdown.Items.White
 {
     public class PlutoniumRounds : ItemBase
     {
-        public override string ItemName => "Plutonium Rounds";
         public override string ItemLangTokenName => "PLUTONIUMROUNDS";
-        public override string ItemPickupDesc => "Activating a non-primary skill damages and irradiates a nearby enemy.";
-        public override string ItemFullDescription => "Activating a <style=cIsUtility>non-primary skill</style> damages <style=cIsDamage>1</style> <style=cStack>(+1 per stack)</style> enemies in a <style=cIsDamage>30m</style> <style=cStack>(+5m per stack)</style> radius around you for <style=cIsDamage>200%</style> base damage, <color=#7fff00>irradiating</color> them.";
-        public override string ItemLore => LoreUtils.getPlutoniumRoundsLore();
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "PlutoniumRounds.prefab";
         public override string ItemIconPath => "texIconPickupPlutoniumRounds.png";

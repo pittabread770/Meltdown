@@ -11,9 +11,6 @@ namespace Meltdown.Elites
     {
         public abstract string EliteName { get; }
         public abstract string EliteLangTokenName { get; }
-        public abstract string EliteEquipmentName { get; }
-        public abstract string EliteEquipmentPickupDesc { get; }
-        public abstract string EliteEquipmentFullDescription { get; }
         public abstract Color32 EliteColor { get; }
 
         public abstract string EliteEquipmentIconPath { get; }
@@ -29,7 +26,6 @@ namespace Meltdown.Elites
 
         public virtual void Init()
         {
-            CreateLang();
             CreateEliteBuff();
             CreateEliteEquipment();
             CreateElite();
@@ -39,17 +35,6 @@ namespace Meltdown.Elites
         public BuffDef eliteBuffDef = ScriptableObject.CreateInstance<BuffDef>();
         public EquipmentDef equipmentDef = ScriptableObject.CreateInstance<EquipmentDef>();
         public EliteDef eliteDef = ScriptableObject.CreateInstance<EliteDef>();
-
-        protected void CreateLang()
-        {
-            LanguageAPI.Add("ELITE_" +  EliteLangTokenName + "_MODIFIER", EliteName + " {0}");
-            LanguageAPI.Add("ELITE_" +  EliteLangTokenName, EliteName);
-
-            LanguageAPI.Add("ELITE_EQUIPMENT_" + EliteLangTokenName + "_NAME", EliteEquipmentName);
-            LanguageAPI.Add("ELITE_EQUIPMENT_" + EliteLangTokenName + "_PICKUP", EliteEquipmentPickupDesc);
-            LanguageAPI.Add("ELITE_EQUIPMENT_" + EliteLangTokenName + "_DESCRIPTION", EliteEquipmentFullDescription);
-            LanguageAPI.Add("ELITE_EQUIPMENT_" + EliteLangTokenName + "_LORE", "");
-        }
 
         public abstract ItemDisplayRuleDict CreateEliteEquipmentDisplayRules(GameObject gameObject);
 

@@ -7,11 +7,7 @@ namespace Meltdown.Items.White
 {
     public class TargetLockVisor : ItemBase
     {
-        public override string ItemName => "Target-Lock Visor";
         public override string ItemLangTokenName => "TARGETLOCKVISOR";
-        public override string ItemPickupDesc => "Deal bonus damage to enemies in the air.";
-        public override string ItemFullDescription => "Increases damage to enemies that are in the air by <style=cIsDamage>20%</style> <style=cStack>(+20% per stack)</style>.";
-        public override string ItemLore => LoreUtils.getTargetLockVisorLore();
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "TargetLockVisor";
         public override string ItemIconPath => "texIconPickupTargetLockVisor.png";

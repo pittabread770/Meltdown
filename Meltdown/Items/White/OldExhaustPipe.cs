@@ -7,11 +7,7 @@ namespace Meltdown.Items.White
 {
     public class OldExhaustPipe : ItemBase
     {
-        public override string ItemName => "Old Exhaust Pipe";
         public override string ItemLangTokenName => "OLDEXHAUSTPIPE";
-        public override string ItemPickupDesc => "Activating your utility skill gives you a burst of movement speed.";
-        public override string ItemFullDescription => "Activating your <style=cIsUtility>utility skill</style> increases your <style=cIsUtility>movement speed</style> by <style=cIsUtility>25%</style> <style=cStack>(+25% per stack)</style> for <style=cIsDamage>6s</style>.";
-        public override string ItemLore => LoreUtils.getExhausePipeLore();
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "OldExhaustPipe.prefab";
         public override string ItemIconPath => "texIconPickupOldExhaustPipe.png";

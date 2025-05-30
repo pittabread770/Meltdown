@@ -9,11 +9,7 @@ namespace Meltdown.Items.Green
 {
     public class LeakyReactorCoolant : ItemBase
     {
-        public override string ItemName => "Leaky Reactor Coolant";
         public override string ItemLangTokenName => "LEAKYREACTORCOOLANT";
-        public override string ItemPickupDesc => "Irradiated enemies lose armor and can ignite. Gain a small chance to irradiate enemies.";
-        public override string ItemFullDescription => "Gain <style=cIsDamage>5%</style> chance on hit to <color=#7fff00>irradiate</color> enemies. <color=#7fff00>Irradiated</color> enemies lose <style=cIsDamage>15</style> <style=cStack>(+15 per stack)</style> armor, and have a <style=cIsDamage>20%</style> <style=cStack>(+20% per stack)</style> chance per tick to <style=cIsDamage>ignite</style>.";
-        public override string ItemLore => LoreUtils.getLeakyReactorCoolantLore();
         public override ItemTier Tier => ItemTier.Tier2;
         public override string ItemModelPath => "LeakyReactorCoolant.prefab";
         public override string ItemIconPath => "texIconPickupLeakyReactorCoolant.png";
@@ -25,7 +21,6 @@ namespace Meltdown.Items.Green
 
         public override void Init()
         {
-            CreateLang();
             CreateItem();
             Hooks();
             CreateDebuff();

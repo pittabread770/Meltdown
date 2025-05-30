@@ -8,11 +8,7 @@ namespace Meltdown.Items.Blue
 {
     public class Abandonment : ItemBase
     {
-        public override string ItemName => "Abandonment";
         public override string ItemLangTokenName => "ABANDONMENT";
-        public override string ItemPickupDesc => "Decrease secondary skill cooldown, but decrease primary skill damage.";
-        public override string ItemFullDescription => "Decrease secondary skill <style=cIsDamage>cooldown</style> by <style=cIsUtility>50%</style> <style=cStack>(+50% per stack)</style>. Decrease primary skill <style=cIsDamage>damage</style> by <style=cIsHealth>25%</style> <style=cStack>(+25% per stack)</style>.";
-        public override string ItemLore => LoreUtils.getAbandonmentLore();
         public override ItemTier Tier => ItemTier.Lunar;
         public override string ItemModelPath => "Abandonment.prefab";
         public override string ItemIconPath => "texIconPickupAbandonment.png";

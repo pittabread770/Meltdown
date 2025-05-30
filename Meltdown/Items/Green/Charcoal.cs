@@ -8,11 +8,7 @@ namespace Meltdown.Items.Green
 {
     public class Charcoal : ItemBase
     {
-        public override string ItemName => "Charcoal";
         public override string ItemLangTokenName => "CHARCOAL";
-        public override string ItemPickupDesc => "Burning enemies can ignite other nearby enemies. Gain a small chance to ignite enemies.";
-        public override string ItemFullDescription => "Gain <style=cIsDamage>5%</style> chance on hit to <style=cIsDamage>ignite</style> enemies. <style=cIsDamage>Burning</style> enemies have a <style=cIsDamage>5%</style> chance per tick to ignite <style=cIsDamage>2</style> <style=cStack>(+2 per stack)</style> nearby enemies in a <style=cIsDamage>20m</style> <style=cStack>(+5m per stack)</style> radius.";
-        public override string ItemLore => LoreUtils.getCharcoalLore();
         public override ItemTier Tier => ItemTier.Tier2;
         public override string ItemModelPath => "Charcoal.prefab";
         public override string ItemIconPath => "texIconPickupCharcoal.png";

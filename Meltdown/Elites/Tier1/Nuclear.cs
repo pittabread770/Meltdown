@@ -13,9 +13,6 @@ namespace Meltdown.Elites.Tier1
     {
         public override string EliteName => "Nuclear";
         public override string EliteLangTokenName => "NUCLEAR";
-        public override string EliteEquipmentName => "Elephant's Foot";
-        public override string EliteEquipmentPickupDesc => "Become an aspect of radiation.";
-        public override string EliteEquipmentFullDescription => "Become an aspect of radiation.";
         public override Color32 EliteColor => new Color32(157, 177, 10, 255);
 
         public override string EliteEquipmentIconPath => "texIconPickupNuclearElite.png";
