@@ -35,6 +35,7 @@ namespace Meltdown
         public static ExpansionDef meltdownExpansion;
 
         public static Irradiated irradiated;
+        public static Scorch scorch;
         public static ExhaustMovementSpeed exhaustMovementSpeed;
         public static NuclearSlow nuclearSlow;
 
@@ -65,6 +66,7 @@ namespace Meltdown
         private void SetupBuffs()
         {
             irradiated = new Irradiated();
+            scorch = new Scorch();
             exhaustMovementSpeed = new ExhaustMovementSpeed();
             nuclearSlow = new NuclearSlow();
         }

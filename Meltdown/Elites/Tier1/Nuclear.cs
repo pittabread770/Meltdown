@@ -1,5 +1,4 @@
-﻿using HG;
-using Meltdown.Utils;
+﻿using Meltdown.Utils;
 using R2API;
 using RoR2;
 using System.Linq;

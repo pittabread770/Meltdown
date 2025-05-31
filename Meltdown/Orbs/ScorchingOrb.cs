@@ -1,11 +1,12 @@
-﻿using RoR2;
+﻿using Meltdown.Utils;
+using RoR2;
 using UnityEngine;
 
 namespace Meltdown.Orbs
 {
-    public class BurningOrb : RoR2.Orbs.LightningOrb
+    public class ScorchingOrb : RoR2.Orbs.LightningOrb
     {
-        public BurningOrb(GameObject _attacker, float _damage, bool _isCrit, Vector3 _origin, TeamIndex _teamIndex, HurtBox _hurtBox)
+        public ScorchingOrb(GameObject _attacker, float _damage, bool _isCrit, Vector3 _origin, TeamIndex _teamIndex, HurtBox _hurtBox)
         {
             attacker = _attacker;
             bouncedObjects = null;
@@ -51,15 +52,14 @@ namespace Meltdown.Orbs
                 {
                     victimObject = target.healthComponent.gameObject,
                     attackerObject = attacker,
-                    dotIndex = DotController.DotIndex.Burn,
+                    dotIndex = Meltdown.scorch.index,
                     damageMultiplier = 1.0f,
-                    duration = 6.0f,
-                    maxStacksFromAttacker = uint.MaxValue
+                    duration = 6.0f
                 };
 
                 if (attackerBody != null && attackerBody.inventory != null)
                 {
-                    StrengthenBurnUtils.CheckDotForUpgrade(attackerBody.inventory, ref inflictDotInfo);
+                    ScorchUtils.CheckDotForUpgrade(attackerBody.inventory, ref inflictDotInfo);
                 }
 
                 DotController.InflictDot(ref inflictDotInfo);

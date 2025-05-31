@@ -73,7 +73,7 @@ namespace Meltdown.Items.Green
                         {
                             if (hurtBoxes[i].healthComponent != victim)
                             {
-                                BurningOrb orb = new BurningOrb(attacker.gameObject, attacker.damage, attacker.RollCrit(), victim.transform.position, attacker.teamComponent.teamIndex, hurtBoxes[i]);
+                                ScorchingOrb orb = new ScorchingOrb(attacker.gameObject, attacker.damage, attacker.RollCrit(), victim.transform.position, attacker.teamComponent.teamIndex, hurtBoxes[i]);
                                 RoR2.Orbs.OrbManager.instance.AddOrb(orb);
                             }
                         }
