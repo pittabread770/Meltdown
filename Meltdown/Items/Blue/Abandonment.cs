@@ -1,4 +1,5 @@
-﻿using Meltdown.Utils;
+﻿using BepInEx.Configuration;
+using Meltdown.Utils;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -15,10 +16,21 @@ namespace Meltdown.Items.Blue
         public override ItemTag[] ItemTags => [ItemTag.Cleansable, ItemTag.Utility];
         public override bool CanRemove => true;
         public override bool Hidden => false;
+        public ConfigEntry<int> SecondarySkillCooldownReduction;
+        public ConfigEntry<int> PrimarySkillDamageReduction;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {
             return ItemDisplayRuleUtils.getAbandonmentDisplay(gameObject);
+        }
+
+        public override void CreateConfig()
+        {
+            IsEnabled = Meltdown.config.Bind<bool>("Items - Lunar - Abandonment", "Enabled", true, "Enable this item to appear in-game.");
+            SecondarySkillCooldownReduction = Meltdown.config.Bind("Items - Lunar - Abandonment", "Secondary Skill Cooldown Reduction", 50, new ConfigDescription("Percentage decrease in secondary cooldown duration per stack.", new AcceptableValueRange<int>(0, 100)));
+            PrimarySkillDamageReduction = Meltdown.config.Bind("Items - Lunar - Abandonment", "Primary Skill Damage Reduction", 25, new ConfigDescription("Percentage decrease in primary skill damage per stack.", new AcceptableValueRange<int>(0, 100)));
+
+            LanguageUtils.AddTranslationFormat("ITEM_MELTDOWN_ABANDONMENT_DESCRIPTION", [SecondarySkillCooldownReduction.Value.ToString(), PrimarySkillDamageReduction.Value.ToString()]);
         }
 
         public override void Hooks()
@@ -35,7 +47,7 @@ namespace Meltdown.Items.Blue
                 float multiplier = 0.0f;
                 for (int i = 1; i <= itemCount; i++)
                 {
-                    multiplier += (1.0f / Mathf.Pow(2, i));
+                    multiplier += (1.0f / Mathf.Pow(100 / SecondarySkillCooldownReduction.Value, i));
                 }
                 multiplier *= -1.0f;
 
@@ -53,7 +65,7 @@ namespace Meltdown.Items.Blue
                     float multiplier = 1.0f;
                     for (int i = 1; i <= itemCount; i++)
                     {
-                        multiplier -= (1.0f / Mathf.Pow(4, i));
+                        multiplier -= (1.0f / Mathf.Pow(100 / PrimarySkillDamageReduction.Value, i));
                     }
 
                     damageInfo.damage *= multiplier;

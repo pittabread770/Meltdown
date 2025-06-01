@@ -1,4 +1,5 @@
-﻿using Meltdown.Utils;
+﻿using BepInEx.Configuration;
+using Meltdown.Utils;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -21,6 +22,11 @@ namespace Meltdown.Items.White
         {
             var displayItemModel = Meltdown.Assets.LoadAsset<GameObject>("ThermiteInACanDisplay.prefab");
             return ItemDisplayRuleUtils.getThermiteInACanDisplayRules(gameObject);
+        }
+
+        public override void CreateConfig()
+        {
+            IsEnabled = Meltdown.config.Bind<bool>("Items - Common - Thermite-in-a-Can", "Enabled", true, "Enable this item to appear in-game.");
         }
 
         public override void Hooks()
@@ -47,9 +53,21 @@ namespace Meltdown.Items.White
         public override bool CanRemove => false;
         public override ItemTag[] ItemTags => [ItemTag.Damage];
 
+        public ConfigEntry<int> MinionDamageIncrease;
+        public ConfigEntry<int> MinionIgniteChance;
+
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {
             return new ItemDisplayRuleDict(null);
+        }
+
+        public override void CreateConfig()
+        {
+            IsEnabled = Meltdown.config.Bind<bool>("Items - Common - Thermite-in-a-Can", "Enabled", true, "Enable this item to appear in-game.");
+            MinionDamageIncrease = Meltdown.config.Bind<int>("Items - Common - Thermite-in-a-Can", "Minion Damage Increase", 20, new ConfigDescription("Percentage increase in minions damage per stack.", new AcceptableValueRange<int>(0, 10000)));
+            MinionIgniteChance = Meltdown.config.Bind<int>("Items - Common - Thermite-in-a-Can", "Minion Ignite Chance", 10, new ConfigDescription("Percentage increase in minions chance to ignite on hit per stack.", new AcceptableValueRange<int>(0, 100)));
+
+            LanguageUtils.AddTranslationFormat("ITEM_MELTDOWN_THERMITEINACAN_DESCRIPTION", [MinionDamageIncrease.Value.ToString(), MinionIgniteChance.Value.ToString()]);
         }
 
         public override void Hooks()
@@ -67,7 +85,7 @@ namespace Meltdown.Items.White
             {
                 int itemCount = GetCount(attacker);
 
-                if (itemCount > 0 && Util.CheckRoll(10.0f * itemCount * report.damageInfo.procCoefficient, attacker.master))
+                if (itemCount > 0 && Util.CheckRoll((float)MinionIgniteChance.Value * itemCount * report.damageInfo.procCoefficient, attacker.master))
                 {
                     InflictDotInfo burnDotInfo = new()
                     {
@@ -93,7 +111,7 @@ namespace Meltdown.Items.White
             var itemCount = GetCount(sender);
             if (sender != null && itemCount > 0)
             {
-                args.damageMultAdd += 0.2f * itemCount;
+                args.damageMultAdd += (float)(MinionDamageIncrease.Value / 100.0f) * itemCount;
             }
         }
     }

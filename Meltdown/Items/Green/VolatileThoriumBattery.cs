@@ -1,4 +1,5 @@
-﻿using Meltdown.Compatibility;
+﻿using BepInEx.Configuration;
+using Meltdown.Compatibility;
 using Meltdown.Utils;
 using R2API;
 using RoR2;
@@ -15,10 +16,25 @@ namespace Meltdown.Items.Green
         public override ItemTag[] ItemTags => [ItemTag.Damage];
         public override bool CanRemove => true;
         public override bool Hidden => false;
+        public ConfigEntry<int> ChanceToProc;
+        public ConfigEntry<int> Damage;
+        public ConfigEntry<int> InitialRadius;
+        public ConfigEntry<int> RadiusPerStack;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject prefab)
         {
             return ItemDisplayRuleUtils.getVolatileThoriumBatteryDisplayRules(prefab);
+        }
+
+        public override void CreateConfig()
+        {
+            IsEnabled = Meltdown.config.Bind<bool>("Items - Rare - Volatile Thorium Battery", "Enabled", true, "Enable this item to appear in-game.");
+            ChanceToProc = Meltdown.config.Bind<int>("Items - Rare - Volatile Thorium Battery", "Chance Per Tick", 10, new ConfigDescription("Percentage chance per irradiated tick to deal AoE damage.", new AcceptableValueRange<int>(0, 100)));
+            Damage = Meltdown.config.Bind<int>("Items - Rare - Volatile Thorium Battery", "Blast Damage", 200, new ConfigDescription("Percentage damage of the blast.", new AcceptableValueRange<int>(0, 10000)));
+            InitialRadius = Meltdown.config.Bind<int>("Items - Rare - Volatile Thorium Battery", "Initial Radius", 12, new ConfigDescription("Initial radius of the blast.", new AcceptableValueRange<int>(0, 100)));
+            RadiusPerStack = Meltdown.config.Bind<int>("Items - Rare - Volatile Thorium Battery", "Radius Per Stack", 4, new ConfigDescription("Additional radius per stack of item (excluding the first).", new AcceptableValueRange<int>(0, 100)));
+
+            LanguageUtils.AddTranslationFormat("ITEM_MELTDOWN_VOLATILETHORIUMBATTERY_DESCRIPTION", [ChanceToProc.Value.ToString(), Damage.Value.ToString(), InitialRadius.Value.ToString(), RadiusPerStack.Value.ToString()]);
         }
 
         public override void Hooks()
@@ -40,10 +56,9 @@ namespace Meltdown.Items.Green
                 isDesoDot = RedAlertCompatibility.IsDesolatorDotDebuff(report.dotType);
             }
 
-            if (victim != null && attacker != null && (isIrradiatedDot || isDesoDot) && Util.CheckRoll(10.0f, report.attackerBody.master) && report.victimBody.TryGetComponent<VolatileThoriumBatteryController>(out var batteryController))
+            if (victim != null && attacker != null && (isIrradiatedDot || isDesoDot) && Util.CheckRoll(ChanceToProc.Value, report.attackerBody.master) && report.victimBody.TryGetComponent<VolatileThoriumBatteryController>(out var batteryController))
             {
-                var radius = 8 + (4 * batteryController.stacks) + report.victimBody.radius;
-                var damage = batteryController.attackerBody.baseDamage * 3.0f;
+                var radius = InitialRadius.Value + (RadiusPerStack.Value * (batteryController.stacks - 1)) + report.victimBody.radius;
 
                 GlobalEventManager.igniteOnKillSphereSearch.origin = report.victimBody.transform.position;
                 GlobalEventManager.igniteOnKillSphereSearch.mask = LayerIndex.entityPrecise.mask;
@@ -90,7 +105,7 @@ namespace Meltdown.Items.Green
                 new BlastAttack
                 {
                     attacker = batteryController.attackerBody.gameObject,
-                    baseDamage = batteryController.attackerBody.baseDamage * 2.0f,
+                    baseDamage = batteryController.attackerBody.baseDamage * (float)(Damage.Value / 100.0f),
                     radius = radius,
                     crit = batteryController.attackerBody.RollCrit(),
                     falloffModel = BlastAttack.FalloffModel.None,

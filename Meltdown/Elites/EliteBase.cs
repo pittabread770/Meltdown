@@ -1,4 +1,5 @@
-﻿using R2API;
+﻿using BepInEx.Configuration;
+using R2API;
 using RoR2;
 using System.Linq;
 using UnityEngine;
@@ -23,9 +24,11 @@ namespace Meltdown.Elites
         public abstract float DamageMultiplier { get; }
 
         public abstract bool HasAdjustedHonourTier { get; }
+        public virtual ConfigEntry<bool> IsEnabled { get; set; }
 
         public virtual void Init()
         {
+            CreateConfig();
             CreateEliteBuff();
             CreateEliteEquipment();
             CreateElite();
@@ -36,6 +39,7 @@ namespace Meltdown.Elites
         public EquipmentDef equipmentDef = ScriptableObject.CreateInstance<EquipmentDef>();
         public EliteDef eliteDef = ScriptableObject.CreateInstance<EliteDef>();
 
+        public abstract void CreateConfig();
         public abstract ItemDisplayRuleDict CreateEliteEquipmentDisplayRules(GameObject gameObject);
 
         protected void CreateEliteBuff()
@@ -100,7 +104,8 @@ namespace Meltdown.Elites
             eliteDef.shaderEliteRampIndex = 0;
 
             Texture2D rampTexture = Meltdown.Assets.LoadAsset<Texture2D>(EliteEquipmentRampTexturePath);
-            EliteAPI.Add(new CustomElite(eliteDef, EliteTiers, rampTexture));
+
+            EliteAPI.Add(new CustomElite(eliteDef, IsEnabled.Value ? EliteTiers : [], rampTexture));
 
             eliteBuffDef.eliteDef = eliteDef;
             ContentAddition.AddBuffDef(eliteBuffDef);
@@ -116,7 +121,7 @@ namespace Meltdown.Elites
                 honourEliteDef.shaderEliteRampIndex = eliteDef.shaderEliteRampIndex;
 
                 EliteTierDef[] honourTiers = EliteAPI.GetCombatDirectorEliteTiers().Where(x => x.eliteTypes.Contains(Addressables.LoadAssetAsync<EliteDef>("RoR2/Base/EliteFire/edFireHonor.asset").WaitForCompletion())).ToArray();
-                EliteAPI.Add(new CustomElite(honourEliteDef, honourTiers, rampTexture));
+                EliteAPI.Add(new CustomElite(honourEliteDef, IsEnabled.Value ? honourTiers : [], rampTexture));
             }
         }
 

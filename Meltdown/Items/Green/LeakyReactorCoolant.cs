@@ -1,4 +1,5 @@
-﻿using Meltdown.Compatibility;
+﻿using BepInEx.Configuration;
+using Meltdown.Compatibility;
 using Meltdown.Utils;
 using R2API;
 using RoR2;
@@ -16,11 +17,14 @@ namespace Meltdown.Items.Green
         public override ItemTag[] ItemTags => [ItemTag.Damage];
         public override bool CanRemove => true;
         public override bool Hidden => false;
+        public ConfigEntry<int> ArmourLoss;
+        public ConfigEntry<int> IgniteChance;
 
         public static BuffDef LeakyCoolantDebuff;
 
         public override void Init()
         {
+            CreateConfig();
             CreateItem();
             Hooks();
             CreateDebuff();
@@ -39,6 +43,15 @@ namespace Meltdown.Items.Green
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject prefab)
         {
             return ItemDisplayRuleUtils.getLeakyReactorCoolantDisplay(prefab);
+        }
+
+        public override void CreateConfig()
+        {
+            IsEnabled = Meltdown.config.Bind<bool>("Items - Rare - Leaky Reactor Coolant", "Enabled", true, "Enable this item to appear in-game.");
+            ArmourLoss = Meltdown.config.Bind<int>("Items - Rare - Leaky Reactor Coolant", "Armor Loss", 15, new ConfigDescription("Amount of armor reduction per stack of the item.", new AcceptableValueRange<int>(0, 1000)));
+            IgniteChance = Meltdown.config.Bind<int>("Items - Rare - Leaky Reactor Coolant", "Ignite Chance", 20, new ConfigDescription("Chance for the enemy to ignite per stack of item.", new AcceptableValueRange<int>(0, 100)));
+
+            LanguageUtils.AddTranslationFormat("ITEM_MELTDOWN_LEAKYREACTORCOOLANT_DESCRIPTION", [ArmourLoss.Value.ToString(), IgniteChance.Value.ToString()]);
         }
 
         public override void Hooks()
@@ -63,7 +76,7 @@ namespace Meltdown.Items.Green
             {
                 if (victim.TryGetComponent<LeakyReactorCoolantController>(out var CoolantController))
                 {
-                    if (Util.CheckRoll(20 * CoolantController.stacks, attacker.master))
+                    if (Util.CheckRoll(IgniteChance.Value * CoolantController.stacks, attacker.master))
                     {
                         InflictDotInfo inflictDotInfo = new()
                         {
@@ -122,7 +135,7 @@ namespace Meltdown.Items.Green
             {
                 if (victim.TryGetComponent<LeakyReactorCoolantController>(out var CoolantController))
                 {
-                    args.armorAdd -= (15 * CoolantController.stacks);
+                    args.armorAdd -= (ArmourLoss.Value * CoolantController.stacks);
                 }
             }
         }

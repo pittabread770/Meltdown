@@ -1,4 +1,5 @@
-﻿using Meltdown.Compatibility;
+﻿using BepInEx.Configuration;
+using Meltdown.Compatibility;
 using Meltdown.Utils;
 using R2API;
 using RoR2;
@@ -15,6 +16,8 @@ namespace Meltdown.Items.Green
         public override ItemTag[] ItemTags => [ItemTag.Damage];
         public override bool CanRemove => true;
         public override bool Hidden => false;
+        public ConfigEntry<int> DamageIncrease;
+        public ConfigEntry<int> DurationIncrease;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject prefab)
         {
@@ -22,9 +25,18 @@ namespace Meltdown.Items.Green
             return ItemDisplayRuleUtils.getUraniumFuelRodDisplayRules(displayItemModel);
         }
 
+        public override void CreateConfig()
+        {
+            IsEnabled = Meltdown.config.Bind<bool>("Items - Rare - Uranium Fuel Rods", "Enabled", true, "Enable this item to appear in-game.");
+            DamageIncrease = Meltdown.config.Bind<int>("Items - Rare - Uranium Fuel Rods", "Irradiated Damage Increase", 200, new ConfigDescription("Percentage increase in damage of irradiated debuffs.", new AcceptableValueRange<int>(0, 10000)));
+            DurationIncrease = Meltdown.config.Bind<int>("Items - Rare - Uranium Fuel Rods", "Irradiated Duration Increase", 50, new ConfigDescription("Percentage increase in duration of irradiated debuffs.", new AcceptableValueRange<int>(0, 10000)));
+
+            LanguageUtils.AddTranslationFormat("ITEM_MELTDOWN_URANIUMFUELRODS_DESCRIPTION", [DamageIncrease.Value.ToString(), DurationIncrease.Value.ToString()]);
+        }
+
         public override void Hooks()
         {
-            // see Utils/StrengthenIrradiatedUtils.cs for main implementation
+            // see Utils/IrradiatedUtils.cs for main implementation
             GlobalEventManager.onServerDamageDealt += GlobalEventManager_onServerDamageDealt;
             On.RoR2.DotController.OnDotStackAddedServer += DotController_OnDotStackAddedServer;
         }
@@ -49,10 +61,10 @@ namespace Meltdown.Items.Green
 
                         if (itemCount > 0)
                         {
-                            float damageMult = (float)(1 + 2.0f * itemCount);
+                            float damageMult = (float)(1 + (DamageIncrease.Value / 100) * itemCount);
                             dotStack.damage *= damageMult;
 
-                            float durationMult = 1.0f + (float)itemCount * 0.5f;
+                            float durationMult = 1.0f + (float)itemCount * (DurationIncrease.Value / 100);
                             dotStack.totalDuration *= durationMult;
                         }
                     }

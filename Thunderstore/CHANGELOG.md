@@ -1,8 +1,9 @@
 ## 0.3.5
 - Reworked Charcoal, which now Scorches nearby enemies instead of Burning them.
     - Charcoal was in a weird design space where the chance was either too low (making it a dead item), or high enough to cause an everlasting fire. Changing the DoT from a Burn to a Scorch should alleviate the infinite damage tick sound effects. Note that Scorch deals the same damage as Burn (and still benefits from the Ignition Tank item, but not other modded on-fire items).
-- Fixed Leaky Reactor Coolant's model being off-center.	
-- Added proper language support.
+- Fixed Leaky Reactor Coolant's model being off-center.
+- Added a configuration file for changing various values and enabling/disabling parts of the mod.
+- Moved player-facing strings to a seperate language file.
     - This is just an internal change, but worth pointing out in case I broke a translation key somewhere. It's still only in English, sorry!
 
 ## 0.3.4

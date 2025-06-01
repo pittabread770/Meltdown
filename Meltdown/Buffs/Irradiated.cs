@@ -1,4 +1,5 @@
-﻿using R2API;
+﻿using BepInEx.Configuration;
+using R2API;
 using RoR2;
 using System.Linq;
 using UnityEngine;
@@ -14,9 +15,13 @@ namespace Meltdown.Buffs
         public Sprite sprite;
         public BurnEffectController.EffectParams effectParams;
 
+        public ConfigEntry<int> DamagePercentage;
+
         public Irradiated()
         {
             sprite = Meltdown.Assets.LoadAsset<Sprite>("texBuffIrradiated.png");
+
+            DamagePercentage = Meltdown.config.Bind<int>("Buffs - DoTs - Irradiated", "Damage", 50, new ConfigDescription("Percentage damage for irradiated to deal per tick.", new AcceptableValueRange<int>(1, 10000)));
 
             SetupMaterial();
             SetupDebuff();
@@ -66,7 +71,7 @@ namespace Meltdown.Buffs
                 resetTimerOnAdd = false,
                 interval = 1.0f,
                 damageColorIndex = DamageColorIndex.Poison,
-                damageCoefficient = 0.5f
+                damageCoefficient = (float)(DamagePercentage.Value / 100.0f)
             };
 
             index = DotAPI.RegisterDotDef(dot);

@@ -1,4 +1,5 @@
-﻿using Meltdown.Utils;
+﻿using BepInEx.Configuration;
+using Meltdown.Utils;
 using R2API;
 using RoR2;
 using System.Linq;
@@ -26,6 +27,21 @@ namespace Meltdown.Elites.Tier1
         public override bool HasAdjustedHonourTier => true;
 
         public static GameObject nuclearBlastIndicator;
+
+        public ConfigEntry<int> BlastAttackTimer;
+        public ConfigEntry<int> BlastAttackRadius;
+        public ConfigEntry<int> BlastAttackSlowStrength;
+        public ConfigEntry<int> BlastAttackSlowDuration;
+
+        public override void CreateConfig()
+        {
+            IsEnabled = Meltdown.config.Bind<bool>("Elites - Tier 1 - Nuclear", "Enabled", true, "Enable this elite to appear in-game");
+
+            BlastAttackTimer = Meltdown.config.Bind<int>("Elites - Tier 1 - Nuclear", "Blast Attack Time", 6, new ConfigDescription("How often (in seconds) the blast attack should occur. Set to 0 to disable.", new AcceptableValueRange<int>(0, 100)));
+            BlastAttackRadius = Meltdown.config.Bind<int>("Elites - Tier 1 - Nuclear", "Blast Attack Radius", 4, new ConfigDescription("How large (in meters) the blast attack's radius will be.", new AcceptableValueRange<int>(1, 100)));
+            BlastAttackSlowStrength = Meltdown.config.Bind<int>("Elites - Tier 1 - Nuclear", "Blast Attack Slow Strength", 30, new ConfigDescription("Percentage reduction in movement speed when hit by the blast.", new AcceptableValueRange<int>(1, 100)));
+            BlastAttackSlowDuration = Meltdown.config.Bind<int>("Elites - Tier 1 - Nuclear", "Blast Attack Slow Duration", 4, new ConfigDescription("Time (in seconds) that the movement speed reduction lasts. Set to 0 to disable.", new AcceptableValueRange<int>(0, 100)));
+        }
 
         public override void Init()
         {
@@ -105,7 +121,6 @@ namespace Meltdown.Elites.Tier1
     {
         public CharacterBody body;
         public HealthComponent healthComponent;
-        public float blastInterval = 6.0f;
         public float blastTimer = 0.0f;
         private float radius;
         private GameObject blastIndicator;
@@ -115,11 +130,15 @@ namespace Meltdown.Elites.Tier1
             healthComponent = GetComponent<HealthComponent>();
             body = healthComponent.body;
 
-            radius = Mathf.Pow(4.0f + healthComponent.body.radius, 2);
+            radius = Mathf.Pow(Meltdown.elites.nuclear.BlastAttackRadius.Value + healthComponent.body.radius, 2);
             blastIndicator = Instantiate(Nuclear.nuclearBlastIndicator);
             var indicatorRadius = blastIndicator.transform.Find("Radius, Spherical");
             indicatorRadius.localScale = new Vector3(radius, radius, radius);
-            blastIndicator.GetComponent<NetworkedBodyAttachment>().AttachToGameObjectAndSpawn(body.gameObject);
+
+            if (Meltdown.elites.nuclear.BlastAttackTimer.Value > 0)
+            {
+                blastIndicator.GetComponent<NetworkedBodyAttachment>().AttachToGameObjectAndSpawn(body.gameObject);
+            }
         }
 
         public void FixedUpdate()
@@ -130,11 +149,10 @@ namespace Meltdown.Elites.Tier1
                 Destroy(this);
             }
 
-            if (blastTimer >= blastInterval)
+            if (blastTimer >= (float)Meltdown.elites.nuclear.BlastAttackTimer.Value)
             {
                 blastTimer = 0.0f;
-
-                if (!NetworkServer.active)
+                if (!NetworkServer.active || Meltdown.elites.nuclear.BlastAttackTimer.Value == 0)
                 {
                     return;
                 }
@@ -153,7 +171,7 @@ namespace Meltdown.Elites.Tier1
                     HurtBox hurtBox = GlobalEventManager.igniteOnKillHurtBoxBuffer[i];
                     if (hurtBox.healthComponent && hurtBox.healthComponent.body)
                     {
-                        hurtBox.healthComponent.body.AddTimedBuff(Meltdown.nuclearSlow.buff.buffIndex, 4.0f);
+                        hurtBox.healthComponent.body.AddTimedBuff(Meltdown.nuclearSlow.buff.buffIndex, Meltdown.elites.nuclear.BlastAttackSlowDuration.Value);
                     }
                 }
                 GlobalEventManager.igniteOnKillHurtBoxBuffer.Clear();

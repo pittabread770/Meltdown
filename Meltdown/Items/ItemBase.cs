@@ -1,4 +1,5 @@
-﻿using R2API;
+﻿using BepInEx.Configuration;
+using R2API;
 using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -15,6 +16,7 @@ namespace Meltdown.Items
         public abstract string ItemModelPath { get; }
         public abstract string ItemIconPath { get; }
 
+        public virtual ConfigEntry<bool> IsEnabled { get; set; }
         public abstract bool CanRemove { get; }
         public abstract bool Hidden { get; }
 
@@ -23,6 +25,7 @@ namespace Meltdown.Items
         public static GameObject ItemBodyModelPrefab;
 
         public virtual void Init() {
+            CreateConfig();
             CreateItem();
             Hooks();
         }
@@ -30,6 +33,7 @@ namespace Meltdown.Items
         public ItemDef itemDef = ScriptableObject.CreateInstance<ItemDef>();
 
         public abstract ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject);
+        public abstract void CreateConfig();
 
         protected void CreateItem()
         {
@@ -60,7 +64,7 @@ namespace Meltdown.Items
             itemDef.tags = ItemTags;
             itemDef.canRemove = CanRemove;
 #pragma warning disable
-            itemDef.deprecatedTier = Tier;
+            itemDef.deprecatedTier = IsEnabled.Value ? Tier : ItemTier.NoTier;
 #pragma warning enable
             itemDef.unlockableDef = Unlockable;
             itemDef.requiredExpansion = Meltdown.meltdownExpansion;

@@ -12,11 +12,11 @@ namespace Meltdown.Utils
                 int fuelRodCount = inventory.GetItemCount(Meltdown.items.uraniumFuelRods.itemDef);
                 if (fuelRodCount > 0)
                 {
-                    float damageMult = (float)(1 + 2.5f * fuelRodCount);
+                    float damageMult = (float)(1 + (Meltdown.items.uraniumFuelRods.DamageIncrease.Value / 100) * fuelRodCount);
                     dotInfo.totalDamage *= damageMult;
                     dotInfo.damageMultiplier *= damageMult;
 
-                    float durationMult = 1.0f + (float)fuelRodCount * 0.5f;
+                    float durationMult = 1.0f + (float)fuelRodCount * (Meltdown.items.uraniumFuelRods.DurationIncrease.Value / 100);
                     dotInfo.duration *= durationMult;
                 }
             }

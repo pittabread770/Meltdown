@@ -45,7 +45,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /s /e /h /i /y &quot;$(SolutionDir)Meltdown\language\&quot; &quot;$(OutDir)language\&quot;" />
+    <Exec Command="xcopy /s /e /h /i /y &quot;$(SolutionDir)Meltdown\language\&quot; &quot;$(OutDir)&quot;" />
   </Target>
 
 </Project>

@@ -13,7 +13,7 @@ A small content mod focused on synergistic items and effects. Now with Red Alert
 | ![](https://i.imgur.com/gspH6XP.png) | Uranium Fuel Rods | Gain a 5% chance to irradiate enemies on hit. Your Irradiated effects deal 200% (+200% per stack) increased damage, and last 50% (+50% per stack) longer. |
 | ![](https://i.imgur.com/WoCf6Fl.png) | Leaky Reactor Coolant | Gain a 5% chance to irradiate enemies on hit. Irradiated enemies lose 15 (+15 per stack) armour, and have a 20% (+20% per stack) chance per tick to ignite. |
 | ![](https://i.imgur.com/IN67o3f.png) | Volatile Thorium Battery | Gain a 5% chance to Irradiate enemies on hit. Irradiated enemies have a 10% chance per tick to deal 200% damage in a 12m (+4m per stack) radius, applying Irradiated. |
-| ![](https://i.imgur.com/8xoObWn.png) | Charcoal | Gain a 5% chance to burn enemies on hit. Burning enemies have a 5% chance per tick to ignite 2 (+2 per stack) nearby enemies in a 20m (+5m per stack) radius. |
+| ![](https://i.imgur.com/8xoObWn.png) | Charcoal | Gain a 5% chance to burn enemies on hit. Burning enemies have a 5% chance per tick to scorch 2 (+2 per stack) nearby enemies in a 20m (+5m per stack) radius. |
 | ![](https://i.imgur.com/nBey9QJ.png) | Abandonment | Decrease secondary skill cooldown by 50% (+50% per stack). Decrease primary skill damage by 25% (+25% per stack). |
 
 ## Buffs/Debuffs

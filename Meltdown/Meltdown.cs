@@ -1,9 +1,12 @@
 using BepInEx;
+using BepInEx.Configuration;
 using Meltdown.Buffs;
 using Meltdown.Elites;
 using Meltdown.Items;
+using Meltdown.Utils;
 using R2API;
 using R2API.Utils;
+using RoR2;
 using RoR2.ExpansionManagement;
 using System.Reflection;
 using UnityEngine;
@@ -33,6 +36,7 @@ namespace Meltdown
         public static AssetBundle Assets;
         private static ExpansionDef dlc1 = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
         public static ExpansionDef meltdownExpansion;
+        public static ConfigFile config;
 
         public static Irradiated irradiated;
         public static Scorch scorch;
@@ -48,11 +52,14 @@ namespace Meltdown
         {
             Log.Init(Logger);
             LoadAssets();
+            config = Config;
 
             SetupBuffs();
             SetupExpansion();
             SetupItems();
             SetupElites();
+
+            Language.onCurrentLanguageChanged += LanguageUtils.Language_onCurrentLanguageChanged;
         }
 
         private void LoadAssets()

@@ -1,4 +1,5 @@
-﻿using Meltdown.Utils;
+﻿using BepInEx.Configuration;
+using Meltdown.Utils;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -14,11 +15,20 @@ namespace Meltdown.Items.White
         public override ItemTag[] ItemTags => [ItemTag.Damage];
         public override bool CanRemove => true;
         public override bool Hidden => false;
+        public ConfigEntry<int> DamageIncrease;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {
             var displayItemModel = Meltdown.Assets.LoadAsset<GameObject>("TargetLockVisorDisplay.prefab");
             return ItemDisplayRuleUtils.getTargetLockVisorDisplay(displayItemModel);
+        }
+
+        public override void CreateConfig()
+        {
+            IsEnabled = Meltdown.config.Bind<bool>("Items - Common - Target-Lock Visor", "Enabled", true, "Enable this item to appear in-game.");
+            DamageIncrease = Meltdown.config.Bind<int>("Items - Common - Target-Lock Visor", "Damage Increase", 20, new ConfigDescription("Percentage increase in damage to enemies that are in the air.", new AcceptableValueRange<int>(0, 10000)));
+
+            LanguageUtils.AddTranslationFormat("ITEM_MELTDOWN_TARGETLOCKVISOR_DESCRIPTION", [DamageIncrease.Value.ToString()]);
         }
 
         public override void Hooks()
@@ -38,7 +48,7 @@ namespace Meltdown.Items.White
                     bool isRigidMotor = self.TryGetComponent<RigidbodyMotor>(out var rigidMotor);
                     if (isCharMotorGrounded || isRigidMotor)
                     {
-                        damageInfo.damage *= 1.0f + (0.2f * itemCount);
+                        damageInfo.damage *= 1.0f + ((float)(DamageIncrease.Value / 100.0f) * itemCount);
                         EffectManager.SimpleImpactEffect(HealthComponent.AssetReferences.bossDamageBonusImpactEffectPrefab, damageInfo.position, damageInfo.position, true);
                     }
                 }

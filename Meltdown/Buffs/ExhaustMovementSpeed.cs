@@ -1,4 +1,5 @@
-﻿using R2API;
+﻿using Meltdown.Items.White;
+using R2API;
 using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -46,7 +47,7 @@ namespace Meltdown.Buffs
             var itemCount = sender.inventory.GetItemCount(Meltdown.items.oldExhaustPipe.itemDef.itemIndex);
             if (sender != null && itemCount > 0 && sender.HasBuff(buff))
             {
-                args.moveSpeedMultAdd += (0.25f * itemCount);
+                args.moveSpeedMultAdd += ((float)(Meltdown.items.oldExhaustPipe.SpeedIncrease.Value / 100.0f) * itemCount);
             }
         }
     }

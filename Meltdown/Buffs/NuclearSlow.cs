@@ -1,4 +1,5 @@
-﻿using R2API;
+﻿using BepInEx.Configuration;
+using R2API;
 using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -45,7 +46,7 @@ namespace Meltdown.Buffs
 
             if (sender.HasBuff(buff))
             {
-                args.moveSpeedMultAdd -= 0.3f;
+                args.moveSpeedMultAdd -= (float)(Meltdown.elites.nuclear.BlastAttackSlowStrength.Value / 100.0f);
             }
         }
     }
