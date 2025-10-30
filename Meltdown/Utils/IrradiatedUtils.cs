@@ -10,13 +10,22 @@ namespace Meltdown.Utils
             if (dotInfo.dotIndex == Meltdown.irradiated.index)
             {
                 int fuelRodCount = inventory.GetItemCount(Meltdown.items.uraniumFuelRods.itemDef);
+                int thoriumBatteryCount = inventory.GetItemCount(Meltdown.items.volatileThoriumBattery.itemDef);
+                int reactorCoolant = inventory.GetItemCount(Meltdown.items.leakyReactorCoolant.itemDef);
+
+                if (fuelRodCount > 0 || thoriumBatteryCount > 0 || reactorCoolant > 0)
+                {
+                    dotInfo.preUpgradeDotIndex = new DotController.DotIndex?(dotInfo.dotIndex);
+                    dotInfo.dotIndex = Meltdown.empoweredIrradiated.index;
+                }
+
                 if (fuelRodCount > 0)
                 {
-                    float damageMult = (float)(1 + (Meltdown.items.uraniumFuelRods.DamageIncrease.Value / 100) * fuelRodCount);
+                    float damageMult = (float)(1 + (Meltdown.items.uraniumFuelRods.DamageIncrease.Value / 100.0f) * fuelRodCount);
                     dotInfo.totalDamage *= damageMult;
                     dotInfo.damageMultiplier *= damageMult;
 
-                    float durationMult = 1.0f + (float)fuelRodCount * (Meltdown.items.uraniumFuelRods.DurationIncrease.Value / 100);
+                    float durationMult = 1.0f + (float)fuelRodCount * (Meltdown.items.uraniumFuelRods.DurationIncrease.Value / 100.0f);
                     dotInfo.duration *= durationMult;
                 }
             }

@@ -47,7 +47,7 @@ namespace Meltdown.Items.Blue
                 float multiplier = 0.0f;
                 for (int i = 1; i <= itemCount; i++)
                 {
-                    multiplier += (1.0f / Mathf.Pow(100 / SecondarySkillCooldownReduction.Value, i));
+                    multiplier += (1.0f / Mathf.Pow(100.0f / SecondarySkillCooldownReduction.Value, i));
                 }
                 multiplier *= -1.0f;
 
@@ -65,7 +65,7 @@ namespace Meltdown.Items.Blue
                     float multiplier = 1.0f;
                     for (int i = 1; i <= itemCount; i++)
                     {
-                        multiplier -= (1.0f / Mathf.Pow(100 / PrimarySkillDamageReduction.Value, i));
+                        multiplier -= (1.0f / Mathf.Pow(100.0f / PrimarySkillDamageReduction.Value, i));
                     }
 
                     damageInfo.damage *= multiplier;

@@ -41,37 +41,34 @@ namespace Meltdown.Items.Green
             On.RoR2.DotController.OnDotStackAddedServer += DotController_OnDotStackAddedServer;
         }
 
-        private void DotController_OnDotStackAddedServer(On.RoR2.DotController.orig_OnDotStackAddedServer orig, DotController self, object _dotStack)
+        private void DotController_OnDotStackAddedServer(On.RoR2.DotController.orig_OnDotStackAddedServer orig, DotController self, DotController.DotStack dotStack)
         {
-            if (_dotStack is DotController.DotStack dotStack)
+            bool isDesoDot = false;
+
+            if (RedAlertCompatibility.enabled)
             {
-                bool isDesoDot = false;
+                isDesoDot = RedAlertCompatibility.IsDesolatorDotDebuff(dotStack.dotIndex);
+            }
 
-                if (RedAlertCompatibility.enabled)
+            if (isDesoDot)
+            {
+                var attackerBody = dotStack.attackerObject.GetComponent<CharacterBody>();
+                if (attackerBody != null)
                 {
-                    isDesoDot = RedAlertCompatibility.IsDesolatorDotDebuff(dotStack.dotIndex);
-                }
+                    int itemCount = GetCount(attackerBody);
 
-                if (isDesoDot)
-                {
-                    var attackerBody = dotStack.attackerObject.GetComponent<CharacterBody>();
-                    if (attackerBody != null)
+                    if (itemCount > 0)
                     {
-                        int itemCount = GetCount(attackerBody);
+                        float damageMult = (float)(1 + (DamageIncrease.Value / 100.0f) * itemCount);
+                        dotStack.damage *= damageMult;
 
-                        if (itemCount > 0)
-                        {
-                            float damageMult = (float)(1 + (DamageIncrease.Value / 100) * itemCount);
-                            dotStack.damage *= damageMult;
-
-                            float durationMult = 1.0f + (float)itemCount * (DurationIncrease.Value / 100);
-                            dotStack.totalDuration *= durationMult;
-                        }
+                        float durationMult = 1.0f + (float)itemCount * (DurationIncrease.Value / 100.0f);
+                        dotStack.totalDuration *= durationMult;
                     }
                 }
             }
 
-            orig(self, _dotStack);
+            orig(self, dotStack);
         }
 
         private void GlobalEventManager_onServerDamageDealt(DamageReport report)
@@ -103,7 +100,7 @@ namespace Meltdown.Items.Green
                     victimObject = victim.gameObject,
                     dotIndex = Meltdown.irradiated.index,
                     damageMultiplier = 1.0f,
-                    duration = 6.0f,
+                    duration = 6.0f * report.damageInfo.procCoefficient,
                     maxStacksFromAttacker = uint.MaxValue
                 };
 

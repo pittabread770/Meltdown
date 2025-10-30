@@ -1,3 +1,9 @@
+## 0.3.6
+- Changed the duration of the irradiated debuff applied from Leaky Reactor Coolant, Uranium Fuel Rods and Volatile Thorium Battery to scale based on the proc coefficient.
+- Fixed numerous instances of config values rounding down to the nearest 100%.
+- Added unique icon for the Irradiated DoT when you have any of the empowering items (Thorium Battery, Reactor Coolant, Fuel Rods).
+	- I was originally going to add a unique icon for each item (with more unique icons for each combination), but this ended up producing too much icon clutter in multiplayer. For now, a new icon will be shown to signal that your Irradiated DoT is empowered in some way by one or more of the items.
+
 ## 0.3.5
 - Reworked Charcoal, which now Scorches nearby enemies instead of Burning them.
     - Charcoal was in a weird design space where the chance was either too low (making it a dead item), or high enough to cause an everlasting fire. Changing the DoT from a Burn to a Scorch should alleviate the infinite damage tick sound effects. Note that Scorch deals the same damage as Burn (and still benefits from the Ignition Tank item, but not other modded on-fire items).

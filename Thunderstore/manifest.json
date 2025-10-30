@@ -1,6 +1,6 @@
 ﻿{
 	"name": "Meltdown",
-	"version_number": "0.3.5",
+	"version_number": "0.3.6",
 	"website_url": "https://github.com/pittabread770/Meltdown",
 	"description": "A small mod focused on synergistic items and effects. Now with Red Alert support!",
 	"dependencies": [

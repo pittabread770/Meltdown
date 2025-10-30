@@ -1,5 +1,4 @@
-﻿using BepInEx.Configuration;
-using R2API;
+﻿using R2API;
 using RoR2;
 using System.Linq;
 using UnityEngine;
@@ -7,7 +6,7 @@ using UnityEngine.AddressableAssets;
 
 namespace Meltdown.Buffs
 {
-    public class Irradiated
+    public class EmpoweredIrradiated
     {
         public BuffDef buff;
         public DotController.DotDef dot;
@@ -15,13 +14,9 @@ namespace Meltdown.Buffs
         public Sprite sprite;
         public BurnEffectController.EffectParams effectParams;
 
-        public ConfigEntry<int> DamagePercentage;
-
-        public Irradiated()
+        public EmpoweredIrradiated()
         {
-            sprite = Meltdown.Assets.LoadAsset<Sprite>("texBuffIrradiated.png");
-
-            DamagePercentage = Meltdown.config.Bind<int>("Buffs - DoTs - Irradiated", "Damage", 50, new ConfigDescription("Percentage damage for irradiated to deal per tick.", new AcceptableValueRange<int>(1, 10000)));
+            sprite = Meltdown.Assets.LoadAsset<Sprite>("texBuffEmpoweredIrradiated.png");
 
             SetupMaterial();
             SetupDebuff();
@@ -34,7 +29,7 @@ namespace Meltdown.Buffs
         {
             var burnMaterial = Addressables.LoadAssetAsync<Material>("RoR2/Base/Common/matOnFire.mat").WaitForCompletion();
             var irradiatedMaterial = new Material(burnMaterial);
-            var irradiatedColorRamp = Meltdown.Assets.LoadAsset<Texture2D>("texRampIrradiated.png");
+            var irradiatedColorRamp = Meltdown.Assets.LoadAsset<Texture2D>("texRampEmpoweredIrradiated.png");
             irradiatedMaterial.SetTexture("_RemapTex", irradiatedColorRamp);
 
             var burnEffect = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Common/VFX/FireEffect.prefab").WaitForCompletion();
@@ -50,13 +45,12 @@ namespace Meltdown.Buffs
         {
             buff = ScriptableObject.CreateInstance<BuffDef>();
 
-            buff.name = "Irradiated";
+            buff.name = "Empowered Irradiated";
             buff.canStack = true;
             buff.isDebuff = true;
             buff.eliteDef = null;
             buff.isCooldown = false;
             buff.isHidden = false;
-            buff.buffColor = Meltdown.irradiatedColour;
             buff.iconSprite = sprite;
             buff.isDOT = true;
 
@@ -71,7 +65,7 @@ namespace Meltdown.Buffs
                 resetTimerOnAdd = false,
                 interval = 1.0f,
                 damageColorIndex = DamageColorIndex.Poison,
-                damageCoefficient = (float)(DamagePercentage.Value / 100.0f)
+                damageCoefficient = (float)(Meltdown.irradiated.DamagePercentage.Value / 100.0f)
             };
 
             index = DotAPI.RegisterDotDef(dot);
@@ -97,7 +91,7 @@ namespace Meltdown.Buffs
                             irradiatedEffectController.target = modelLocator.modelTransform.gameObject;
                         }
                     }
-                    else if (irradiatedController != default || self.victimBody.HasBuff(Meltdown.empoweredIrradiated.buff))
+                    else if (irradiatedController != default)
                     {
                         Object.Destroy(irradiatedController);
                     }
