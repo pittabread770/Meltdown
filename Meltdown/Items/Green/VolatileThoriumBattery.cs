@@ -48,7 +48,7 @@ namespace Meltdown.Items.Green
             var victim = report.victim;
             var attacker = report.attackerBody;
 
-            bool isIrradiatedDot = report.dotType == Meltdown.irradiated.index;
+            bool isIrradiatedDot = report.dotType == Meltdown.irradiated.index || report.dotType == Meltdown.empoweredIrradiated.index;
 
             bool isDesoDot = false;
             if (RedAlertCompatibility.enabled)

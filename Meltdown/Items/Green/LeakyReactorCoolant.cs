@@ -66,13 +66,14 @@ namespace Meltdown.Items.Green
             var victim = report.victim;
             var attacker = report.attackerBody;
 
+            bool isIrradiatedDot = report.dotType == Meltdown.irradiated.index || report.dotType == Meltdown.empoweredIrradiated.index;
             bool isDesoDot = false;
             if (RedAlertCompatibility.enabled)
             {
                 isDesoDot = RedAlertCompatibility.IsDesolatorDotDebuff(report.dotType);
             }
 
-            if (victim != null && attacker != null && victim.body.HasBuff(LeakyCoolantDebuff) && (report.dotType == Meltdown.irradiated.index || isDesoDot))
+            if (victim != null && attacker != null && victim.body.HasBuff(LeakyCoolantDebuff) && (isIrradiatedDot || isDesoDot))
             {
                 if (victim.TryGetComponent<LeakyReactorCoolantController>(out var CoolantController))
                 {
@@ -121,7 +122,7 @@ namespace Meltdown.Items.Green
                         isDesoDot = RedAlertCompatibility.IsDesolatorDotDebuff(inflictDotInfo.dotIndex);
                     }
 
-                    if (inflictDotInfo.dotIndex == Meltdown.irradiated.index || isDesoDot)
+                    if (inflictDotInfo.dotIndex == Meltdown.irradiated.index || inflictDotInfo.dotIndex == Meltdown.empoweredIrradiated.index || isDesoDot)
                     {
                         victim.AddTimedBuff(LeakyCoolantDebuff, inflictDotInfo.duration);
                     }

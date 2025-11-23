@@ -7,11 +7,11 @@ namespace Meltdown.Utils
     {
         public static void CheckDotForUpgrade(Inventory inventory, ref InflictDotInfo dotInfo)
         {
-            if (dotInfo.dotIndex == Meltdown.irradiated.index)
+            if (dotInfo.dotIndex == Meltdown.irradiated.index || dotInfo.dotIndex == Meltdown.empoweredIrradiated.index)
             {
-                int fuelRodCount = inventory.GetItemCount(Meltdown.items.uraniumFuelRods.itemDef);
-                int thoriumBatteryCount = inventory.GetItemCount(Meltdown.items.volatileThoriumBattery.itemDef);
-                int reactorCoolant = inventory.GetItemCount(Meltdown.items.leakyReactorCoolant.itemDef);
+                int fuelRodCount = inventory.GetItemCountEffective(Meltdown.items.uraniumFuelRods.itemDef);
+                int thoriumBatteryCount = inventory.GetItemCountEffective(Meltdown.items.volatileThoriumBattery.itemDef);
+                int reactorCoolant = inventory.GetItemCountEffective(Meltdown.items.leakyReactorCoolant.itemDef);
 
                 if (fuelRodCount > 0 || thoriumBatteryCount > 0 || reactorCoolant > 0)
                 {

@@ -9,7 +9,7 @@ namespace Meltdown.Utils
         {
             if (dotInfo.dotIndex == Meltdown.scorch.index)
             {
-                int itemCount = inventory.GetItemCount(DLC1Content.Items.StrengthenBurn);
+                int itemCount = inventory.GetItemCountEffective(DLC1Content.Items.StrengthenBurn);
                 CharacterBody component = dotInfo.victimObject.GetComponent<CharacterBody>();
                 bool isOiled = component != null && component.HasBuff(DLC2Content.Buffs.Oiled);
 

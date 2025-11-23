@@ -59,7 +59,7 @@ namespace Meltdown.Compatibility
         {
             if (dotInfo.dotIndex == RA2Mod.Survivors.Desolator.DesolatorDots.DesolatorDot)
             {
-                int fuelRodCount = inventory.GetItemCount(Meltdown.items.uraniumFuelRods.itemDef);
+                int fuelRodCount = inventory.GetItemCountEffective(Meltdown.items.uraniumFuelRods.itemDef);
                 if (fuelRodCount > 0)
                 {
                     float damageMult = (float)(1 + 2.5f * fuelRodCount);

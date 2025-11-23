@@ -1,17 +1,17 @@
 ﻿{
 	"name": "Meltdown",
-	"version_number": "0.3.6",
+	"version_number": "0.3.7",
 	"website_url": "https://github.com/pittabread770/Meltdown",
-	"description": "A small mod focused on synergistic items and effects. Now with Red Alert support!",
+	"description": "A small item mod focused on synergistic items and effects.",
 	"dependencies": [
-		"bbepis-BepInExPack-5.4.2108",
-		"RiskofThunder-HookGenPatcher-1.2.3",
-		"RiskofThunder-R2API_Items-1.0.4",
+		"bbepis-BepInExPack-5.4.2121",
+		"RiskofThunder-HookGenPatcher-1.2.9",
+		"RiskofThunder-R2API_Items-1.0.7",
 		"RiskofThunder-R2API_Language-1.0.1",
-		"RiskofThunder-R2API_Dot-1.0.4",
-		"RiskofThunder-R2API_Prefab-1.0.4",
-		"RiskofThunder-R2API_RecalculateStats-1.5.0",
-		"RiskofThunder-R2API_Director-2.3.4",
+		"RiskofThunder-R2API_Dot-1.1.2",
+		"RiskofThunder-R2API_Prefab-1.1.1",
+		"RiskofThunder-R2API_RecalculateStats-1.6.3",
+		"RiskofThunder-R2API_Director-2.3.6",
 		"RiskofThunder-R2API_Elites-1.0.7"
 	]
 }

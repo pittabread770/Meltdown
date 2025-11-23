@@ -1,3 +1,7 @@
+## 0.3.7
+- Rebuilt for Alloyed Collective.
+- Fixed Volatile Throium Battery and Leaky Reactor Coolant not working as intended.
+
 ## 0.3.6
 - Changed the duration of the irradiated debuff applied from Leaky Reactor Coolant, Uranium Fuel Rods and Volatile Thorium Battery to scale based on the proc coefficient.
 - Fixed numerous instances of config values rounding down to the nearest 100%.

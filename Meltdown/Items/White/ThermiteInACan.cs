@@ -184,19 +184,19 @@ namespace Meltdown.Items.White
         {
             if (inventory != null && newStack > 0)
             {
-                int itemCount = inventory.GetItemCount(Meltdown.items.thermiteInACanBoost.itemDef);
+                int itemCount = inventory.GetItemCountEffective(Meltdown.items.thermiteInACanBoost.itemDef);
                 if (itemCount < this.stack)
                 {
-                    inventory.GiveItem(Meltdown.items.thermiteInACanBoost.itemDef, this.stack - itemCount);
+                    inventory.GiveItemPermanent(Meltdown.items.thermiteInACanBoost.itemDef, this.stack - itemCount);
                 }
                 else if (itemCount > this.stack)
                 {
-                    inventory.RemoveItem(Meltdown.items.thermiteInACanBoost.itemDef, itemCount - this.stack);
+                    inventory.RemoveItemPermanent(Meltdown.items.thermiteInACanBoost.itemDef, itemCount - this.stack);
                 }
             }
             else
             {
-                inventory.ResetItem(Meltdown.items.thermiteInACanBoost.itemDef);
+                inventory.ResetItemPermanent(Meltdown.items.thermiteInACanBoost.itemDef);
             }
         }
     }
