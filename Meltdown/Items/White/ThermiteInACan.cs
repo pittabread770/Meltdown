@@ -58,7 +58,8 @@ namespace Meltdown.Items.White
 
         public override ItemDisplayRuleDict CreateItemDisplayRules(GameObject gameObject)
         {
-            return new ItemDisplayRuleDict(null);
+            var displayItemModel = Meltdown.Assets.LoadAsset<GameObject>("ThermiteInACanDisplay.prefab");
+            return ItemDisplayRuleUtils.getThermiteInACanBoostDisplayRules(displayItemModel);
         }
 
         public override void CreateConfig()

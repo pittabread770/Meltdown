@@ -1,3 +1,7 @@
+## 0.3.8
+- Added item displays for Operator, Drifter and both Engineer Turrets.
+- Added Thermite-in-a-Can item displays for all drones, turrets and allies (Queens Gland Beetle, Squid Turret etc.).
+
 ## 0.3.7
 - Rebuilt for Alloyed Collective.
 - Fixed Volatile Throium Battery and Leaky Reactor Coolant not working as intended.
