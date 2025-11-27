@@ -14,7 +14,7 @@ namespace Meltdown.Items.Green
         public override ItemTier Tier => ItemTier.Tier2;
         public override string ItemModelPath => "LeakyReactorCoolant.prefab";
         public override string ItemIconPath => "texIconPickupLeakyReactorCoolant.png";
-        public override ItemTag[] ItemTags => [ItemTag.Damage];
+        public override ItemTag[] ItemTags => [ItemTag.Damage, ItemTag.CanBeTemporary];
         public override bool CanRemove => true;
         public override bool Hidden => false;
         public ConfigEntry<int> ArmourLoss;

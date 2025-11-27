@@ -16,7 +16,7 @@ namespace Meltdown.Items.White
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "PlutoniumRounds.prefab";
         public override string ItemIconPath => "texIconPickupPlutoniumRounds.png";
-        public override ItemTag[] ItemTags => [ItemTag.Damage];
+        public override ItemTag[] ItemTags => [ItemTag.Damage, ItemTag.CanBeTemporary];
         public override bool CanRemove => true;
         public override bool Hidden => false;
         public ConfigEntry<int> EnemiesPerStack;

@@ -14,7 +14,7 @@ namespace Meltdown.Items.White
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "ThermiteInACan.prefab";
         public override string ItemIconPath => "texIconPickupThermiteInACan.png";
-        public override ItemTag[] ItemTags => [ItemTag.Utility, ItemTag.AIBlacklist];
+        public override ItemTag[] ItemTags => [ItemTag.Utility, ItemTag.AIBlacklist, ItemTag.CanBeTemporary];
         public override bool CanRemove => true;
         public override bool Hidden => false;
 
@@ -51,7 +51,7 @@ namespace Meltdown.Items.White
         public override string ItemIconPath => "RoR2/Base/Common/MiscIcons/texMysteryIcon.png";
         public override bool Hidden => true;
         public override bool CanRemove => false;
-        public override ItemTag[] ItemTags => [ItemTag.Damage];
+        public override ItemTag[] ItemTags => [ItemTag.Damage, ItemTag.CannotSteal];
 
         public ConfigEntry<int> MinionDamageIncrease;
         public ConfigEntry<int> MinionIgniteChance;

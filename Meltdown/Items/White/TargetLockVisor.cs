@@ -12,7 +12,7 @@ namespace Meltdown.Items.White
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "TargetLockVisor";
         public override string ItemIconPath => "texIconPickupTargetLockVisor.png";
-        public override ItemTag[] ItemTags => [ItemTag.Damage];
+        public override ItemTag[] ItemTags => [ItemTag.Damage, ItemTag.CanBeTemporary];
         public override bool CanRemove => true;
         public override bool Hidden => false;
         public ConfigEntry<int> DamageIncrease;

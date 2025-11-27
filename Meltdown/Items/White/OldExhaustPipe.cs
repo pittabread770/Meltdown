@@ -12,7 +12,7 @@ namespace Meltdown.Items.White
         public override ItemTier Tier => ItemTier.Tier1;
         public override string ItemModelPath => "OldExhaustPipe.prefab";
         public override string ItemIconPath => "texIconPickupOldExhaustPipe.png";
-        public override ItemTag[] ItemTags => [ItemTag.Utility];
+        public override ItemTag[] ItemTags => [ItemTag.Utility, ItemTag.CanBeTemporary];
         public override bool CanRemove => true;
         public override bool Hidden => false;
         public ConfigEntry<int> SpeedIncrease;

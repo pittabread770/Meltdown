@@ -1,6 +1,7 @@
 ## 0.3.8
 - Added item displays for Operator, Drifter and both Engineer Turrets.
-- Added Thermite-in-a-Can item displays for all drones, turrets and allies (Queens Gland Beetle, Squid Turret etc.).
+- Added Thermite-in-a-Can item displays for all drones, turrets and pets (Queens Gland Beetle, Squid Turret etc.).
+- Added all items to the "temporary" items tag.
 
 ## 0.3.7
 - Rebuilt for Alloyed Collective.
