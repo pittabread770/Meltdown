@@ -3,6 +3,7 @@ using RoR2;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using static RoR2.Chat;
 
 namespace Meltdown.Buffs
 {
@@ -75,7 +76,7 @@ namespace Meltdown.Buffs
         {
             orig(self);
 
-            if (self.victimBody != null)
+            if (self.victimBody)
             {
                 var modelLocator = self.victimBody.GetComponent<ModelLocator>();
                 var irradiatedController = self.victimBody.GetComponents<BurnEffectController>().FirstOrDefault(x => x.effectType == effectParams);
@@ -84,15 +85,17 @@ namespace Meltdown.Buffs
                 {
                     if (self.victimBody.HasBuff(buff))
                     {
-                        if (irradiatedController == default)
+                        if (irradiatedController == null)
                         {
                             var irradiatedEffectController = self.victimBody.gameObject.AddComponent<BurnEffectController>();
                             irradiatedEffectController.effectType = effectParams;
                             irradiatedEffectController.target = modelLocator.modelTransform.gameObject;
                         }
                     }
-                    else if (irradiatedController != default)
+                    else if (irradiatedController != null)
                     {
+                        Debug.Log($"@@@ DotController_UpdateDotVisuals attempting to clear irradiatedController. self.victimBody != null: {self.victimBody != null}, self.victimBody.HasBuff: {self.victimBody.HasBuff(buff)}, irradiatedController != null {irradiatedController != null}");
+                        irradiatedController.StopBurnEffects();
                         Object.Destroy(irradiatedController);
                     }
                 }

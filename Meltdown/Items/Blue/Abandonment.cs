@@ -28,7 +28,7 @@ namespace Meltdown.Items.Blue
         {
             IsEnabled = Meltdown.config.Bind<bool>("Items - Lunar - Abandonment", "Enabled", true, "Enable this item to appear in-game.");
             SecondarySkillCooldownReduction = Meltdown.config.Bind("Items - Lunar - Abandonment", "Secondary Skill Cooldown Reduction", 50, new ConfigDescription("Percentage decrease in secondary cooldown duration per stack.", new AcceptableValueRange<int>(0, 100)));
-            PrimarySkillDamageReduction = Meltdown.config.Bind("Items - Lunar - Abandonment", "Primary Skill Damage Reduction", 25, new ConfigDescription("Percentage decrease in primary skill damage per stack.", new AcceptableValueRange<int>(0, 100)));
+            PrimarySkillDamageReduction = Meltdown.config.Bind("Items - Lunar - Abandonment", "Primary Skill Damage Reduction", 50, new ConfigDescription("Percentage decrease in primary skill damage per stack.", new AcceptableValueRange<int>(0, 100)));
 
             LanguageUtils.AddTranslationFormat("ITEM_MELTDOWN_ABANDONMENT_DESCRIPTION", [SecondarySkillCooldownReduction.Value.ToString(), PrimarySkillDamageReduction.Value.ToString()]);
         }
@@ -44,14 +44,13 @@ namespace Meltdown.Items.Blue
             var itemCount = GetCount(sender);
             if (sender != null && itemCount > 0)
             {
-                float multiplier = 0.0f;
+                float multiplier = 1.0f;
                 for (int i = 1; i <= itemCount; i++)
                 {
-                    multiplier += (1.0f / Mathf.Pow(100.0f / SecondarySkillCooldownReduction.Value, i));
+                    multiplier -= (1.0f / Mathf.Pow(100.0f / (float)SecondarySkillCooldownReduction.Value, i));
                 }
-                multiplier *= -1.0f;
 
-                args.secondaryCooldownMultAdd = multiplier;
+                args.secondarySkill.cooldownMultiplier = multiplier;
             }
         }
 
@@ -65,7 +64,7 @@ namespace Meltdown.Items.Blue
                     float multiplier = 1.0f;
                     for (int i = 1; i <= itemCount; i++)
                     {
-                        multiplier -= (1.0f / Mathf.Pow(100.0f / PrimarySkillDamageReduction.Value, i));
+                        multiplier -= (1.0f / Mathf.Pow(100.0f / (float)PrimarySkillDamageReduction.Value, i));
                     }
 
                     damageInfo.damage *= multiplier;

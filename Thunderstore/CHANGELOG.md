@@ -1,3 +1,6 @@
+## 0.3.9
+- Fixed Abandonment item scaling not working
+
 ## 0.3.8
 - Added item displays for Operator, Drifter and both Engineer Turrets.
 - Added Thermite-in-a-Can item displays for all drones, turrets and pets (Queens Gland Beetle, Squid Turret etc.).
@@ -5,7 +8,7 @@
 
 ## 0.3.7
 - Rebuilt for Alloyed Collective.
-- Fixed Volatile Throium Battery and Leaky Reactor Coolant not working as intended.
+- Fixed Volatile Thoroium Battery and Leaky Reactor Coolant not working as intended.
 
 ## 0.3.6
 - Changed the duration of the irradiated debuff applied from Leaky Reactor Coolant, Uranium Fuel Rods and Volatile Thorium Battery to scale based on the proc coefficient.
