@@ -1,6 +1,6 @@
 ﻿{
 	"name": "Meltdown",
-	"version_number": "0.3.9",
+	"version_number": "0.3.10",
 	"website_url": "https://github.com/pittabread770/Meltdown",
 	"description": "A small item mod focused on synergistic items and effects.",
 	"dependencies": [

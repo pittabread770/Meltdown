@@ -90,16 +90,15 @@ namespace Meltdown.Buffs
                 {
                     if (self.victimBody.HasBuff(buff))
                     {
-                        if (irradiatedController == null)
+                        if (irradiatedController == default)
                         {
                             var irradiatedEffectController = self.victimBody.gameObject.AddComponent<BurnEffectController>();
                             irradiatedEffectController.effectType = effectParams;
                             irradiatedEffectController.target = modelLocator.modelTransform.gameObject;
                         }
                     }
-                    else if (irradiatedController != null || self.victimBody.HasBuff(Meltdown.empoweredIrradiated.buff))
+                    else if (irradiatedController != default || self.victimBody.HasBuff(Meltdown.empoweredIrradiated.buff))
                     {
-                        irradiatedController.StopBurnEffects();
                         Object.Destroy(irradiatedController);
                     }
                 }
