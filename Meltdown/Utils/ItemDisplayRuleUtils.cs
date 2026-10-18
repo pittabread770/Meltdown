@@ -2421,7 +2421,18 @@ namespace Meltdown.Utils
         }
         #endregion
 
-        #region Elite Equipment
+        #region Normal Equipment
+        public static ItemDisplayRuleDict getEnergyCyclerDisplay(GameObject prefab)
+        {
+            var itemDisplay = prefab.AddComponent<ItemDisplay>();
+            itemDisplay.rendererInfos = ItemDisplaySetup(prefab);
+            ItemDisplayRuleDict dict = new ItemDisplayRuleDict();
+
+            return dict;
+        }
+        #endregion
+
+            #region Elite Equipment
         public static ItemDisplayRuleDict getNuclearEliteCrownDisplay(GameObject prefab)
         {
             var itemDisplay = prefab.AddComponent<ItemDisplay>();

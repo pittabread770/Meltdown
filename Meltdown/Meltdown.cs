@@ -2,6 +2,7 @@ using BepInEx;
 using BepInEx.Configuration;
 using Meltdown.Buffs;
 using Meltdown.Elites;
+using Meltdown.Equipment;
 using Meltdown.Items;
 using Meltdown.Utils;
 using R2API;
@@ -45,6 +46,7 @@ namespace Meltdown
         public static NuclearSlow nuclearSlow;
 
         public static ItemContent items;
+        public static EquipmentContent equipment;
         public static EliteContent elites;
 
         public static Color32 irradiatedColour = new Color32(190, 218, 97, 255);
@@ -58,6 +60,7 @@ namespace Meltdown
             SetupBuffs();
             SetupExpansion();
             SetupItems();
+            SetupEquipment();
             SetupElites();
 
             Language.onCurrentLanguageChanged += LanguageUtils.Language_onCurrentLanguageChanged;
@@ -92,6 +95,12 @@ namespace Meltdown
         {
             items = new ItemContent();
             items.Init();
+        }
+
+        private void SetupEquipment()
+        {
+            equipment = new EquipmentContent();
+            equipment.Init();
         }
 
         private void SetupElites()
