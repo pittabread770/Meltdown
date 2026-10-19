@@ -253,6 +253,28 @@ namespace Meltdown.Utils
                 localScale = new Vector3(0.01F, 0.01F, 0.01F)
             });
 
+            dict.Add("mdlEnforcer", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "ShieldFace",
+                localPos = new Vector3(-0.08F, -0.6F, 0F),
+                localAngles = new Vector3(0F, 0F, 0F),
+                localScale = new Vector3(0.04F, 0.04F, 0.04F)
+            });
+
+            dict.Add("mdlAcolyteUnion", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "WeaponBlade",
+                localPos = new Vector3(0.41337F, -0.08297F, -0.02454F),
+                localAngles = new Vector3(0F, 90F, 0F),
+                localScale = new Vector3(0.015F, 0.015F, 0.015F)
+            });
+
             dict.Add("mdlScav", new ItemDisplayRule
             {
                 ruleType = ItemDisplayRuleType.ParentedPrefab,
@@ -503,6 +525,28 @@ namespace Meltdown.Utils
                 localScale = new Vector3(0.012F, 0.012F, 0.012F)
             });
 
+            dict.Add("mdlEnforcer", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "MuzzleGun",
+                localPos = new Vector3(0.964F, -0.10494F, -0.02466F),
+                localAngles = new Vector3(11.94162F, 342.8861F, 354.4268F),
+                localScale = new Vector3(0.01F, 0.01F, 0.01F)
+            });
+
+            dict.Add("mdlAcolyteUnion", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Head",
+                localPos = new Vector3(-0.21904F, -0.30765F, 0.40223F),
+                localAngles = new Vector3(25.5001F, 319.4866F, 346.16F),
+                localScale = new Vector3(0.015F, 0.015F, 0.015F)
+            });
+
             return dict;
         }
 
@@ -743,6 +787,28 @@ namespace Meltdown.Utils
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
 
+            dict.Add("mdlEnforcer", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Head",
+                localPos = new Vector3(-0.01257F, 0.06244F, 0.08461F),
+                localAngles = new Vector3(330F, 180F, 270F),
+                localScale = new Vector3(0.03F, 0.03F, 0.03F)
+            });
+
+            dict.Add("mdlAcolyteUnion", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "WeaponBladeBase",
+                localPos = new Vector3(-0.35524F, 0.30285F, -0.02731F),
+                localAngles = new Vector3(16.38528F, 57.88533F, 110.4845F),
+                localScale = new Vector3(0.05F, 0.05F, 0.05F)
+            });
+
             return dict;
         }
 
@@ -959,6 +1025,28 @@ namespace Meltdown.Utils
                 localPos = new Vector3(-0.27219F, 0.45328F, -0.01164F),
                 localAngles = new Vector3(16.15127F, 7.0178F, 10.52836F),
                 localScale = new Vector3(0.01408F, 0.01408F, 0.01408F)
+            });
+
+            dict.Add("mdlEnforcer", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Stomach",
+                localPos = new Vector3(-0.23122F, -0.00144F, -0.06702F),
+                localAngles = new Vector3(351.1646F, 356.3339F, 88.52264F),
+                localScale = new Vector3(0.015F, 0.015F, 0.015F)
+            });
+
+            dict.Add("mdlAcolyteUnion", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "WeaponBladeBase",
+                localPos = new Vector3(-0.03252F, 0.15978F, 0.00028F),
+                localAngles = new Vector3(0F, 0F, 100F),
+                localScale = new Vector3(0.015F, 0.015F, 0.015F)
             });
 
             return dict;
@@ -1213,6 +1301,28 @@ namespace Meltdown.Utils
                 localScale = new Vector3(0.1F, 0.1F, 0.1F)
             });
 
+            dict.Add("mdlEnforcer", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Chest",
+                localPos = new Vector3(0.00523F, 0.01356F, -0.28856F),
+                localAngles = new Vector3(60F, 180F, 0F),
+                localScale = new Vector3(0.1F, 0.1F, 0.1F)
+            });
+
+            dict.Add("mdlAcolyteUnion", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "WeaponBot",
+                localPos = new Vector3(0F, -0.1F, 0F),
+                localAngles = new Vector3(15F, 270F, 0F),
+                localScale = new Vector3(0.14F, 0.14F, 0.14F)
+            });
+
             return dict;
         }
         #endregion
@@ -1455,6 +1565,28 @@ namespace Meltdown.Utils
                 localScale = new Vector3(0.02F, 0.02F, 0.02F)
             });
 
+            dict.Add("mdlEnforcer", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "ThighL",
+                localPos = new Vector3(-0.12618F, -0.18218F, -0.09174F),
+                localAngles = new Vector3(317.4393F, 356.5383F, 265.1562F),
+                localScale = new Vector3(0.025F, 0.025F, 0.025F)
+            });
+
+            dict.Add("mdlAcolyteUnion", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "ThighL",
+                localPos = new Vector3(-0.16972F, -0.01036F, -0.16363F),
+                localAngles = new Vector3(4.02981F, 182.7587F, 53.25947F),
+                localScale = new Vector3(0.03F, 0.03F, 0.03F)
+            });
+
             return dict;
         }
         public static ItemDisplayRuleDict getUraniumFuelRodDisplayRules(GameObject prefab)
@@ -1692,6 +1824,28 @@ namespace Meltdown.Utils
                 localPos = new Vector3(-0.13772F, 0.19737F, 0.06769F),
                 localAngles = new Vector3(328.9066F, 92.18941F, 278.9367F),
                 localScale = new Vector3(0.025F, 0.025F, 0.025F)
+            });
+
+            dict.Add("mdlEnforcer", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "MuzzleGun",
+                localPos = new Vector3(0.33F, -0.02F, -0.045F),
+                localAngles = new Vector3(90F, 270F, 0F),
+                localScale = new Vector3(0.035F, 0.035F, 0.035F)
+            });
+
+            dict.Add("mdlAcolyteUnion", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "WeaponBlade",
+                localPos = new Vector3(0.3F, 0.01F, 0F),
+                localAngles = new Vector3(0F, 0F, 89F),
+                localScale = new Vector3(0.04F, 0.04F, 0.04F)
             });
 
             return dict;
@@ -1933,6 +2087,28 @@ namespace Meltdown.Utils
                 localScale = new Vector3(0.01408F, 0.01408F, 0.01408F)
             });
 
+            dict.Add("mdlEnforcer", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "PauldronL",
+                localPos = new Vector3(0.21999F, -0.05364F, -0.16485F),
+                localAngles = new Vector3(10.62405F, 186.8677F, 97.22035F),
+                localScale = new Vector3(0.02F, 0.02F, 0.02F)
+            });
+
+            dict.Add("mdlAcolyteUnion", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "WeaponBladeBase",
+                localPos = new Vector3(0.13419F, 0.09068F, -0.00943F),
+                localAngles = new Vector3(355.7774F, 353.5062F, 81.65501F),
+                localScale = new Vector3(0.03F, 0.03F, 0.03F)
+            });
+
             return dict;
         }
 
@@ -2172,6 +2348,28 @@ namespace Meltdown.Utils
                 localPos = new Vector3(-0.17049F, 0.01118F, -0.19607F),
                 localAngles = new Vector3(298.2004F, 306.2782F, 55.45911F),
                 localScale = new Vector3(0.03F, 0.03F, 0.03F)
+            });
+
+            dict.Add("mdlEnforcer", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "MuzzleGun",
+                localPos = new Vector3(0.27836F, 0.08783F, 0.04446F),
+                localAngles = new Vector3(12.26272F, 73.28043F, 353.462F),
+                localScale = new Vector3(0.05F, 0.05F, 0.05F)
+            });
+
+            dict.Add("mdlAcolyteUnion", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "WeaponBot",
+                localPos = new Vector3(0.28028F, -0.08974F, -0.06597F),
+                localAngles = new Vector3(5.23904F, 79.07166F, 332.0947F),
+                localScale = new Vector3(0.07F, 0.07F, 0.07F)
             });
 
             return dict;
@@ -2417,6 +2615,28 @@ namespace Meltdown.Utils
                 localScale = new Vector3(0.03F, 0.03F, 0.03F)
             });
 
+            dict.Add("mdlEnforcer", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Head",
+                localPos = new Vector3(-0.21986F, -0.02221F, -0.00266F),
+                localAngles = new Vector3(357.038F, 15.61472F, 89.76762F),
+                localScale = new Vector3(0.04F, 0.04F, 0.04F)
+            });
+
+            dict.Add("mdlAcolyteUnion", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Head",
+                localPos = new Vector3(-0.49773F, -0.23649F, -0.00004F),
+                localAngles = new Vector3(355.5251F, 17.02908F, 103.8685F),
+                localScale = new Vector3(0.1F, 0.1F, 0.1F)
+            });
+
             return dict;
         }
         #endregion
@@ -2657,6 +2877,28 @@ namespace Meltdown.Utils
                 localPos = new Vector3(-0.09996F, -0.00547F, 0.00435F),
                 localAngles = new Vector3(0F, 0F, 90F),
                 localScale = new Vector3(0.1F, 0.1F, 0.1F)
+            });
+
+            dict.Add("mdlEnforcer", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Head",
+                localPos = new Vector3(-0.09895F, -0.0156F, 0.00414F),
+                localAngles = new Vector3(0F, 0F, 90F),
+                localScale = new Vector3(0.06F, 0.06F, 0.06F)
+            });
+
+            dict.Add("mdlAcolyteUnion", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Head",
+                localPos = new Vector3(-0.08846F, -0.0707F, 0.00433F),
+                localAngles = new Vector3(0F, 0F, 90F),
+                localScale = new Vector3(0.17F, 0.17F, 0.17F)
             });
 
             dict.Add("AcidLarva", new ItemDisplayRule
@@ -3188,6 +3430,61 @@ namespace Meltdown.Utils
                 localScale = new Vector3(0.18F, 0.18F, 0.18F)
             });
 
+            dict.Add("mdlLynxBrute", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Head",
+                localPos = new Vector3(0F, 0F, 0F),
+                localAngles = new Vector3(0F, 0F, 90F),
+                localScale = new Vector3(0.3F, 0.3F, 0.3F)
+            });
+
+            dict.Add("mdlLynxAmbusher", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Mask",
+                localPos = new Vector3(-0.05256F, 0.29725F, -0.03579F),
+                localAngles = new Vector3(0F, 90F, 0F),
+                localScale = new Vector3(0.25F, 0.25F, 0.25F)
+            });
+
+            dict.Add("mdlLynx3", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Mask",
+                localPos = new Vector3(-0.01514F, 0.2281F, -0.03438F),
+                localAngles = new Vector3(0F, 90F, 0F),
+                localScale = new Vector3(0.2F, 0.2F, 0.2F)
+            });
+
+            dict.Add("mdlLynxTotem", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "TotemBase",
+                localPos = new Vector3(0F, 1.33974F, 0F),
+                localAngles = new Vector3(0F, 90F, 0F),
+                localScale = new Vector3(0.8F, 0.8F, 0.8F)
+            });
+
+            dict.Add("mdlBigMush", new ItemDisplayRule
+            {
+                ruleType = ItemDisplayRuleType.ParentedPrefab,
+                followerPrefab = prefab,
+                followerPrefabAddress = new AssetReferenceGameObject(""),
+                childName = "Cap",
+                localPos = new Vector3(0.01926F, 2.84364F, -0.01947F),
+                localAngles = new Vector3(0F, 90F, 0F),
+                localScale = new Vector3(4.5F, 4.5F, 4.5F)
+            });
+
             return dict;
         }
         #endregion
@@ -3260,9 +3557,9 @@ namespace Meltdown.Utils
                 followerPrefab = prefab,
                 followerPrefabAddress = new AssetReferenceGameObject(""),
                 childName = "HeadCenter",
-                localPos = new Vector3(-1.25326F, 0F, 0.78266F),
-                localAngles = new Vector3(0F, 0F, 90F),
-                localScale = new Vector3(0.15F, 0.15F, 0.15F)
+                localPos = new Vector3(0F, 6.91672F, -0.00114F),
+                localAngles = new Vector3(0F, 342.5867F, 0F),
+                localScale = new Vector3(0.3F, 0.3F, 0.3F)
             });
 
             dict.Add("mdlDTHaulerDrone", new ItemDisplayRule

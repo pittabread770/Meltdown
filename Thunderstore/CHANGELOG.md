@@ -1,3 +1,6 @@
+## 0.3.11
+- Rebuilt for Hallowed Concepts
+
 ## 0.3.10
 - Fixed Irradiated doing nothing when empowered (having Uranium Fuel Rods, Volatile Thorium Battery or Leaky Reactor Coolant)
 
