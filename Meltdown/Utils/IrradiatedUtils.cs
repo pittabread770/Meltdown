@@ -7,6 +7,11 @@ namespace Meltdown.Utils
     {
         public static void CheckDotForUpgrade(Inventory inventory, ref InflictDotInfo dotInfo)
         {
+            if (!inventory)
+            {
+                return;
+            }
+
             if (dotInfo.dotIndex == Meltdown.irradiated.index || dotInfo.dotIndex == Meltdown.empoweredIrradiated.index)
             {
                 int fuelRodCount = inventory.GetItemCountEffective(Meltdown.items.uraniumFuelRods.itemDef);
