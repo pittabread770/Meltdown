@@ -343,3 +343,6 @@ ASALocalRun/
 
 ThunderKitSettings/
 ProjectSettings/
+
+# Local reference assemblies
+RA2Mod.dll
