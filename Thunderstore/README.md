@@ -1,6 +1,6 @@
 # Meltdown
 
-A small content mod focused on synergistic items and effects. Now with Red Alert support!
+A small item mod focused on nuclear-themed and synergistic items and effects. Now with Red Alert support!
 
 ## Items
 | Icon | Name | Effect |

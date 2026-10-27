@@ -1,8 +1,8 @@
 ﻿{
 	"name": "Meltdown",
-	"version_number": "0.3.11",
+	"version_number": "0.4.0",
 	"website_url": "https://github.com/pittabread770/Meltdown",
-	"description": "A small item mod focused on synergistic items and effects.",
+	"description": "A small item mod focused on nuclear-themed and synergistic items and effects.",
 	"dependencies": [
 		"bbepis-BepInExPack-5.4.2121",
 		"RiskofThunder-HookGenPatcher-1.2.9",
