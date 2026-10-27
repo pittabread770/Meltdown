@@ -1,11 +1,32 @@
+## 0.4.0
+- Increased Irradiated damage from 50% to 75% per tick
+	- While the upper realms of damage for Irradiated can be absolutely nuts, the floor felt too low.
+- Fixed rare NRE spam when taking Empyrean Elite effects (from Starstorm 2) with Wake of Vultures while the Nuclear elite is added to it (bug fix contributed by Phreel).
+
+- Reactor Vents
+	- Renamed to Busted Vent.
+	- Updated item model.
+	- Now triggers when using your Utility skill and when the Utility skill finishes recharging.
+- Thermite-in-a-Can
+	- Reduced Thermite-in-a-Can damage bonus to 10% per stack
+		- This item scales with both number of items and number of minions. With Alloyed Collective making drones worthwhile (and Enforcer wanting plenty of turrets), a 20% increase per item was too out-of-band for a common item.
+	- Moved item display on Gunner Turret to prevent janky movement when firing.
+	- Added item displays for the Rex Offshoot Turret, Vengeful Spirit and Lynx Pup
+	- Due to a bug with the Squid Turret overwriting item displays for the Engineer Turret, this item display was temporarily moved to not-great locations on those two.
+- Old Exhaust pipe
+	- Updated item model.
+- Target Lock Visor
+	- Removed item.
+		- This item didn't really help with Meltdown's overall theme and only bloated the item pool with a mundane effect.
+
 ## 0.3.11
-- Rebuilt for Hallowed Concepts
+- Rebuilt for Hallowed Concepts.
 
 ## 0.3.10
-- Fixed Irradiated doing nothing when empowered (having Uranium Fuel Rods, Volatile Thorium Battery or Leaky Reactor Coolant)
+- Fixed Irradiated doing nothing when empowered (having Uranium Fuel Rods, Volatile Thorium Battery or Leaky Reactor Coolant).
 
 ## 0.3.9
-- Fixed Abandonment item scaling not working
+- Fixed Abandonment item scaling not working.
 
 ## 0.3.8
 - Added item displays for Operator, Drifter and both Engineer Turrets.

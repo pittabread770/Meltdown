@@ -65,7 +65,7 @@ namespace Meltdown.Items.White
         public override void CreateConfig()
         {
             IsEnabled = Meltdown.config.Bind<bool>("Items - Common - Thermite-in-a-Can", "Enabled", true, "Enable this item to appear in-game.");
-            MinionDamageIncrease = Meltdown.config.Bind<int>("Items - Common - Thermite-in-a-Can", "Minion Damage Increase", 20, new ConfigDescription("Percentage increase in minions damage per stack.", new AcceptableValueRange<int>(0, 10000)));
+            MinionDamageIncrease = Meltdown.config.Bind<int>("Items - Common - Thermite-in-a-Can", "Minion Damage Increase", 10, new ConfigDescription("Percentage increase in minions damage per stack.", new AcceptableValueRange<int>(0, 10000)));
             MinionIgniteChance = Meltdown.config.Bind<int>("Items - Common - Thermite-in-a-Can", "Minion Ignite Chance", 10, new ConfigDescription("Percentage increase in minions chance to ignite on hit per stack.", new AcceptableValueRange<int>(0, 100)));
 
             LanguageUtils.AddTranslationFormat("ITEM_MELTDOWN_THERMITEINACAN_DESCRIPTION", [MinionDamageIncrease.Value.ToString(), MinionIgniteChance.Value.ToString()]);

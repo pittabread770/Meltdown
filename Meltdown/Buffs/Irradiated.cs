@@ -21,7 +21,7 @@ namespace Meltdown.Buffs
         {
             sprite = Meltdown.Assets.LoadAsset<Sprite>("texBuffIrradiated.png");
 
-            DamagePercentage = Meltdown.config.Bind<int>("Buffs - DoTs - Irradiated", "Damage", 50, new ConfigDescription("Percentage damage for irradiated to deal per tick.", new AcceptableValueRange<int>(1, 10000)));
+            DamagePercentage = Meltdown.config.Bind<int>("Buffs - DoTs - Irradiated", "Damage", 75, new ConfigDescription("Percentage damage for irradiated to deal per tick.", new AcceptableValueRange<int>(1, 10000)));
 
             SetupMaterial();
             SetupDebuff();

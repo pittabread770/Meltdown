@@ -108,7 +108,7 @@ namespace Meltdown.Items.White
             var stack = Meltdown.items.plutoniumRounds.GetCount(body);
 
             var isRailgunnerScopedPrimary =
-                body.bodyIndex == BodyCatalog.SpecialCases.RailGunner() &&
+                body.bodyIndex == DLC1Content.BodyPrefabs.RailgunnerBody.bodyIndex &&
                 skill == body.skillLocator.primary &&
                 body.canAddIncrasePrimaryDamage;
 

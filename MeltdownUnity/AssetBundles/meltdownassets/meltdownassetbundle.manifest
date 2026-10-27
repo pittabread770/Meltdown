@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2186169874
+CRC: 3232484085
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 243c9fd0d1d011dc9539bbc967961d27
+    Hash: 3b44b7265d62662ba477fa4d4b873b33
   TypeTreeHash:
     serializedVersion: 2
     Hash: 303d7186a1f1a07f297c8c5dfb8c1f07
@@ -37,15 +37,13 @@ Assets:
 - Assets/texBuffScorch.png
 - Assets/UraniumFuelRodsDisplay.prefab
 - Assets/texRampIrradiated.png
-- Assets/ReactorVentsDisplay.prefab
-- Assets/texIconPickupTargetLockVisor.png
 - Assets/texIconPickupNuclearElite.png
 - Assets/texRampEmpoweredIrradiated.png
 - Assets/Charcoal.prefab
 - Assets/texIconPickupCharcoal.png
 - Assets/texBuffIrradiated.png
+- Assets/texIconPickupBustedVent.png
 - Assets/texRampNuclearElite.png
-- Assets/TargetLockVisor.prefab
 - Assets/abandonment.prefab
 - Assets/texIconPickupVolatileThoriumBattery.png
 - Assets/texIconPickupUraniumFuelRods.png
@@ -53,22 +51,20 @@ Assets:
 - Assets/ThermiteInACan.prefab
 - Assets/PlutoniumRounds.prefab
 - Assets/texIconPickupLeakyReactorCoolant.png
-- Assets/MetalClawsDisplay.prefab
 - Assets/texIconPickupOldExhaustPipe.png
 - Assets/MeltdownExpansionDef.asset
-- Assets/texIconPickupThermiteInACan.png
-- Assets/ReactorVents.prefab
-- Assets/VolatileThoriumBattery.prefab
-- Assets/NuclearEliteCrown.prefab
 - Assets/texBuffEmpoweredIrradiated.png
+- Assets/BustedVentDisplay.prefab
+- Assets/VolatileThoriumBattery.prefab
+- Assets/texIconPickupThermiteInACan.png
+- Assets/NuclearEliteCrown.prefab
 - Assets/texBuffAffixNuclear.png
-- Assets/TargetLockVisorDisplay.prefab
-- Assets/texIconPickupMetalClaws.png
+- Assets/OldExhaustPipe.fbx
 - Assets/ThermiteInACanDisplay.prefab
 - Assets/texIconPickupPlutoniumRounds.png
 - Assets/texMeltdownExpansionIcon.png
 - Assets/LeakyReactorCoolant.prefab
 - Assets/texIconPickupReactorVents.png
 - Assets/texIconPickupAbandonment.png
-- Assets/MetalClaws.prefab
+- Assets/BustedVent.prefab
 Dependencies: []

@@ -8,9 +8,8 @@ namespace Meltdown.Items
     {
         public ThermiteInACanBoost thermiteInACanBoost;
 
-        public ReactorVents reactorVents;
+        public BustedVent bustedVent;
         public PlutoniumRounds plutoniumRounds;
-        public TargetLockVisor targetLockVisor;
         public ThermiteInACan thermiteInACan;
         public OldExhaustPipe oldExhaustPipe;
 
@@ -37,14 +36,11 @@ namespace Meltdown.Items
 
         private void SetupWhiteItems()
         {
-            reactorVents = new ReactorVents();
-            reactorVents.Init();
+            bustedVent = new BustedVent();
+            bustedVent.Init();
 
             plutoniumRounds = new PlutoniumRounds();
             plutoniumRounds.Init();
-
-            targetLockVisor = new TargetLockVisor();
-            targetLockVisor.Init();
 
             thermiteInACan = new ThermiteInACan();
             thermiteInACan.Init();
