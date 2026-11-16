@@ -1,3 +1,13 @@
+## 0.5.0
+- Plutonium Rounds
+	- Updated visual effects
+- Old Exhaust Pipe
+	- Added unique buff icon
+- Charcoal
+	- Updated visual effects
+	- Reworked: 5% chance to burn on hit. 20% chance to ignite 2 (+2 per stack) nearby enemies on hitting a burning enemy.
+		- This iteration brings back modded fire-related synergies while maintaining the item's flavour of spreading fire. I strongly suspect this item's balance might be way off, so I'm keeping a close eye on it.
+
 ## 0.4.0
 - Increased Irradiated damage from 50% to 75% per tick
 	- While the upper realms of damage for Irradiated can be absolutely nuts, the floor felt too low.

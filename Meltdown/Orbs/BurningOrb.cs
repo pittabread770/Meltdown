@@ -1,43 +1,33 @@
-﻿using Meltdown.Utils;
-using RoR2;
+﻿using RoR2;
+using RoR2.Orbs;
 using UnityEngine;
 
 namespace Meltdown.Orbs
 {
-    public class ScorchingOrb : RoR2.Orbs.LightningOrb
+    public class BurningOrb : Orb
     {
-        public ScorchingOrb(GameObject _attacker, float _damage, bool _isCrit, Vector3 _origin, TeamIndex _teamIndex, HurtBox _hurtBox)
+        GameObject attacker;
+
+        public BurningOrb(GameObject _attacker, Vector3 _origin, HurtBox _hurtBox)
         {
             attacker = _attacker;
-            bouncedObjects = null;
-            bouncesRemaining = 0;
-            damageCoefficientPerBounce = 1.0f;
-            damageColorIndex = DamageColorIndex.Default;
-            damageValue = _damage;
-            isCrit = _isCrit;
-            lightningType = LightningType.RazorWire;
             origin = _origin;
-            procChainMask.AddProc(ProcType.Thorns);
-            procCoefficient = 0.0f;
-            range = 0f;
-            teamIndex = _teamIndex;
             target = _hurtBox;
         }
 
         public override void Begin()
         {
             duration = 0.4f;
-            string path = "Prefabs/Effects/OrbEffects/RazorwireOrbEffect";
 
             EffectData data = new EffectData
             {
                 origin = origin,
                 genericFloat = duration,
-                color = new Color(255.0f, 175.0f, 0.0f)
+                scale = 1.0f
             };
 
             data.SetHurtBoxReference(target);
-            EffectManager.SpawnEffect(Resources.Load<GameObject>(path), data, true);
+            EffectManager.SpawnEffect(Orbs.BurningOrbEffect, data, true);
         }
 
         public override void OnArrival()
@@ -52,14 +42,14 @@ namespace Meltdown.Orbs
                 {
                     victimObject = target.healthComponent.gameObject,
                     attackerObject = attacker,
-                    dotIndex = Meltdown.scorch.index,
+                    dotIndex = DotController.DotIndex.Burn,
                     damageMultiplier = 1.0f,
                     duration = 6.0f
                 };
 
                 if (attackerBody != null && attackerBody.inventory != null)
                 {
-                    ScorchUtils.CheckDotForUpgrade(attackerBody.inventory, ref inflictDotInfo);
+                    StrengthenBurnUtils.CheckDotForUpgrade(attackerBody.inventory, ref inflictDotInfo);
                 }
 
                 DotController.InflictDot(ref inflictDotInfo);

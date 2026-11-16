@@ -8,6 +8,7 @@ using R2API;
 using R2API.Utils;
 using RoR2;
 using RoR2.ExpansionManagement;
+using ShaderSwapper;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -40,12 +41,13 @@ namespace Meltdown
 
         public static Irradiated irradiated;
         public static EmpoweredIrradiated empoweredIrradiated;
-        public static Scorch scorch;
         public static ExhaustMovementSpeed exhaustMovementSpeed;
         public static NuclearSlow nuclearSlow;
 
         public static ItemContent items;
         public static EliteContent elites;
+
+        public static Orbs.Orbs orbs;
 
         public static Color32 irradiatedColour = new Color32(190, 218, 97, 255);
 
@@ -59,6 +61,7 @@ namespace Meltdown
             SetupExpansion();
             SetupItems();
             SetupElites();
+            SetupOrbs();
 
             Language.onCurrentLanguageChanged += LanguageUtils.Language_onCurrentLanguageChanged;
         }
@@ -69,13 +72,14 @@ namespace Meltdown
             {
                 Assets = AssetBundle.LoadFromStream(stream);
             }
+
+            base.StartCoroutine(Assets.UpgradeStubbedShadersAsync());
         }
 
         private void SetupBuffs()
         {
             irradiated = new Irradiated();
             empoweredIrradiated = new EmpoweredIrradiated();
-            scorch = new Scorch();
             exhaustMovementSpeed = new ExhaustMovementSpeed();
             nuclearSlow = new NuclearSlow();
         }
@@ -83,7 +87,7 @@ namespace Meltdown
         private void SetupExpansion()
         {
             meltdownExpansion = Assets.LoadAsset<ExpansionDef>("MeltdownExpansionDef");
-            meltdownExpansion.disabledIconSprite = dlc1.disabledIconSprite;
+            meltdownExpansion.disabledIconSpriteReference = dlc1.disabledIconSpriteReference;
 
             ContentAddition.AddExpansionDef(meltdownExpansion);
         }
@@ -98,6 +102,12 @@ namespace Meltdown
         {
             elites = new EliteContent();
             elites.Init();
+        }
+
+        private void SetupOrbs()
+        {
+            orbs = new Orbs.Orbs();
+            orbs.Init();
         }
     }
 }

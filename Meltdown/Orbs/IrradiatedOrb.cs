@@ -1,53 +1,63 @@
 ﻿using Meltdown.Buffs;
 using Meltdown.Utils;
 using RoR2;
+using RoR2.Orbs;
 using UnityEngine;
 
 namespace Meltdown.Orbs
 {
-    public class IrradiatedOrb : RoR2.Orbs.LightningOrb
+    public class IrradiatedOrb : Orb
     {
-        public IrradiatedOrb(GameObject _attacker, float _damage, bool _isCrit, Vector3 _origin, TeamIndex _teamIndex, HurtBox _hurtBox)
+        GameObject attacker;
+        float damageValue;
+        bool isCrit;
+
+        public IrradiatedOrb(GameObject _attacker, float _damage, bool _isCrit, Vector3 _origin, HurtBox _hurtBox)
         {
             attacker = _attacker;
-            bouncedObjects = null;
-            bouncesRemaining = 0;
-            damageCoefficientPerBounce = 1.0f;
-            damageColorIndex = DamageColorIndex.Default;
             damageValue = _damage;
             isCrit = _isCrit;
-            lightningType = LightningType.RazorWire;
             origin = _origin;
-            procChainMask.AddProc(ProcType.Thorns);
-            procCoefficient = 0.4f;
-            range = 0f;
-            teamIndex = _teamIndex;
             target = _hurtBox;
         }
 
         public override void Begin()
         {
             duration = 0.2f;
-            string path = "Prefabs/Effects/OrbEffects/RazorwireOrbEffect";
 
             EffectData data = new EffectData
             {
                 origin = origin,
                 genericFloat = duration,
-                color = new Color32(190, 218, 97, 255)
+                scale = 1.0f
             };
 
             data.SetHurtBoxReference(target);
-            EffectManager.SpawnEffect(Resources.Load<GameObject>(path), data, true);
+            EffectManager.SpawnEffect(Orbs.IrradiatedOrbEffect, data, true);
         }
 
         public override void OnArrival()
         {
             base.OnArrival();
 
-            if (target != null && this.attacker != null)
+            if (target != null && attacker != null)
             {
-                var attackerBody = attacker.GetComponent<CharacterBody>();
+                HealthComponent healthComponent = target.healthComponent;
+                if (healthComponent != null)
+                {
+                    DamageInfo info = new DamageInfo();
+                    info.damage = damageValue;
+                    info.attacker = attacker;
+                    info.force = Vector3.zero;
+                    info.crit = isCrit;
+                    info.procCoefficient = 0.4f;
+                    info.position = target.transform.position;
+                    info.damageColorIndex = DamageColorIndex.Default;
+                    info.inflictedHurtbox = target;
+                    healthComponent.TakeDamage(info);
+                    GlobalEventManager.instance.OnHitEnemy(info, healthComponent.gameObject);
+                    GlobalEventManager.instance.OnHitAll(info, healthComponent.gameObject);
+                }
 
                 InflictDotInfo inflictDotInfo = new InflictDotInfo
                 {
@@ -59,6 +69,7 @@ namespace Meltdown.Orbs
                     maxStacksFromAttacker = uint.MaxValue
                 };
 
+                var attackerBody = attacker.GetComponent<CharacterBody>();
                 if (attackerBody != null && attackerBody.inventory != null)
                 {
                     IrradiatedUtils.CheckDotForUpgrade(attackerBody.inventory, ref inflictDotInfo);

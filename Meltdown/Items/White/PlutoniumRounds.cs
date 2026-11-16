@@ -57,7 +57,7 @@ namespace Meltdown.Items.White
 
             for (int i = 0; i < Mathf.Min(stack * EnemiesPerStack.Value, hurtBoxes.Length); i++)
             {
-                IrradiatedOrb orb = new (body.gameObject, body.damage * (float)(Damage.Value / 100.0f), body.RollCrit(), body.transform.position, body.teamComponent.teamIndex, hurtBoxes[i]);
+                IrradiatedOrb orb = new (body.gameObject, body.damage * (float)(Damage.Value / 100.0f), body.RollCrit(), body.transform.position, hurtBoxes[i]);
                 RoR2.Orbs.OrbManager.instance.AddOrb(orb);
             }
         }

@@ -1,12 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3232484085
+CRC: 547372549
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3b44b7265d62662ba477fa4d4b873b33
+    Hash: 7ed993b218b9f6ea2d8f5ebb8adfafbf
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 303d7186a1f1a07f297c8c5dfb8c1f07
+    Hash: 8f18d7ebe25a054710c0f84c1be32b6d
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 7ed993b218b9f6ea2d8f5ebb8adfafbf
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,46 +28,66 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 96
+  Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 802575700, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
-SerializeReferenceClassIdentifiers: []
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Unity.Addressables
+  ClassName: UnityEngine.AddressableAssets.AssetReferenceT`1[UnityEngine.Sprite]
 Assets:
-- Assets/UraniumFuelRods.prefab
-- Assets/texBuffScorch.png
-- Assets/UraniumFuelRodsDisplay.prefab
-- Assets/texRampIrradiated.png
+- Assets/StubbedRoR2/Base/Shaders/FX/HGCloudRemap.shader
 - Assets/texIconPickupNuclearElite.png
 - Assets/texRampEmpoweredIrradiated.png
-- Assets/Charcoal.prefab
-- Assets/texIconPickupCharcoal.png
-- Assets/texBuffIrradiated.png
+- Assets/UraniumFuelRodsDisplay.fbx
 - Assets/texIconPickupBustedVent.png
-- Assets/texRampNuclearElite.png
-- Assets/abandonment.prefab
 - Assets/texIconPickupVolatileThoriumBattery.png
 - Assets/texIconPickupUraniumFuelRods.png
 - Assets/OldExhaustPipe.prefab
-- Assets/ThermiteInACan.prefab
 - Assets/PlutoniumRounds.prefab
-- Assets/texIconPickupLeakyReactorCoolant.png
-- Assets/texIconPickupOldExhaustPipe.png
+- Assets/LeakyReactorCoolant.fbx
 - Assets/MeltdownExpansionDef.asset
 - Assets/texBuffEmpoweredIrradiated.png
+- Assets/texBuffAffixNuclear.png
+- Assets/BurningTrailEffect.prefab
+- Assets/ThermiteInACanDisplay.prefab
+- Assets/LeakyReactorCoolant.prefab
+- Assets/texIconPickupReactorVents.png
+- Assets/VolatileThoriumBattery.fbx
+- Assets/abandonment.fbx
+- Assets/UraniumFuelRods.prefab
+- Assets/UraniumFuelRods.fbx
+- Assets/UraniumFuelRodsDisplay.prefab
+- Assets/texRampIrradiated.png
+- Assets/PlutoniumRounds.fbx
+- Assets/NuclearEliteCrown.fbx
+- Assets/BustedVent.fbx
+- Assets/Charcoal.prefab
+- Assets/IrradiatedTrailEffect.prefab
+- Assets/texIconPickupCharcoal.png
+- Assets/texBuffIrradiated.png
+- Assets/texBuffExhaustMovementSpeed.png
+- Assets/texRampNuclearElite.png
+- Assets/abandonment.prefab
+- Assets/ThermiteInACan.prefab
+- Assets/Charcoal.fbx
+- Assets/texIconPickupLeakyReactorCoolant.png
+- Assets/texIconPickupOldExhaustPipe.png
 - Assets/BustedVentDisplay.prefab
 - Assets/VolatileThoriumBattery.prefab
 - Assets/texIconPickupThermiteInACan.png
 - Assets/NuclearEliteCrown.prefab
-- Assets/texBuffAffixNuclear.png
 - Assets/OldExhaustPipe.fbx
-- Assets/ThermiteInACanDisplay.prefab
+- Assets/BurningTrailMaterial.mat
 - Assets/texIconPickupPlutoniumRounds.png
+- Assets/IrradiatedTrailMaterial.mat
+- Assets/OpenedThermiteInACan.fbx
 - Assets/texMeltdownExpansionIcon.png
-- Assets/LeakyReactorCoolant.prefab
-- Assets/texIconPickupReactorVents.png
 - Assets/texIconPickupAbandonment.png
+- Assets/BustedVentDisplay.fbx
 - Assets/BustedVent.prefab
 Dependencies: []

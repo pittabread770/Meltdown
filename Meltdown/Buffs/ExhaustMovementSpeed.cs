@@ -1,8 +1,6 @@
-﻿using Meltdown.Items.White;
-using R2API;
+﻿using R2API;
 using RoR2;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using static R2API.RecalculateStatsAPI;
 
 namespace Meltdown.Buffs
@@ -12,9 +10,11 @@ namespace Meltdown.Buffs
         public BuffDef buff;
         public Sprite sprite;
 
+        public string BuffIconPath = "texBuffExhaustMovementSpeed.png";
+
         public ExhaustMovementSpeed()
         {
-            sprite = Addressables.LoadAssetAsync<Sprite>("RoR2/Base/Common/texMovespeedBuffIcon.tif").WaitForCompletion();
+            sprite = Meltdown.Assets.LoadAsset<Sprite>(BuffIconPath);
             SetupBuff();
 
             GetStatCoefficients += ExhaustMovementSpeed_GetStatCoefficients;
@@ -30,7 +30,6 @@ namespace Meltdown.Buffs
             buff.eliteDef = null;
             buff.isCooldown = false;
             buff.isHidden = false;
-            buff.buffColor = new Color32(155, 161, 201, 255);
             buff.iconSprite = sprite;
             buff.isDOT = false;
 

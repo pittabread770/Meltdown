@@ -30,6 +30,7 @@
 
     <PackageReference Include="R2API.Items" Version="1.0.*" />
     <PackageReference Include="R2API.Language" Version="1.1.0" />
+    <PackageReference Include="R2API.Orb" Version="1.0.1" />
     <PackageReference Include="R2API.Prefab" Version="1.1.1" />
     <PackageReference Include="R2API.RecalculateStats" Version="1.6.6" />
 
@@ -40,7 +41,10 @@
 
   <ItemGroup>
     <Reference Include="RA2Mod">
-      <HintPath>..\RA2Mod.dll</HintPath>
+      <HintPath>..\libs\RA2Mod.dll</HintPath>
+    </Reference>
+    <Reference Include="ShaderSwapper">
+      <HintPath>..\libs\ShaderSwapper.dll</HintPath>
     </Reference>
   </ItemGroup>
 
