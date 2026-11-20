@@ -3,7 +3,6 @@ using RoR2;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using static RoR2.Chat;
 
 namespace Meltdown.Buffs
 {

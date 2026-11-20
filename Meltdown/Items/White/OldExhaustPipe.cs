@@ -32,7 +32,7 @@ namespace Meltdown.Items.White
         public override void CreateConfig()
         {
             IsEnabled = Meltdown.config.Bind<bool>("Items - Common - Old Exhaust Pipe", "Enabled", true, "Enable this item to appear in-game.");
-            SpeedIncrease = Meltdown.config.Bind<int>("Items - Common - Old Exhaust Pipe", "Speed Increase Per Stack", 25, new ConfigDescription("Percentage increase of movement speed when active.", new AcceptableValueRange<int>(0, 1000)));
+            SpeedIncrease = Meltdown.config.Bind<int>("Items - Common - Old Exhaust Pipe", "Speed Increase Per Stack", 20, new ConfigDescription("Percentage increase of movement speed when active.", new AcceptableValueRange<int>(0, 1000)));
             Duration = Meltdown.config.Bind<int>("Items - Common - Old Exhaust Pipe", "Duration", 6, new ConfigDescription("Duration (in seconds) of the movement speed increase.", new AcceptableValueRange<int>(0, 1000)));
 
             LanguageUtils.AddTranslationFormat("ITEM_MELTDOWN_OLDEXHAUSTPIPE_DESCRIPTION", [SpeedIncrease.Value.ToString(), Duration.Value.ToString()]);

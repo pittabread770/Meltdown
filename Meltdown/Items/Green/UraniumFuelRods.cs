@@ -29,7 +29,7 @@ namespace Meltdown.Items.Green
         {
             IsEnabled = Meltdown.config.Bind<bool>("Items - Rare - Uranium Fuel Rods", "Enabled", true, "Enable this item to appear in-game.");
             DamageIncrease = Meltdown.config.Bind<int>("Items - Rare - Uranium Fuel Rods", "Irradiated Damage Increase", 200, new ConfigDescription("Percentage increase in damage of irradiated debuffs.", new AcceptableValueRange<int>(0, 10000)));
-            DurationIncrease = Meltdown.config.Bind<int>("Items - Rare - Uranium Fuel Rods", "Irradiated Duration Increase", 50, new ConfigDescription("Percentage increase in duration of irradiated debuffs.", new AcceptableValueRange<int>(0, 10000)));
+            DurationIncrease = Meltdown.config.Bind<int>("Items - Rare - Uranium Fuel Rods", "Irradiated Duration Increase", 20, new ConfigDescription("Percentage increase in duration of irradiated debuffs.", new AcceptableValueRange<int>(0, 10000)));
 
             LanguageUtils.AddTranslationFormat("ITEM_MELTDOWN_URANIUMFUELRODS_DESCRIPTION", [DamageIncrease.Value.ToString(), DurationIncrease.Value.ToString()]);
         }
