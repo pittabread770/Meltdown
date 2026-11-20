@@ -1,6 +1,8 @@
 ## 0.4.1
 - Plutonium Rounds
 	- Updated visual effects
+- Uranium Fuel Rods
+	- Reduced duration increase per stack to 20% (was 50%)
 - Old Exhaust Pipe
 	- Added unique buff icon
 	- Movement speed increase per stack reduced to 20% (was 25%)

@@ -1,6 +1,6 @@
 ﻿{
 	"name": "Meltdown",
-	"version_number": "0.4.0",
+	"version_number": "0.4.1",
 	"website_url": "https://github.com/pittabread770/Meltdown",
 	"description": "A small item mod focused on nuclear-themed and synergistic items and effects.",
 	"dependencies": [
