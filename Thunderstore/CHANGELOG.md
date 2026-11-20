@@ -1,12 +1,14 @@
-## 0.5.0
+## 0.4.1
 - Plutonium Rounds
 	- Updated visual effects
 - Old Exhaust Pipe
 	- Added unique buff icon
+	- Movement speed increase per stack reduced to 20% (was 25%)
+		- Brings it a bit more in line with other common items.
 - Charcoal
 	- Updated visual effects
 	- Reworked: 5% chance to burn on hit. 20% chance to ignite 2 (+2 per stack) nearby enemies on hitting a burning enemy.
-		- This iteration brings back modded fire-related synergies while maintaining the item's flavour of spreading fire. I strongly suspect this item's balance might be way off, so I'm keeping a close eye on it.
+		- This iteration brings back modded fire-related synergies while maintaining the item's flavour of spreading fire. I strongly suspect this item's balance might be way off (for a green item, at least), so I'm keeping a close eye on it.
 
 ## 0.4.0
 - Increased Irradiated damage from 50% to 75% per tick
